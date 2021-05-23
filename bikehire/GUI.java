@@ -2,6 +2,8 @@
 import java.io.IOException;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class GUI extends JFrame{
 
@@ -12,10 +14,13 @@ public class GUI extends JFrame{
 	
 	//Title texts for each tab
 	JLabel _customers_heading = new JLabel("Manage Customers");
+	JButton _test_button = new JButton("Test");
+
+
 	JLabel _bikes_heading = new JLabel("Manage Bikes");
 	JLabel _rentals_heading = new JLabel("Manage Rentals");
 
-	JLabel _manual_text = new JLabel("<html>Manual<br/><br /> You can also run this program in the command line. <br /> Just type the corresponding number and press enter and follow the prompts.</html>");
+	JLabel _manual_text = new JLabel("<html>Manual<br/><br /> You can also run this program in the command line. <br /> Just type the corresponding number and press enter and follow the prompts. <br /></html>");
 	///////////////////////////////////////////
 
 	JTabbedPane tabbedPane = new JTabbedPane();
@@ -28,6 +33,7 @@ public class GUI extends JFrame{
 		tab_rentals.add(_rentals_heading);
 
 		tab_manual.add(_manual_text);
+		tab_manual.add(_test_button);
 		
 		tabbedPane.add("Manual", tab_manual);
 		tabbedPane.add("Customers",tab_customers);

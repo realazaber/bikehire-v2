@@ -592,20 +592,13 @@ public class BikeHire {
 		ObjectInputStream _objectInput = null;
 	  
 		try{
-			_fileInput = new FileInputStream("customers.dat");
-			_objectInput = new ObjectInputStream(_fileInput);
-	   
-			RentRecord _r = null;
-			while(true){
-				try{
-					Object obj = _objectInput.readObject();
-					_r = (RentRecord)obj;
-					System.out.println(_r);
-				}
-				catch(EOFException eofe){
-					break;
-				}
+			File _file = new File("customers.dat"); //Gets the file
+			Scanner _scanner = new Scanner(_file);
+	
+			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
+				System.out.println(_scanner.nextLine());
 			}
+			_scanner.close();
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
@@ -626,23 +619,16 @@ public class BikeHire {
 		ObjectInputStream _objectInput = null;
 	  
 		try{
-			_fileInput = new FileInputStream("bikes.dat");
-			_objectInput = new ObjectInputStream(_fileInput);
-	   
-			RentRecord _r = null;
-			while(true){
-				try{
-					Object _obj = _objectInput.readObject();
-					_r = (RentRecord)_obj;
-					System.out.println(_r);
-				}
-				catch(EOFException _eofe){
-					break;
-				}
+			File _file = new File("bikes.dat"); //Gets the file
+			Scanner _scanner = new Scanner(_file);
+	
+			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
+				System.out.println(_scanner.nextLine());
 			}
+			_scanner.close();
 		}
-		catch(Exception _exception){
-			System.err.println("Error: " + _exception.getMessage());
+		catch(Exception e){
+			System.err.println("Error: " + e.getMessage());
 		}
 		finally{
 			try{

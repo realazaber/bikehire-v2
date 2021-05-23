@@ -385,7 +385,6 @@ public class BikeHire {
 	}
 	
 	private void saveRentals(){
-
 		try {
 			File _file = new File("rentals.dat"); //Selects file and prepares it for writing
 			FileWriter _fileWriter = new FileWriter(_file, true);
@@ -396,6 +395,7 @@ public class BikeHire {
 
 			for (var _rent : _rents) {
 				_text += _rent.toString();
+				_text += "\n";
 			}
 
 			_printWriter.print("\n" + _text); //appends to file
@@ -418,6 +418,7 @@ public class BikeHire {
 
 			for (var _customer : _customers) {
 				_text += _customer.toString();
+				_text += "\n";
 			}
 
 			_printWriter.print("\n" + _text); //appends to file
@@ -440,6 +441,7 @@ public class BikeHire {
 
 			for (var _bike : _bikes) {
 				_text += _bike.toString();
+				_text += "\n";
 			}
 
 			_printWriter.print("\n" + _text); //appends to file
@@ -563,20 +565,13 @@ public class BikeHire {
 		ObjectInputStream _objectInput = null;
 	  
 		try{
-			_fileInput = new FileInputStream("rentals.dat");
-			_objectInput = new ObjectInputStream(_fileInput);
-	   
-			RentRecord _r = null;
-			while(true){
-				try{
-					Object obj = _objectInput.readObject();
-					_r = (RentRecord)obj;
-					System.out.println(_r);
-				}
-				catch(EOFException eofe){
-					break;
-				}
+			File _file = new File("rentals.dat"); //Gets the file
+			Scanner _scanner = new Scanner(_file);
+	
+			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
+				System.out.println(_scanner.nextLine());
 			}
+			_scanner.close();
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());

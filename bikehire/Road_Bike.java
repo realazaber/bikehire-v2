@@ -1,5 +1,3 @@
-
-
 public class Road_Bike extends Bike{
 	private String _make = "Road";
 	private double _pricePerDay = 69.00;

@@ -1,6 +1,5 @@
 // Subclass of Bike
 
-
 public class EBike extends Bike{
 	private String _make = "EBike";
 	private double _pricePerDay = 25.00;

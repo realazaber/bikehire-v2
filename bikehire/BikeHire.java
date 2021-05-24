@@ -1,4 +1,3 @@
-
 //For input and other key features
 import java.io.*;
 import java.util.*;
@@ -20,11 +19,9 @@ import java.io.PrintWriter;
 import java.io.BufferedWriter;
 /************************************************/
 
-public class BikeHire {
 
-	private JFrame _frame = new JFrame(); //Creates the window
-	private JPanel _panel = new JPanel(); //The stuff that goes in the window
-	private JTextField _guiInput = new JTextField(); //Takes in user input via text typing
+
+public class BikeHire {
 
 	private ArrayList<Bike> _bikes;
 	private ArrayList<Customer> _customers;
@@ -105,15 +102,22 @@ public class BikeHire {
 		_rents.add(_rentRecord_2);
 	}
 	
-	private void displayAvailableBikes(){ //Shows all AVAILABLE BIKES
+	public String displayAvailableBikes(){ //Shows all AVAILABLE BIKES
 		int _bikeNum = 0; //Starts the counter of bikes
+		String _output = "";
 		try{
 			for(Bike _bike: _bikes){
 				if(_bike.getIsRented() == false){
 					System.out.println("\nBike ID: " + _bike.getBikeID());
 					System.out.println("Bike name: " + _bike.getName());
 					System.out.println("Rent status: " + _bike.getIsRented());
+					
+					_output += "\nBike ID: " + _bike.getBikeID();
+					_output += "\nBike name: " + _bike.getName();
+					_output += "\nRent Status: " + _bike.getIsRented();
+					_output += "\n";
 					_bikeNum++;
+
 				}
 			}
 			if(_bikeNum < 1){
@@ -123,9 +127,11 @@ public class BikeHire {
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
+
+		return _output;
 	}
 	 
-	private void addCustomer(){
+	public void addCustomer(){
 		try{
 			System.out.println("First name: ");
 			String _fname = _input.nextLine();
@@ -146,12 +152,15 @@ public class BikeHire {
 		}
 	}
 	 
-	private void displayCustomers(){
+	public String displayCustomers(){
 		int _custCount = 0;
+		String _output = "";
 		try{
 			for(Customer _customer: _customers){
 				System.out.println(_customer);
 				_custCount++;
+				_output += "\n";
+				_output += _customer.toString();
 			}
 			if(_custCount < 1){
 				throw new Exception("No customers registered.");
@@ -160,9 +169,10 @@ public class BikeHire {
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
+		return _output;
 	}
 	 
-	private int searchForCustomer(String _fname, String _lname){
+	public int searchForCustomer(String _fname, String _lname){
 		int _id = 0;
 		for(Customer _customer: _customers){
 			if(_fname.equalsIgnoreCase(_customer.getFirstName()) && _lname.equalsIgnoreCase(_customer.getLastName())){
@@ -172,7 +182,7 @@ public class BikeHire {
 		return _id;
 	}
 	 
-	private int searchForBikeByType(int _type){
+	public int searchForBikeByType(int _type){
 		int _id = 0;
 		try{
 			switch(_type){
@@ -226,7 +236,7 @@ public class BikeHire {
 		return _id;
 	}
 	 
-	private void addRent(){
+	public void addRentForm(){
 		try{
 			int _custID = 0;
 			System.out.println("Customer details");
@@ -300,21 +310,22 @@ public class BikeHire {
 		}
 	}
 	
-	private void displayRents(){
+	public String displayRents(){
 
-
+		String _output = "";
 		int _rentCount = 0;
 		try{
 			System.out.println("==========");
 			for(RentRecord _rent: _rents){
 				if (_currentDateValue - _rent.getDateValue() >= 30) {
-					System.out.println("OVERDUE");
-					System.out.println(_rent);
-					System.out.println("==========");
+					_output += "\nOVERDUE";
+					_output += "\n" + _rent;
+					_output += "\n" + "==========";
 				}
 				else {
-					System.out.println(_rent);
-					System.out.println("==========");
+					_output += "\n" + _rent;
+					_output += "==========";
+
 				}
 				_rentCount++;
 			}
@@ -325,9 +336,11 @@ public class BikeHire {
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
+
+		return _output;
 	}
 	 
-	private void SearchRentalsByCustID(){
+	public void SearchRentalsByCustID(){
 		Scanner _input = null;
 		try{
 			System.out.println("\nSearch options: " + 
@@ -387,7 +400,7 @@ public class BikeHire {
 		}
 	}
 	
-	private void saveRentals(){
+	public void saveRentals(){
 		try {
 			File _file = new File("rentals.dat"); //Selects file and prepares it for writing
 			FileWriter _fileWriter = new FileWriter(_file, true);
@@ -410,7 +423,7 @@ public class BikeHire {
 		}
 	}
 
-	private void saveCustomers(){
+	public void saveCustomers(){
 		try {
 			File _file = new File("customers.dat"); //Selects file and prepares it for writing
 			FileWriter _fileWriter = new FileWriter(_file, true);
@@ -433,7 +446,7 @@ public class BikeHire {
 		}
 	}
 
-	private void saveBikes(){
+	public void saveBikes(){
 		try {
 			File _file = new File("bikes.dat"); //Selects file and prepares it for writing
 			FileWriter _fileWriter = new FileWriter(_file, true);
@@ -456,7 +469,7 @@ public class BikeHire {
 		}
 	}
 	 
-	private void displayOverdueRents(){
+	public void displayOverdueRents(){
 
         /////////////////////////////////////////////////////////////
 
@@ -471,11 +484,9 @@ public class BikeHire {
 				System.out.println("==========");
 			}
 		}
-
-
 	}
 
-	private void addBike(){
+	public void addBikeForm(){
 		System.out.println("Add new bike.");
 		
 		System.out.println("Bike name: ");
@@ -514,12 +525,12 @@ public class BikeHire {
 				addEBike(_name);
 				break;
 			default:
-				addBike();
+				addBikeForm();
 				break;
 		}
 	}
 
-	private void addEBike(String _name){
+	public void addEBike(String _name){
 		System.out.println("Motor strength");
 		System.out.println("1. Full power");
 		System.out.println("2. Power assist");
@@ -544,9 +555,7 @@ public class BikeHire {
 		System.out.println("Bike " + _name + " added to bikes.");
 	}
 
-
-
-	private void returnBike(){
+	public void returnBike(){
 		System.out.println("Input bike ID to return: ");
 		int _bikeID = _input.nextInt();
 		for (var _bike : _rents) {
@@ -557,13 +566,11 @@ public class BikeHire {
 			}
 			else {
 				System.out.println("Bike not currently rented.");
-				
 			}
 		} 
-
 	}
 	
-	private void readRentals(){
+	public void readRentals(){
 		FileInputStream _fileInput = null;
 		ObjectInputStream _objectInput = null;
 	  
@@ -590,16 +597,19 @@ public class BikeHire {
 		}
 	}
 
-	private void readCustomers(){
+	public String readCustomers(){
 		FileInputStream _fileInput = null;
 		ObjectInputStream _objectInput = null;
+
+		String _output = "";
 	  
 		try{
 			File _file = new File("customers.dat"); //Gets the file
 			Scanner _scanner = new Scanner(_file);
 	
 			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
-				System.out.println(_scanner.nextLine());
+				_output += "\n";
+				_output += _scanner.nextLine();
 			}
 			_scanner.close();
 		}
@@ -615,18 +625,22 @@ public class BikeHire {
 				System.err.println("Error: " + fe.getMessage());
 			}
 		}
+
+		return _output;
 	}
 
-	private void readBikes(){
+	public String readBikes(){
 		FileInputStream _fileInput = null;
 		ObjectInputStream _objectInput = null;
 	  
+		String _output = "";
 		try{
 			File _file = new File("bikes.dat"); //Gets the file
 			Scanner _scanner = new Scanner(_file);
 	
 			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
-				System.out.println(_scanner.nextLine());
+				_output += "\n";
+				_output += _scanner.nextLine();
 			}
 			_scanner.close();
 		}
@@ -642,6 +656,8 @@ public class BikeHire {
 				System.err.println("Error: " + fe.getMessage());
 			}
 		}
+
+		return _output;
 	}
 
 		 
@@ -685,17 +701,15 @@ public class BikeHire {
 				System.out.println("Enter your choice (1 - 17): ");
 				_choice = _input.nextInt();
 
-				
-	
 				switch(_choice){
 				case 1:
-					displayRents();
+					System.out.println(displayRents());
 					break;
 				case 2:
-					displayCustomers();
+					System.out.println(displayCustomers());
 					break;
 				case 3:
-					displayAvailableBikes();
+					System.out.println(displayAvailableBikes());
 					break;
 				case 4:
 					SearchRentalsByCustID();
@@ -704,19 +718,19 @@ public class BikeHire {
 					readRentals();
 					break;
 				case 6:
-					readCustomers();
+					System.out.println(readCustomers());
 					break;
 				case 7:
-					readBikes();
+					System.out.println(readBikes());
 					break;
 				case 8:
-					addRent();
+					addRentForm();
 					break;
 				case 9:
 					addCustomer();
 					break;
 				case 10:
-					addBike();
+					addBikeForm();
 					break;
 				case 11:
 					saveRentals();

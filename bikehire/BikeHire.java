@@ -640,6 +640,7 @@ public class BikeHire {
 			}
 		}
 	}
+
 		 
 	public void run(){
 		try{
@@ -680,6 +681,8 @@ public class BikeHire {
    
 				System.out.println("Enter your choice (1 - 17): ");
 				_choice = _input.nextInt();
+
+				
 	
 				switch(_choice){
 				case 1:

@@ -259,13 +259,15 @@ public class BikeHire {
 					while(_flag){
 						System.out.println("Enter ID of bike: ");
 
-
 						int _type = _input.nextInt();
+
+						boolean _foundBike = false;
 
 						for (var _bike : _bikes) {
 							if (_bike.getBikeID() == _type) {
 															//set bike to isRented
 								_bike.setIsRented(true);
+								_foundBike = true;
 
 								//create rent
 								RentRecord _r = new RentRecord(_custID, _bike.getBikeID(), _day, _month, _year, _duration);
@@ -281,9 +283,10 @@ public class BikeHire {
 									break;
 								}
 							}
-							else {
-								System.out.println("Bike ID invalid");
-							}
+						}
+
+						if (_foundBike == false) {
+							System.out.println("Bike ID invalid");
 						}
 					}
 				}
@@ -745,8 +748,9 @@ public class BikeHire {
 				case 16:
 					returnBike();
 					break;
-				case 17:
+				case 17: //Quit proram
 					_flag = false;
+					System.exit(1);
 					break;
 				default:
 					System.out.println("Incorrect input. Please enter a number between 1 and 13.");

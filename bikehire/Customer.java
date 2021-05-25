@@ -37,12 +37,12 @@ public class Customer {
 		return _phone;
 	}
 	
-	public String toString(){
-		return "\nCustomer ID: " + _custID + 
-				"\nCustomer First name: " + _fname + 
-				"\nCustomer Last name: " + _lname + 
-				"\nCustomer Phone: " + _phone +
-				"\nCustomer Address: " + _address; 
+	public String GUItoString(){
+		return  "<br />Customer ID: " + _custID + 
+				"<br />Customer First name: " + _fname + 
+				"<br />Customer Last name: " + _lname + 
+				"<br />Customer Phone: " + _phone +
+				"<br />Customer Address: " + _address; 
 				
 	}
 }

@@ -72,12 +72,13 @@ public class RentRecord implements Serializable{
 	public double getDuration(){
 		return _duration;
 	}
-	
-	public String toString(){
-		return "Rent ID: " + _rentID + 
-			   "\nCustomer ID: " + _custID +
-			   "\nBike ID: " + _bikeID + 
-			   "\nDate: " + _rentDay + 
-			   "\nDuration: " + _duration;
+
+	public String GUItoString() {
+		return "<br />Rent ID: " + _rentID + 
+			"<br />Customer ID: " + _custID +
+			"<br />Bike ID: " + _bikeID + 
+			"<br />Date: " + _rentDay + _rentMonth + _rentYear +
+			"<br />Duration: " + _duration +
+			"<br />";
 	}
 }

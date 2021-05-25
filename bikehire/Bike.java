@@ -32,9 +32,11 @@ public class Bike {
 		this._isRented = _isRented;
 	}
 	
-	public String toString(){
-		return "\nID: " + _bikeID + 
-			   "\nRent status: " + _isRented + 
-			   "\nBike name: " + _name;
+	public String GUItoString(){
+		return "<br />" +
+			   "<br />ID: " + _bikeID + 
+			   "<br />Rent status: " + _isRented + 
+			   "<br />Bike name: " + _name +
+			   "<br />";
 	}
 }

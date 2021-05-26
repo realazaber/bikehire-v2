@@ -434,13 +434,13 @@ public class BikeHire {
 		String _path = "";
 
 		if (_fileChosen == 1) {
-			_path = "customers.txt";
+			_path = "customers.dat";
 		}
 		else if (_fileChosen == 2) {
-			_path = "bikes.txt";
+			_path = "bikes.dat";
 		}
 		else if (_fileChosen == 3) {
-			_path = "rentals.txt";
+			_path = "rentals.dat";
 		}
 
 		try {
@@ -511,7 +511,6 @@ public class BikeHire {
 					_text += "<br />";
 				}
 			}
-
 
 			_printWriter.print(_text); //appends to file
 			_printWriter.print("</html>");
@@ -613,13 +612,13 @@ public class BikeHire {
 		//3 rents
 		String _path = "";
 		if (_fileChosen == 1) {
-			_path = "customers.txt";
+			_path = "customers.dat";
 		}
 		else if(_fileChosen == 2) {
-			_path = "bikes.txt";
+			_path = "bikes.dat";
 		}
 		else if (_fileChosen == 3) {
-			_path = "rentals.txt";
+			_path = "rentals.dat";
 		}
 
 		FileInputStream _fileInput = null;

@@ -1,15 +1,15 @@
+import java.io.IOException; //Error handling
+
 //For the windows and layout
 import javax.swing.*; //For GUI to work
 import java.awt.*;
 import java.awt.event.*;
 
-import java.io.IOException; //Error handling
-
 import java.awt.event.ActionEvent; //Event listeners
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import javax.swing.*;
+
 
 public class GUI extends JFrame {	
 
@@ -52,12 +52,14 @@ public class GUI extends JFrame {
 	JButton _bikes_save = new JButton("Save");
 	JButton _new_bike = new JButton("Add new bike");
 	JButton _add_e_bike = new JButton("Add new EBike");
+	JButton _search_bike = new JButton("Search for bike by ID");
 	JButton _bikes_quit = new JButton("Quit");
 
 	//Rentals buttons
 	JButton _rentals_save = new JButton("Save");
 	JButton _rentals_search = new JButton("Search");
 	JButton _rentals_add = new JButton("Add new Rental");
+	JButton _rentals_return = new JButton("Return");
 	JButton _rentals_quit = new JButton("Quit");
 	///////////////////////////////////////////
 
@@ -74,9 +76,10 @@ public class GUI extends JFrame {
 	JLabel _customers_heading = new JLabel("<html><h1>Manage Customers</html>");
 
 	JLabel _customer_records = new JLabel(_shop.displayRecords(1));
+	
 	JLabel _customer_file = new JLabel(_shop.readFile(1));
 
-//	JScrollPane _scrolling = new JScrollPane(_customer_records, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	JScrollPane _scrolling = new JScrollPane();
 	///////////////////////////////////////////
 
 	//Bike labels
@@ -91,105 +94,6 @@ public class GUI extends JFrame {
 	JLabel _rents_records = new JLabel(_shop.displayRecords(3));
 	JLabel _rents_file = new JLabel(_shop.readFile(3));
 	///////////////////////////////////////////
-	public static void main(String[] args) throws IOException {
-
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} 
-		catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException _exception) {
-			_exception.printStackTrace();
-		}
-
-		GUI _gui = new GUI();
-		_gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		_gui.setSize(800,950);
-		_gui.setVisible(true);		
-	}
-
-	public void preparePanels() {
-
-		//Adding GUI elements to the manual tab
-		_tab_manual.setLayout(new GridLayout(4, 3));
-		
-		_tab_manual.add(new JLabel("EMPTY"));
-		_tab_manual.add(_manual_heading);
-		_tab_manual.add(new JLabel("EMPTY"));
-
-		_tab_manual.add(new JLabel("EMPTY"));
-		_tab_manual.add(_manual_text);
-		_tab_manual.add(new JLabel("EMPTY"));
-
-		_tab_manual.add(new JLabel("EMPTY"));
-		_tab_manual.add(new JLabel("EMPTY"));
-		_tab_manual.add(new JLabel("EMPTY"));
-
-		_tab_manual.add(new JLabel("EMPTY"));
-		_tab_manual.add(_manual_quit);
-		_tab_manual.add(new JLabel("EMPTY"));
-		
-		
-
-		//Adding GUI elements to the customers tab
-		_tab_customers.setLayout(new GridLayout(4, 3));
-		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(_customers_heading);
-		_tab_customers.add(new JLabel("EMPTY"));
-
-		_tab_customers.add(new JLabel("<html><h2>Customer Records</html>"));
-		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(new JLabel("<html><h2>Customer Records in File</html>"));
-		_tab_customers.add(_customer_records);
-		_tab_customers.add(_customer_save);
-		_tab_customers.add(_customer_file);
-		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(_customer_quit);
-		_tab_customers.add(new JLabel("EMPTY"));
-
-		///////////////////////////////////////////
-
-		//Adding GUI elements to the bikes tab
-		_tab_bikes.setLayout(new GridLayout(4, 3));
-		_tab_bikes.add(new JLabel("EMPTY"));
-		_tab_bikes.add(_bikes_heading);
-		_tab_bikes.add(new JLabel("EMPTY"));
-		_tab_bikes.add(new JLabel("<html><h2>Bike Records</html>"));
-		_tab_bikes.add(new JLabel("EMPTY"));
-		_tab_bikes.add(new JLabel("<html><h2>Bike File</html>"));
-		_tab_bikes.add(_bikes_records);
-		_tab_bikes.add(_bikes_save);
-		_tab_bikes.add(_bikes_file);
-		_tab_bikes.add(new JLabel("EMPTY"));
-		_tab_bikes.add(_bikes_quit);
-		_tab_bikes.add(new JLabel("EMPTY"));
-
-		
-		///////////////////////////////////////////
-
-		//Adding GUI elements to the rentals tab
-		_tab_rentals.setLayout(new GridLayout(4, 3));
-		_tab_rentals.add(new JLabel("EMPTY"));
-		_tab_rentals.add(_rentals_heading);
-		_tab_rentals.add(new JLabel("EMPTY"));
-		_tab_rentals.add(new JLabel("<html><h2>Rent Records</html>"));
-		_tab_rentals.add(new JLabel("EMPTY"));
-		_tab_rentals.add(new JLabel("<html><h2>Rent files</html>"));
-		_tab_rentals.add(_rents_records);
-		_tab_rentals.add(_rentals_save);
-		_tab_rentals.add(_rents_file);
-		_tab_rentals.add(new JLabel("EMPTY"));
-		_tab_rentals.add(_rentals_quit);
-		_tab_rentals.add(new JLabel("EMPTY"));
-
-		///////////////////////////////////////////
-		
-		
-		_rentals_quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("QUIT");
-				System.exit(1);
-			}
-		});
-	}
 
 
 
@@ -209,6 +113,15 @@ public class GUI extends JFrame {
 				_shop.saveFile(1);
 			}
 		});
+
+		_customer_add.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("added");
+			}
+		});
+
+
+		
 
 		_customer_quit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -247,18 +160,5 @@ public class GUI extends JFrame {
 		});
 	}
 
-	public GUI(){		
-		
-		preparePanels();
-		prepareButtonActions();
-	
-		//Tab text for each menu
-		tabbedPane.add("Manual", _tab_manual);
-		tabbedPane.add("Customers",_tab_customers);
-		tabbedPane.add("Bikes",_tab_bikes);
-		tabbedPane.add("Rentals",_tab_rentals);
-		
-		add(tabbedPane);
-		///////////////////////////////////////////
-	}
+
 }

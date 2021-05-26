@@ -11,14 +11,30 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.*;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame {	
 
 	BikeHire _shop = new BikeHire();
 
+	//Main tabs
 	JPanel _tab_manual = new JPanel();
 	JPanel _tab_customers = new JPanel();
 	JPanel _tab_bikes = new JPanel();
 	JPanel _tab_rentals = new JPanel();
+
+	//Forms
+	
+	//Customer forms
+	JPanel _add_customer = new JPanel();
+	JPanel _search_customer = new JPanel();
+
+	//Bike forms
+	JPanel _add_bike = new JPanel();
+	JPanel _add_ebike = new JPanel();
+
+	//Rentals forms
+	JPanel _search_rental = new JPanel();
+	JPanel _add_rent = new JPanel();
+
 
 	//Manual buttons
 	JButton _manual_quit = new JButton("Quit");
@@ -26,16 +42,22 @@ public class GUI extends JFrame {
 
 	//Customer buttons
 	JButton _customer_save = new JButton("Save");
+	JButton _customer_search = new JButton("Search for Customer");
+	JButton _customer_add = new JButton("Add New Customer");
 	JButton _customer_quit = new JButton("Quit");
 	///////////////////////////////////////////
 
 	//Bike buttons
 	///////////////////////////////////////////
 	JButton _bikes_save = new JButton("Save");
+	JButton _new_bike = new JButton("Add new bike");
+	JButton _add_e_bike = new JButton("Add new EBike");
 	JButton _bikes_quit = new JButton("Quit");
 
 	//Rentals buttons
 	JButton _rentals_save = new JButton("Save");
+	JButton _rentals_search = new JButton("Search");
+	JButton _rentals_add = new JButton("Add new Rental");
 	JButton _rentals_quit = new JButton("Quit");
 	///////////////////////////////////////////
 
@@ -44,26 +66,28 @@ public class GUI extends JFrame {
 	//Labels for each page
 
 	//Manual labels
-	JLabel _manual_heading = new JLabel("Manual");
-	JLabel _manual_text = new JLabel("To conduct certain operations you need to navigate to the other tabs.");
+	JLabel _manual_heading = new JLabel("<html><h1>Manual</html>");
+	JLabel _manual_text = new JLabel("<html><h2>To conduct certain operations you need to navigate to the other tabs.</html>");
 	///////////////////////////////////////////
 
 	//Customer labels
-	JLabel _customers_heading = new JLabel("Manage Customers");
+	JLabel _customers_heading = new JLabel("<html><h1>Manage Customers</html>");
 
 	JLabel _customer_records = new JLabel(_shop.displayRecords(1));
 	JLabel _customer_file = new JLabel(_shop.readFile(1));
+
+//	JScrollPane _scrolling = new JScrollPane(_customer_records, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	///////////////////////////////////////////
 
 	//Bike labels
-	JLabel _bikes_heading = new JLabel("Manage Bikes");
+	JLabel _bikes_heading = new JLabel("<html><h1>Manage Bikes</html>");
 	JLabel _bikes_records = new JLabel(_shop.displayRecords(2));
 	JLabel _bikes_file = new JLabel(_shop.readFile(2));
 	///////////////////////////////////////////
 
 	//Rentals labels
-	JLabel _rentals_heading = new JLabel("Manage Rentals");
-	JLabel _rent_records_title = new JLabel("Rent Records");
+	JLabel _rentals_heading = new JLabel("<html><h1>Manage Rentals</html>");
+	JLabel _rent_records_title = new JLabel("<html><h2>Rent Records</html>");
 	JLabel _rents_records = new JLabel(_shop.displayRecords(3));
 	JLabel _rents_file = new JLabel(_shop.readFile(3));
 	///////////////////////////////////////////
@@ -106,20 +130,17 @@ public class GUI extends JFrame {
 		
 
 		//Adding GUI elements to the customers tab
-		_tab_customers.setLayout(new GridLayout(5, 3));
+		_tab_customers.setLayout(new GridLayout(4, 3));
 		_tab_customers.add(new JLabel("EMPTY"));
 		_tab_customers.add(_customers_heading);
 		_tab_customers.add(new JLabel("EMPTY"));
 
-		_tab_customers.add(new JLabel("Customer Records"));
+		_tab_customers.add(new JLabel("<html><h2>Customer Records</html>"));
 		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(new JLabel("Customer Records in File"));
+		_tab_customers.add(new JLabel("<html><h2>Customer Records in File</html>"));
 		_tab_customers.add(_customer_records);
 		_tab_customers.add(_customer_save);
 		_tab_customers.add(_customer_file);
-		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(new JLabel("EMPTY"));
-		_tab_customers.add(new JLabel("EMPTY"));
 		_tab_customers.add(new JLabel("EMPTY"));
 		_tab_customers.add(_customer_quit);
 		_tab_customers.add(new JLabel("EMPTY"));
@@ -127,10 +148,13 @@ public class GUI extends JFrame {
 		///////////////////////////////////////////
 
 		//Adding GUI elements to the bikes tab
-		_tab_bikes.setLayout(new GridLayout(3, 3));
+		_tab_bikes.setLayout(new GridLayout(4, 3));
 		_tab_bikes.add(new JLabel("EMPTY"));
 		_tab_bikes.add(_bikes_heading);
 		_tab_bikes.add(new JLabel("EMPTY"));
+		_tab_bikes.add(new JLabel("<html><h2>Bike Records</html>"));
+		_tab_bikes.add(new JLabel("EMPTY"));
+		_tab_bikes.add(new JLabel("<html><h2>Bike File</html>"));
 		_tab_bikes.add(_bikes_records);
 		_tab_bikes.add(_bikes_save);
 		_tab_bikes.add(_bikes_file);
@@ -146,14 +170,15 @@ public class GUI extends JFrame {
 		_tab_rentals.add(new JLabel("EMPTY"));
 		_tab_rentals.add(_rentals_heading);
 		_tab_rentals.add(new JLabel("EMPTY"));
+		_tab_rentals.add(new JLabel("<html><h2>Rent Records</html>"));
 		_tab_rentals.add(new JLabel("EMPTY"));
-		_tab_rentals.add(_rent_records_title);
-		_tab_rentals.add(new JLabel("EMPTY"));
+		_tab_rentals.add(new JLabel("<html><h2>Rent files</html>"));
 		_tab_rentals.add(_rents_records);
 		_tab_rentals.add(_rentals_save);
 		_tab_rentals.add(_rents_file);
 		_tab_rentals.add(new JLabel("EMPTY"));
 		_tab_rentals.add(_rentals_quit);
+		_tab_rentals.add(new JLabel("EMPTY"));
 
 		///////////////////////////////////////////
 		

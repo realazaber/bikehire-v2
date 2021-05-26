@@ -3,13 +3,13 @@ public class Customer {
 	private String _fname;
 	private String _lname;
 	private String _address;
-	private int _phone;
+	private String _phone;
 	private static int _newID = 1;
 	
 	public Customer(){
 	}
 	
-	public Customer(String _fname, String _lname, String _address, int _phone){
+	public Customer(String _fname, String _lname, String _address, String _phone){
 		this._custID = _newID++;
 		this._fname = _fname;
 		this._lname = _lname;
@@ -33,12 +33,12 @@ public class Customer {
 		return _address;
 	}
 	
-	public int getPhone(){
+	public String getPhone(){
 		return _phone;
 	}
 	
 	public String GUItoString(){
-		return  "<br />Customer ID: " + _custID + 
+		return  "Customer ID: " + _custID + 
 				"<br />Customer First name: " + _fname + 
 				"<br />Customer Last name: " + _lname + 
 				"<br />Customer Phone: " + _phone +

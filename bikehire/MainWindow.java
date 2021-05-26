@@ -3,13 +3,9 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.SwingConstants;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,16 +13,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JList;
-import java.awt.Label;
-import java.awt.Scrollbar;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class MainWindow {
 	
-	BikeHire _shop = new BikeHire();
+	public static BikeHire _shop = new BikeHire();
 
 	//Main tabs
 	JPanel _tab_manual = new JPanel();
@@ -108,10 +102,6 @@ public class MainWindow {
 	JLabel _rents_file = new JLabel(_shop.readFile(3));
 
 	private JFrame frame;
-	private final Action action = new SwingAction();
-	private JTable customer_records_table;
-	private JTable customer_records_file;
-
 	/**
 	 * Launch the application.
 	 */
@@ -140,7 +130,7 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(200, 100, 900, 600);
+		frame.setBounds(200, 100, 900, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -156,84 +146,215 @@ public class MainWindow {
 		gbc_tabbedPane.gridy = 0;
 		frame.getContentPane().add(tabbedPane, gbc_tabbedPane);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("<html><h4>Manual</html>", null, panel, null);
-		panel.setLayout(null);
+		JPanel pManual = new JPanel();
+		pManual.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.addTab("<html><h4>Manual</html>", null, pManual, null);
+		pManual.setLayout(null);
 		
 		JLabel lblManual = new JLabel("<html><h1>Manual</html>");
 		lblManual.setBounds(350, 10, 95, 15);
-		panel.add(lblManual);
+		pManual.add(lblManual);
 		
 		JLabel lblNavigateToOther = new JLabel("<html><h1>Navigate to the corresponding tabs <br/>to manage operations.</html>");
 		lblNavigateToOther.setBounds(276, 76, 319, 174);
-		panel.add(lblNavigateToOther);
+		pManual.add(lblNavigateToOther);
 		
 		JButton manualQuit = new JButton("Quit");
+		manualQuit.setBackground(new Color(255, 99, 71));
 		manualQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(1);
 			}
 		});
-		manualQuit.setBounds(300, 400, 230, 35);
-		panel.add(manualQuit);
+		manualQuit.setBounds(300, 650, 230, 35);
+		pManual.add(manualQuit);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("<html><h4>Customers</html>", null, panel_1, null);
-		panel_1.setLayout(null);
+		JPanel pCustomer = new JPanel();
+		pCustomer.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.addTab("<html><h4>Customers</html>", null, pCustomer, null);
+		pCustomer.setLayout(null);
 		
 		JLabel lblCustomers = new JLabel("<html><h1>Customers</html>");
 		lblCustomers.setBounds(350, 10, 150, 20);
-		panel_1.add(lblCustomers);
+		pCustomer.add(lblCustomers);
 		
-		JLabel lblCustomerRecords = new JLabel("<html><h2>Customer Records</html>");
-		lblCustomerRecords.setBounds(90, 50, 170, 50);
-		panel_1.add(lblCustomerRecords);
+		JLabel lblCustomerRecordsTitle = new JLabel("<html><h2>Customer Records</html>");
+		lblCustomerRecordsTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCustomerRecordsTitle.setBounds(90, 50, 170, 50);
+		pCustomer.add(lblCustomerRecordsTitle);
 		
-		JLabel lblCustomerRecordsIn = new JLabel("<html><h2>Customer Records in file</html>");
-		lblCustomerRecordsIn.setBounds(570, 35, 200, 70);
-		panel_1.add(lblCustomerRecordsIn);
+		JScrollPane spCustomerRecords = new JScrollPane();
+		spCustomerRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spCustomerRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		spCustomerRecords.setBounds(39, 112, 260, 280);
+		pCustomer.add(spCustomerRecords);
 		
-		JButton custQuit = new JButton("Quit");
-		custQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(1);
-			}
-		});
-		custQuit.setBounds(300, 400, 230, 35);
-		panel_1.add(custQuit);
+		JLabel lblCustomerRecords = new JLabel(_shop.displayRecords(1));
+		spCustomerRecords.setViewportView(lblCustomerRecords);
+		lblCustomerRecords.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblCustomerFileTitle = new JLabel("<html><h2>Customer Records in file</html>");
+		lblCustomerFileTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCustomerFileTitle.setBounds(570, 35, 200, 70);
+		pCustomer.add(lblCustomerFileTitle);
+		
+		JScrollPane spCustomerFile = new JScrollPane();
+		spCustomerFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		spCustomerFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spCustomerFile.setBounds(567, 112, 260, 280);
+		pCustomer.add(spCustomerFile);
+		
+		JLabel lblCustomerFile = new JLabel(_shop.readFile(1));
+		spCustomerFile.setViewportView(lblCustomerFile);
+		lblCustomerFile.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btnSaveToFile = new JButton("Save to file");
+		btnSaveToFile.setBackground(new Color(0, 206, 209));
 		btnSaveToFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.saveFile(1);
 			}
 		});
-		btnSaveToFile.setBounds(350, 53, 140, 47);
-		panel_1.add(btnSaveToFile);
+		btnSaveToFile.setBounds(350, 217, 150, 47);
+		pCustomer.add(btnSaveToFile);
 		
-		customer_records_table = new JTable();
-		customer_records_table.setBounds(12, 112, 330, 180);
-		panel_1.add(customer_records_table);
+		JButton custQuit = new JButton("Quit");
+		custQuit.setBackground(new Color(255, 99, 71));
+		custQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
+		custQuit.setBounds(300, 650, 230, 35);
+		pCustomer.add(custQuit);
 		
-		customer_records_file = new JTable();
-		customer_records_file.setBounds(498, 112, 330, 180);
-		panel_1.add(customer_records_file);
+		JButton btnAddCustomer = new JButton("Add Customer");
+		btnAddCustomer.setBackground(new Color(0, 255, 102));
+		btnAddCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormAddCustomer _addCust = new FormAddCustomer();
+				_addCust.AddCustomer();
+			}
+		});
+		btnAddCustomer.setBounds(70, 510, 150, 40);
+		pCustomer.add(btnAddCustomer);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("<html><h4>Rentals</html>", null, panel_3, null);
-		panel_3.setLayout(null);
-		
-		JLabel lblRentals = new JLabel("<html><h1>Rentals</html>");
-		lblRentals.setBounds(350, 0, 110, 40);
-		panel_3.add(lblRentals);
-		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("<html><h4>Bikes</html>", null, panel_2, null);
-		panel_2.setLayout(null);
+		JPanel pBikes = new JPanel();
+		pBikes.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.addTab("<html><h4>Bikes</html>", null, pBikes, null);
+		pBikes.setLayout(null);
 		
 		JLabel lblBikes = new JLabel("<html><h1>Bikes</html>");
 		lblBikes.setBounds(350, 10, 90, 20);
-		panel_2.add(lblBikes);
+		pBikes.add(lblBikes);
+		
+		JLabel lblBikeRecordsTitle = new JLabel("<html><h2>Bike Records</html>");
+		lblBikeRecordsTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBikeRecordsTitle.setBounds(90, 50, 170, 50);
+		pBikes.add(lblBikeRecordsTitle);
+		
+		JLabel lblBikesFile = new JLabel("<html><h2>Bike Records in file</html>");
+		lblBikesFile.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBikesFile.setBounds(590, 30, 200, 70);
+		pBikes.add(lblBikesFile);
+		
+		JScrollPane spBikeRecords = new JScrollPane();
+		spBikeRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spBikeRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spBikeRecords.setBounds(39, 112, 260, 280);
+		pBikes.add(spBikeRecords);
+		
+		JLabel lblBikeRecords = new JLabel(_shop.displayAvailableBikes());
+		spBikeRecords.setViewportView(lblBikeRecords);
+		
+		JScrollPane spBikeFile = new JScrollPane();
+		spBikeFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spBikeFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spBikeFile.setBounds(567, 112, 260, 280);
+		pBikes.add(spBikeFile);
+		
+		JLabel lblBikeFile = new JLabel(_shop.readFile(2));
+		spBikeFile.setViewportView(lblBikeFile);
+		
+		JButton button = new JButton("Save to file");
+		button.setBackground(new Color(0, 206, 209));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.saveFile(2);
+			}
+			
+		});
+		button.setBounds(350, 220, 150, 47);
+		pBikes.add(button);
+		
+		JButton bikesQuit = new JButton("Quit");
+		bikesQuit.setBackground(new Color(255, 99, 71));
+		bikesQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
+		bikesQuit.setBounds(300, 650, 230, 35);
+		pBikes.add(bikesQuit);
+		
+		JPanel pRentals = new JPanel();
+		pRentals.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.addTab("<html><h4>Rentals</html>", null, pRentals, null);
+		pRentals.setLayout(null);
+		
+		JLabel lblRentals = new JLabel("<html><h1>Rentals</html>");
+		lblRentals.setBounds(350, 0, 110, 40);
+		pRentals.add(lblRentals);
+		
+		JLabel lblRentRecordsTitle = new JLabel("<html><h2>Rent Records</html>");
+		lblRentRecordsTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRentRecordsTitle.setBounds(90, 50, 170, 50);
+		pRentals.add(lblRentRecordsTitle);
+		
+		JLabel lblRentFileTitle = new JLabel("<html><h2>Rent File</html>");
+		lblRentFileTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRentFileTitle.setBounds(600, 52, 170, 50);
+		pRentals.add(lblRentFileTitle);
+		
+		JScrollPane spRentRecords = new JScrollPane();
+		spRentRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spRentRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spRentRecords.setBounds(39, 112, 260, 280);
+		pRentals.add(spRentRecords);
+		
+		JLabel RentRecords = new JLabel(_shop.displayRecords(3));
+		spRentRecords.setViewportView(RentRecords);
+		
+		JScrollPane spRentFile = new JScrollPane();
+		spRentFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spRentFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		spRentFile.setBounds(567, 110, 260, 280);
+		pRentals.add(spRentFile);
+		
+		JLabel RentFile = new JLabel(_shop.readFile(3));
+		RentFile.setBackground(Color.WHITE);
+		spRentFile.setViewportView(RentFile);
+		
+		JButton btnRentsSave = new JButton("Save to file");
+		btnRentsSave.setBackground(new Color(0, 206, 209));
+		btnRentsSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.saveFile(3);
+			}
+		});
+		btnRentsSave.setBounds(350, 220, 150, 47);
+		pRentals.add(btnRentsSave);
+		
+		JButton rentsQuit = new JButton("Quit");
+		rentsQuit.setBackground(new Color(255, 99, 71));
+		rentsQuit.setForeground(new Color(51, 51, 51));
+		rentsQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
+		rentsQuit.setBounds(300, 650, 230, 35);
+		pRentals.add(rentsQuit);
 	}
 	
 
@@ -299,13 +420,5 @@ public class MainWindow {
 				System.exit(1);
 			}
 		});
-	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
 	}
 }

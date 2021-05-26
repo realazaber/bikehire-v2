@@ -72,9 +72,9 @@ public class BikeHire {
 		EBike _Tesla = new EBike(false, "Tesla", "Full power", 200);
 		EBike _ScootScoot = new EBike(false, "Scoot", "Power assist", 400);
 		
-		Customer _Customer_1 = new Customer("Ben", "Ten", "My basement", 69420);
-		Customer _Customer_2 = new Customer("Norman", "Reedus", "My attic", 42069);
-		Customer _Customer_3 = new Customer("Bred", "Summerton", "My house", 2142069);
+		Customer _Customer_1 = new Customer("Ben", "Ten", "My basement", "69420");
+		Customer _Customer_2 = new Customer("Norman", "Reedus", "My attic", "42069");
+		Customer _Customer_3 = new Customer("Fred", "Summerton", "My house", "2142069");
 		
 		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
@@ -103,7 +103,7 @@ public class BikeHire {
 	
 	public String displayAvailableBikes(){ //Shows all AVAILABLE BIKES
 		int _bikeNum = 0; //Starts the counter of bikes
-		String _output = "";
+		String _output = "<html>";
 		try{
 			for(Bike _bike: _bikes){
 				if(_bike.getIsRented() == false){
@@ -120,25 +120,19 @@ public class BikeHire {
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
+		_output += "</html>";
 
 		return _output;
 	}
 	 
-	public void addCustomer(){
+	public void addCustomer(String _firstName, String _lastName, String _address, String _phone){
 		try{
-			System.out.println("First name: ");
-			String _fname = _input.next();
-			System.out.println("Last name: ");
-			String _lname = _input.next();
-			System.out.println("Customer phone: ##########");
-			int _phone = _input.nextInt();
-			System.out.println("Customer address: ");
-			String _address = _input.next();
 
 			//create customer
-			Customer c = new Customer(_fname, _lname, _address, _phone);
+			Customer c = new Customer(_firstName, _lastName, _address, _phone);
 			//add to ArrayList
 			_customers.add(c);
+			System.out.println("Customer added");
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
@@ -290,7 +284,7 @@ public class BikeHire {
 		//_category 3 = rentals
 		String _output = "";
 		int _rentCount = 0;
-		String _lineBreaker = "<br />";
+		String _lineBreaker = "";
 		try{
 			System.out.println("==========");
 
@@ -336,7 +330,7 @@ public class BikeHire {
 				for(RentRecord _rent: _rents){
 					if (_currentDateValue - _rent.getDateValue() >= 30) {
 						_output += _lineBreaker;
-						_output += "OVERDUE";
+						_output += "<br/>OVERDUE";
 						_output += _lineBreaker;
 						_output += _rent.GUItoString();
 						_output += _lineBreaker;
@@ -598,7 +592,6 @@ public class BikeHire {
 			if (_bike.getBikeID() == _bikeID) {
 				_rents.remove(_bike);
 				System.out.println("Bike returned.");
-				//run();
 			}
 			else {
 				System.out.println("Bike not currently rented.");
@@ -644,7 +637,7 @@ public class BikeHire {
 				_objectInput.close();
 			}
 			catch(Exception fe){
-				System.err.println("Error: " + fe.getMessage());
+				
 			}
 		}
 

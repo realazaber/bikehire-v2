@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+
 
 public class MainWindow {
 	
@@ -105,6 +108,8 @@ public class MainWindow {
 	private JTextField tfLastName;
 	private JTextField tfEmail;
 	private JTextField tfPhone;
+	private JTextField tfCustId;
+	private JTextField tfAddress;
 	/**
 	 * Launch the application.
 	 */
@@ -177,6 +182,105 @@ public class MainWindow {
 		tabbedPane.addTab("<html><h4>Customers</html>", null, pCustomer, null);
 		pCustomer.setLayout(null);
 		
+		JPanel pCustomerSearchResult = new JPanel();
+		pCustomerSearchResult.setBorder(new LineBorder(Color.BLACK));
+		pCustomerSearchResult.setBounds(40, 489, 300, 139);
+		pCustomer.add(pCustomerSearchResult);
+
+		pCustomerSearchResult.setLayout(null);
+		
+		JLabel lblFirstName_1 = new JLabel("First Name: ");
+		lblFirstName_1.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblFirstName_1);
+		
+		JLabel lblLastName_1 = new JLabel("Last Name: ");
+		lblLastName_1.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblLastName_1);
+		
+		JLabel lblPhoneNumber = new JLabel("Phone Number: ");
+		lblPhoneNumber.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblPhoneNumber);
+		
+		JLabel lblEmail_1 = new JLabel("Email: ");
+		lblEmail_1.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblEmail_1);
+		
+		JLabel lblAddress = new JLabel("Address: ");
+		lblAddress.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblAddress);
+		
+		JLabel lblCustomerName = new JLabel("Customer Name:");
+		lblCustomerName.setBounds(12, 12, 130, 15);
+		pCustomerSearchResult.add(lblCustomerName);
+		
+		JLabel lblCustomerPhone = new JLabel("Customer Phone: ");
+		lblCustomerPhone.setBounds(12, 39, 130, 15);
+		pCustomerSearchResult.add(lblCustomerPhone);
+		
+		JLabel lblCustomerEmail = new JLabel("Customer Email: ");
+		lblCustomerEmail.setBounds(12, 65, 130, 15);
+		pCustomerSearchResult.add(lblCustomerEmail);
+		
+		JLabel lblCustomerAddress = new JLabel("Customer Address: ");
+		lblCustomerAddress.setBounds(12, 95, 150, 15);
+		pCustomerSearchResult.add(lblCustomerAddress);
+		
+		JLabel lblCustNameOutPut = new JLabel("New label");
+		lblCustNameOutPut.setBounds(149, 12, 130, 15);
+		pCustomerSearchResult.add(lblCustNameOutPut);
+		
+		JLabel lblCustPhoneOutPut = new JLabel("New label");
+		lblCustPhoneOutPut.setBounds(150, 39, 130, 15);
+		pCustomerSearchResult.add(lblCustPhoneOutPut);
+		
+		JLabel lblCustEmailOutput = new JLabel("New label");
+		lblCustEmailOutput.setBounds(149, 65, 130, 15);
+		pCustomerSearchResult.add(lblCustEmailOutput);
+		
+		JLabel lblCustAddressOutput = new JLabel("New label");
+		lblCustAddressOutput.setBounds(149, 95, 130, 15);
+		pCustomerSearchResult.add(lblCustAddressOutput);
+		
+		JPanel pCustomerSearch = new JPanel();
+		pCustomerSearch.setBorder(new LineBorder(Color.BLACK));
+		pCustomerSearch.setBounds(40, 404, 300, 204);
+		pCustomer.add(pCustomerSearch);
+		pCustomerSearch.setLayout(null);
+		
+		JLabel lblSearchForCustomer = new JLabel("Search for Customer");
+		lblSearchForCustomer.setBounds(60, 10, 160, 15);
+		pCustomerSearch.add(lblSearchForCustomer);
+		
+		JLabel lblCustomerId = new JLabel("Customer ID:");
+		lblCustomerId.setBounds(12, 40, 100, 20);
+		pCustomerSearch.add(lblCustomerId);
+		
+		tfCustId = new JTextField();
+		tfCustId.setBounds(105, 40, 40, 19);
+		pCustomerSearch.add(tfCustId);
+		tfCustId.setColumns(10);
+		
+		JButton btnCustomerSearch = new JButton("Search");
+		btnCustomerSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int _id = Integer.parseInt(tfCustId.getText());
+	
+				
+				//String custFirstName = _shop.searchForCustomer(_id);
+				Vector _v = _shop.searchForCustomer(_id);
+				lblCustNameOutPut.setText(_v.get(0) + " " + _v.get(1));
+				lblCustPhoneOutPut.setText((String) _v.get(2));
+				lblCustEmailOutput.setText((String) _v.get(3));
+				lblCustAddressOutput.setText((String) _v.get(4));
+				
+				
+				
+			}
+		});
+		btnCustomerSearch.setBackground(Color.ORANGE);
+		btnCustomerSearch.setBounds(157, 38, 91, 25);
+		pCustomerSearch.add(btnCustomerSearch);
+		
 		JLabel lblCustomers = new JLabel("<html><h1>Customers</html>");
 		lblCustomers.setBounds(350, 10, 150, 20);
 		pCustomer.add(lblCustomers);
@@ -189,7 +293,7 @@ public class MainWindow {
 		JScrollPane spCustomerRecords = new JScrollPane();
 		spCustomerRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spCustomerRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		spCustomerRecords.setBounds(39, 112, 260, 280);
+		spCustomerRecords.setBounds(39, 112, 300, 280);
 		pCustomer.add(spCustomerRecords);
 		
 		JLabel lblCustomerRecords = new JLabel(_shop.displayRecords(1));
@@ -204,7 +308,7 @@ public class MainWindow {
 		JScrollPane spCustomerFile = new JScrollPane();
 		spCustomerFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		spCustomerFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		spCustomerFile.setBounds(567, 112, 260, 280);
+		spCustomerFile.setBounds(567, 112, 300, 280);
 		pCustomer.add(spCustomerFile);
 		
 		JLabel lblCustomerFile = new JLabel(_shop.readFile(1));
@@ -216,9 +320,11 @@ public class MainWindow {
 		btnSaveToFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.saveFile(1);
+				lblCustomerFile.setText(_shop.readFile(1));
+				
 			}
 		});
-		btnSaveToFile.setBounds(350, 217, 150, 47);
+		btnSaveToFile.setBounds(370, 130, 150, 47);
 		pCustomer.add(btnSaveToFile);
 		
 		JButton custQuit = new JButton("Quit");
@@ -232,7 +338,8 @@ public class MainWindow {
 		pCustomer.add(custQuit);
 		
 		JPanel pAddCust = new JPanel();
-		pAddCust.setBounds(39, 404, 260, 204);
+		pAddCust.setBorder(new LineBorder(Color.BLACK));
+		pAddCust.setBounds(570, 404, 300, 220);
 		pCustomer.add(pAddCust);
 		pAddCust.setLayout(null);
 		
@@ -253,17 +360,8 @@ public class MainWindow {
 		pAddCust.add(lblPhone);
 		
 		JLabel lblAddCustomer = new JLabel("Add Customer");
-		lblAddCustomer.setBounds(89, 12, 114, 15);
+		lblAddCustomer.setBounds(90, 10, 115, 15);
 		pAddCust.add(lblAddCustomer);
-		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText());
-			}
-		});
-		btnAdd.setBounds(69, 155, 117, 25);
-		pAddCust.add(btnAdd);
 		
 		tfFirstName = new JTextField();
 		tfFirstName.setBounds(99, 37, 110, 20);
@@ -284,6 +382,48 @@ public class MainWindow {
 		tfPhone.setBounds(99, 110, 110, 20);
 		pAddCust.add(tfPhone);
 		tfPhone.setColumns(10);
+		
+		JLabel lblAddress_1 = new JLabel("Address: ");
+		lblAddress_1.setBounds(12, 132, 70, 15);
+		pAddCust.add(lblAddress_1);
+		
+		tfAddress = new JTextField();
+		tfAddress.setBounds(99, 132, 114, 19);
+		pAddCust.add(tfAddress);
+		tfAddress.setColumns(10);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.setBackground(new Color(0, 255, 127));
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (tfFirstName.getText() != null && tfLastName.getText() != null && tfEmail.getText() != null && tfPhone.getText() != null && tfAddress.getText() != null) {
+					
+				
+				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
+				lblCustomerRecords.setText(_shop.displayRecords(1));
+				}
+				else {
+					System.out.println("fill in all info");
+				}
+			}
+		});
+		btnAdd.setBounds(69, 175, 117, 25);
+		pAddCust.add(btnAdd);
+		
+		JButton btnClearCustomerFIle = new JButton("Clear file");
+		btnClearCustomerFIle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearFile(1);
+				lblCustomerFile.setText(_shop.readFile(1));
+				
+			}
+		});
+		btnClearCustomerFIle.setBackground(new Color(250, 128, 114));
+		btnClearCustomerFIle.setBounds(370, 250, 150, 47);
+		pCustomer.add(btnClearCustomerFIle);
+		
+		
+
 		
 		JPanel pBikes = new JPanel();
 		pBikes.setBackground(Color.LIGHT_GRAY);

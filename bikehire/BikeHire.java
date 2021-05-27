@@ -22,9 +22,9 @@ import java.io.BufferedWriter;
 
 public class BikeHire {
 
-	private ArrayList<Bike> _bikes;
-	private ArrayList<Customer> _customers;
-	private ArrayList<RentRecord> _rents;
+	public ArrayList<Bike> _bikes;
+	public ArrayList<Customer> _customers;
+	public ArrayList<RentRecord> _rents;
 
 	/****************************************************************************************/
 	//Gets the date and prints it to screen
@@ -72,10 +72,10 @@ public class BikeHire {
 		EBike _Tesla = new EBike(false, "Tesla", "Full power", 200);
 		EBike _ScootScoot = new EBike(false, "Scooter", "Power assist", 400);
 		
-		Customer _Customer_1 = new Customer("Ben", "Ten", "My basement", "69420");
-		Customer _Customer_2 = new Customer("Norman", "Reedus", "My attic", "42069");
-		Customer _Customer_3 = new Customer("Fred", "Summerton", "My house", "2142069");
-		Customer _Customer_4 = new Customer("George", "Baba", "My door", "24394");
+		Customer _Customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
+		Customer _Customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
+		Customer _Customer_3 = new Customer("Fred", "Summerton", "smithjohn@yahoo.com", "2142069", "My house");
+		Customer _Customer_4 = new Customer("George", "Baba", "curiousgeorge@gmail.com", "24394", "My door");
 		
 		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
@@ -127,10 +127,10 @@ public class BikeHire {
 		return _output;
 	}
 	 
-	public void addCustomer(String _firstName, String _lastName, String _address, String _phone){
+	public void addCustomer(String _firstName, String _lastName, String _email, String _phone, String _address){
 		try{
 			//create customer
-			Customer c = new Customer(_firstName, _lastName, _address, _phone);
+			Customer c = new Customer(_firstName, _lastName, _email, _phone, _address);
 			//add to ArrayList
 			_customers.add(c);
 			System.out.println("Customer added");
@@ -140,7 +140,7 @@ public class BikeHire {
 		}
 	}
 	 
-	public int searchForCustomer(String _fname, String _lname){
+	public int searchForCustomerTerminal(String _fname, String _lname){
 		int _id = 0;
 		for(Customer _customer: _customers){
 			if(_fname.equalsIgnoreCase(_customer.getFirstName()) && _lname.equalsIgnoreCase(_customer.getLastName())){
@@ -148,6 +148,27 @@ public class BikeHire {
 			}
 		}
 		return _id;
+	}
+	
+
+	
+	public Vector searchForCustomer(int _id) {
+		Vector _v = new Vector();
+		for (Customer _customer: _customers) {
+			if (_id == _customer._custID) {
+				
+				_v.add(_customer.getFirstName());
+				_v.add(_customer.getLastName());
+				_v.add(_customer.getPhone());
+				_v.add(_customer.getEmail());
+				_v.add(_customer.getAddress());
+				
+				
+			}
+		}
+		return _v;
+		
+		
 	}
 	 
 	public int searchForBikeByType(int _type){
@@ -420,6 +441,36 @@ public class BikeHire {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
+	
+	public void clearFile(int _fileChosen) {
+		//1 Customer
+		//2 Bike
+		//3 Rental
+
+		String _path = "";
+
+		if (_fileChosen == 1) {
+			_path = "customers.dat";
+		}
+		else if (_fileChosen == 2) {
+			_path = "bikes.dat";
+		}
+		else if (_fileChosen == 3) {
+			_path = "rentals.dat";
+		}
+
+		try {
+			File _file = new File(_path); //Selects file and prepares it for writing
+			FileWriter _fileWriter = new FileWriter(_file, false);
+
+			_fileWriter.write("<html>");
+			_fileWriter.close();
+		} 
+		
+		catch (Exception _error) {
+			System.err.println("Error: " + _error.getMessage());
+		}
+	}
 
 	public void saveFile(int _fileChosen) {
 		//1 Customer
@@ -461,7 +512,10 @@ public class BikeHire {
 					_text += "Customer Phone: ";
 					_text += _customer.getPhone();
 					_text += "<br />";
-					_text += "Customer Address: ";
+					_text += "Customer Email: ";
+					_text += _customer.getEmail();
+					_text += "<br />";
+;					_text += "Customer Address: ";
 					_text += _customer.getAddress();
 					_text += "<br /><br />";
 				}

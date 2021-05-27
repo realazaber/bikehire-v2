@@ -70,11 +70,12 @@ public class BikeHire {
 		EBike _ecoFriend = new EBike(false, "Eco Friend", "Full power", 100);
 		EBike _electricPowa = new EBike(false, "Electric Powa", "Power assist", 150);
 		EBike _Tesla = new EBike(false, "Tesla", "Full power", 200);
-		EBike _ScootScoot = new EBike(false, "Scoot", "Power assist", 400);
+		EBike _ScootScoot = new EBike(false, "Scooter", "Power assist", 400);
 		
 		Customer _Customer_1 = new Customer("Ben", "Ten", "My basement", "69420");
 		Customer _Customer_2 = new Customer("Norman", "Reedus", "My attic", "42069");
 		Customer _Customer_3 = new Customer("Fred", "Summerton", "My house", "2142069");
+		Customer _Customer_4 = new Customer("George", "Baba", "My door", "24394");
 		
 		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
@@ -96,6 +97,7 @@ public class BikeHire {
 		_customers.add(_Customer_1);
 		_customers.add(_Customer_2);
 		_customers.add(_Customer_3);
+		_customers.add(_Customer_4);
 	
 		_rents.add(_rentRecord_1);
 		_rents.add(_rentRecord_2);
@@ -120,14 +122,13 @@ public class BikeHire {
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 		}
-		_output += "</html>";
+		//_output += "</html>";
 
 		return _output;
 	}
 	 
 	public void addCustomer(String _firstName, String _lastName, String _address, String _phone){
 		try{
-
 			//create customer
 			Customer c = new Customer(_firstName, _lastName, _address, _phone);
 			//add to ArrayList
@@ -351,7 +352,7 @@ public class BikeHire {
 				}
 			}
 
-			_output += "</html>";
+			//_output += "</html>";
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
@@ -507,7 +508,7 @@ public class BikeHire {
 			}
 
 			_printWriter.print(_text); //appends to file
-			_printWriter.print("</html>");
+			//_printWriter.print("</html>");
 			_printWriter.close();	
 		} 
 		

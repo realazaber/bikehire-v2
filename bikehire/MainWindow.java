@@ -13,10 +13,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.AbstractAction;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
-import javax.swing.UIManager;
+import javax.swing.JTextField;
 
 public class MainWindow {
 	
@@ -102,6 +101,10 @@ public class MainWindow {
 	JLabel _rents_file = new JLabel(_shop.readFile(3));
 
 	private JFrame frame;
+	private JTextField tfFirstName;
+	private JTextField tfLastName;
+	private JTextField tfEmail;
+	private JTextField tfPhone;
 	/**
 	 * Launch the application.
 	 */
@@ -228,16 +231,59 @@ public class MainWindow {
 		custQuit.setBounds(300, 650, 230, 35);
 		pCustomer.add(custQuit);
 		
-		JButton btnAddCustomer = new JButton("Add Customer");
-		btnAddCustomer.setBackground(new Color(0, 255, 102));
-		btnAddCustomer.addActionListener(new ActionListener() {
+		JPanel pAddCust = new JPanel();
+		pAddCust.setBounds(39, 404, 260, 204);
+		pCustomer.add(pAddCust);
+		pAddCust.setLayout(null);
+		
+		JLabel lblFirstName = new JLabel("First name: ");
+		lblFirstName.setBounds(12, 39, 130, 15);
+		pAddCust.add(lblFirstName);
+		
+		JLabel lblLastName = new JLabel("Last name: ");
+		lblLastName.setBounds(12, 61, 130, 15);
+		pAddCust.add(lblLastName);
+		
+		JLabel lblEmail = new JLabel("Email: ");
+		lblEmail.setBounds(12, 83, 130, 15);
+		pAddCust.add(lblEmail);
+		
+		JLabel lblPhone = new JLabel("Phone: ");
+		lblPhone.setBounds(12, 105, 130, 15);
+		pAddCust.add(lblPhone);
+		
+		JLabel lblAddCustomer = new JLabel("Add Customer");
+		lblAddCustomer.setBounds(89, 12, 114, 15);
+		pAddCust.add(lblAddCustomer);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FormAddCustomer _addCust = new FormAddCustomer();
-				_addCust.AddCustomer();
+				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText());
 			}
 		});
-		btnAddCustomer.setBounds(70, 510, 150, 40);
-		pCustomer.add(btnAddCustomer);
+		btnAdd.setBounds(69, 155, 117, 25);
+		pAddCust.add(btnAdd);
+		
+		tfFirstName = new JTextField();
+		tfFirstName.setBounds(99, 37, 110, 20);
+		pAddCust.add(tfFirstName);
+		tfFirstName.setColumns(10);
+		
+		tfLastName = new JTextField();
+		tfLastName.setBounds(99, 66, 110, 20);
+		pAddCust.add(tfLastName);
+		tfLastName.setColumns(10);
+		
+		tfEmail = new JTextField();
+		tfEmail.setBounds(99, 88, 110, 20);
+		pAddCust.add(tfEmail);
+		tfEmail.setColumns(10);
+		
+		tfPhone = new JTextField();
+		tfPhone.setBounds(99, 110, 110, 20);
+		pAddCust.add(tfPhone);
+		tfPhone.setColumns(10);
 		
 		JPanel pBikes = new JPanel();
 		pBikes.setBackground(Color.LIGHT_GRAY);

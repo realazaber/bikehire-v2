@@ -624,7 +624,6 @@ public class BikeHire {
 			Scanner _scanner = new Scanner(_file);
 	
 			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
-				//_output += "<br />";
 				_output += _scanner.nextLine();
 			}
 			_scanner.close();

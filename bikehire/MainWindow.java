@@ -507,6 +507,18 @@ public class MainWindow {
 		btnClearBikeRecords.setBounds(345, 250, 100, 47);
 		pBikes.add(btnClearBikeRecords);
 		
+		JButton btnClearBikeFile = new JButton("Clear File");
+		btnClearBikeFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearFile(2);
+				lblBikeFile.setText(_shop.readFile(2));
+				
+			}
+		});
+		btnClearBikeFile.setBackground(new Color(250, 128, 114));
+		btnClearBikeFile.setBounds(450, 250, 100, 47);
+		pBikes.add(btnClearBikeFile);
+		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);
 		tabbedPane.addTab("<html><h4>Rentals</html>", null, pRentals, null);

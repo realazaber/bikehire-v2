@@ -1,3 +1,5 @@
+
+
 // Subclass of Bike 
 
 public class City_Bike extends Bike{
@@ -7,8 +9,8 @@ public class City_Bike extends Bike{
 	public City_Bike(){
 	}
 	
-	public City_Bike(boolean _isRented, String _name){
-		super(_isRented);
+	public City_Bike(boolean _isRented, String _name, String _make){
+		super(_name, _make, _isRented);
 		this._bikeName = _name;
 	}
 	

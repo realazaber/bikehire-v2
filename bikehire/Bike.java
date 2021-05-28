@@ -12,8 +12,10 @@ public class Bike {
 
 	}
 	
-	public Bike(boolean isRented){
+	public Bike(String _bikeName, String _bikeType, boolean isRented){
 		this._bikeID = _newID++;
+		this._bikeName = _bikeName;
+		this._bikeType = _bikeType;
 		this._isRented = isRented;
 	}
 
@@ -34,8 +36,8 @@ public class Bike {
 	}
 	
 	public String GUItoString(){
-		return "<br />" +
-			   "<br />Bike ID: " + _bikeID + 
+		return 
+			   "<br /><br />Bike ID: " + _bikeID + 
 			   "<br />Bike Name: " + _bikeName +
 			   "<br />Bike Rent Status: " + _isRented + 
 			   "<br />";

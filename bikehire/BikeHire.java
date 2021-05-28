@@ -59,18 +59,18 @@ public class BikeHire {
 		_rents = new ArrayList<RentRecord>();
 		
 		//create twelve bikes
-		BMX _trickMaster = new BMX(false, "Trick Master");
-		Road_Bike _offRoad = new Road_Bike(false, "Off Road");
-		Mountain_Bike _mountainMaster = new Mountain_Bike(false, "Mountain Master");
-		City_Bike _citySlicker = new City_Bike(false, "City Slicker");
-		BMX _coolKid = new BMX(false, "Cool Kid");
-		Road_Bike _epicKid = new Road_Bike(false, "Epic Kid");
-		Mountain_Bike _dirtyKid = new Mountain_Bike(false, "Dirty Kid");
-		City_Bike _theSoy = new City_Bike(false, "The Soy");
-		EBike _ecoFriend = new EBike(false, "Eco Friend", "Full power", 100);
-		EBike _electricPowa = new EBike(false, "Electric Powa", "Power assist", 150);
-		EBike _Tesla = new EBike(false, "Tesla", "Full power", 200);
-		EBike _ScootScoot = new EBike(false, "Scooter", "Power assist", 400);
+		BMX _trickMaster = new BMX(false, "Trick Master", "BMX");
+		Road_Bike _offRoad = new Road_Bike(false, "Off Road", "Road");
+		Mountain_Bike _mountainMaster = new Mountain_Bike(false, "Mountain Master" , "Mountain");
+		City_Bike _citySlicker = new City_Bike(false, "City Slicker", "City");
+		BMX _coolKid = new BMX(false, "Cool Kid", "BMX");
+		Road_Bike _epicKid = new Road_Bike(false, "Epic Kid", "Road");
+		Mountain_Bike _dirtyKid = new Mountain_Bike(false, "Dirty Kid", "Mountain");
+		City_Bike _theSoy = new City_Bike(false, "The Soy", "City");
+		EBike _ecoFriend = new EBike(false, "Eco Friend", "Full power", "Ebike", 100);
+		EBike _electricPowa = new EBike(false, "Electric Powa", "Power assist", "Ebike", 150);
+		EBike _Tesla = new EBike(false, "Tesla", "Full power", "Ebike", 200);
+		EBike _ScootScoot = new EBike(false, "Scooter", "Power assist", "Ebike", 400);
 		
 		Customer _Customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
 		Customer _Customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
@@ -103,8 +103,36 @@ public class BikeHire {
 		_rents.add(_rentRecord_2);
 	}
 	
-	public void addBike(int _type, String _name, boolean _rented) {
+	public void addBike(String _type, String _name, boolean _rented, String _fullPower, int _maxDistance) {
 		
+		switch (_type) {
+		case "BMX":
+			BMX _bmx = new BMX(_rented, _name, _type);
+			_bikes.add(_bmx);
+			break;
+		case "Road":
+		case "Road Bike:":
+			Road_Bike _road_bike = new Road_Bike(_rented, _name, _type);
+			_bikes.add(_road_bike);
+			break;
+		case "Mountain":
+		case "Mountain Bike":
+			Mountain_Bike _mtn_bike = new Mountain_Bike(_rented, _name, _type);
+			_bikes.add(_mtn_bike);
+			break;
+		case "City":
+		case "City Bike":
+			City_Bike _city_bike = new City_Bike(_rented, _name, _type);
+			_bikes.add(_city_bike);
+			break;
+		case "Ebike":
+			EBike _ebike = new EBike(_rented, _name, _type, _fullPower, _maxDistance);
+			_bikes.add(_ebike);
+		default:
+			Bike _bike = new Bike(_name, _type, _rented);
+			_bikes.add(_bike);
+			break;
+		}
 	}
 	
 	public String displayAvailableBikes(){ //Shows all AVAILABLE BIKES
@@ -251,8 +279,9 @@ public class BikeHire {
 				try{
 					for(Bike _bike: _bikes){
 						if(_bike.getIsRented() == false){
-							_output += _bike.toString();
+		
 							_output += _bike.GUItoString();
+							_output += _bike.toString();
 							_bikeNum++;
 		
 						}
@@ -487,75 +516,6 @@ public class BikeHire {
 		catch (Exception _error) {
 			System.err.println("Error: " + _error.getMessage());
 		}
-	}
-
-	public void addBikeForm(){
-		System.out.println("Add new bike.");
-		
-		System.out.println("Bike name: ");
-		String _name = _input.next();
-
-		System.out.println("Bike make: ");
-		System.out.println("1. BMX");
-		System.out.println("2. Mountain Bike");
-		System.out.println("3. City Bike");
-		System.out.println("4. Road Bike");
-		System.out.println("5. Ebike");
-		
-		int _make = _input.nextInt();
-		switch (_make) {
-			case 1:
-				BMX _newBMX = new BMX(false, _name);
-				_bikes.add(_newBMX);
-				System.out.println("Bike " + _name + " added to bikes.");
-				break;
-			case 2:
-				Mountain_Bike _newMB = new Mountain_Bike(false, _name);
-				_bikes.add(_newMB);
-				System.out.println("Bike " + _name + " added to bikes.");
-				break;
-			case 3:
-				City_Bike _newCityBike = new City_Bike(false, _name);
-				_bikes.add(_newCityBike);
-				System.out.println("Bike " + _name + " added to bikes.");
-				break;
-			case 4:
-				Road_Bike _newRoadBike = new Road_Bike(false, _name);
-				_bikes.add(_newRoadBike);
-				System.out.println("Bike " + _name + " added to bikes.");
-				break;
-			case 5:
-				addEBike(_name);
-				break;
-			default:
-				addBikeForm();
-				break;
-		}
-	}
-
-	public void addEBike(String _name){
-		System.out.println("Motor strength");
-		System.out.println("1. Full power");
-		System.out.println("2. Power assist");
-		int _powerMode = _input.nextInt();
-		String _motorStrength = "";
-
-		if (_powerMode == 1) {
-			_motorStrength = "Full power";
-		}
-		else if (_powerMode == 2) {
-			_motorStrength = "Power assist";
-		}
-		else {
-			addEBike(_name);
-		}
-		System.out.println("Max distance (in meters): ");
-		int _maxDistance = _input.nextInt();
-		
-		EBike _newEBike = new EBike(false, _name, _motorStrength, _maxDistance);
-		_bikes.add(_newEBike);
-
-		System.out.println("Bike " + _name + " added to bikes.");
 	}
 
 	public void returnBike(){

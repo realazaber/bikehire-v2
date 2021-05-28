@@ -7,8 +7,8 @@ public class Mountain_Bike extends Bike{
 	public Mountain_Bike(){
 	}
 	
-	public Mountain_Bike(boolean _isRented, String _name){
-		super(_isRented);
+	public Mountain_Bike(boolean _isRented, String _name, String _make){
+		super(_name, _make, _isRented);
 		this._bikeName = _name;
 	}
 	

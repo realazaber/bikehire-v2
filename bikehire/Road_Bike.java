@@ -6,8 +6,8 @@ public class Road_Bike extends Bike{
 
 	}
 	
-	public Road_Bike(boolean _isRented, String _name){
-		super(_isRented);
+	public Road_Bike(boolean _isRented, String _name, String _make){
+		super(_name, _make, _isRented);
 		this._bikeName = _name;
 	}
 	

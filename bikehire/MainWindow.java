@@ -18,6 +18,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.JCheckBox;
 
 
 public class MainWindow {
@@ -458,9 +459,9 @@ public class MainWindow {
 		pBikes.add(lblBikesFile);
 		
 		JScrollPane spBikeRecords = new JScrollPane();
-		spBikeRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spBikeRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		spBikeRecords.setBounds(39, 112, 300, 280);
+		spBikeRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spBikeRecords.setBounds(20, 112, 282, 280);
 		pBikes.add(spBikeRecords);
 		
 		JLabel lblBikeRecords = new JLabel(_shop.displayRecords(2));
@@ -509,7 +510,7 @@ public class MainWindow {
 		btnClearBikeRecords.setBounds(345, 250, 100, 47);
 		pBikes.add(btnClearBikeRecords);
 		
-		JButton btnClearBikeFile = new JButton("Clear File");
+		JButton btnClearBikeFile = new JButton("Clear file");
 		btnClearBikeFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.clearFile(2);
@@ -606,10 +607,16 @@ public class MainWindow {
 		JButton btnAddBike = new JButton("Add");
 		btnAddBike.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (tfFirstName.getText() != null && tfLastName.getText() != null && tfEmail.getText() != null) {
-					
-				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
-				lblCustomerRecords.setText(_shop.displayRecords(1));
+				if (tfBikeName != null && tfBikeType != null && tfRentStatus != null) {
+					boolean _rentStatus;
+					if (tfRentStatus.getText() == "true") {
+						_rentStatus = true;
+					}
+					else {
+						_rentStatus = false;
+					}
+				_shop.addBike(tfBikeType.getText(), tfBikeName.getText(), _rentStatus, "Full Power", 10);
+				lblBikeRecords.setText(_shop.displayRecords(2));
 				}
 				else {
 					System.out.println("fill in all info");
@@ -638,6 +645,14 @@ public class MainWindow {
 		tfBikeType.setBounds(110, 58, 114, 19);
 		pAddBike.add(tfBikeType);
 		tfBikeType.setColumns(10);
+		
+		JCheckBox cbFullPower = new JCheckBox("");
+		cbFullPower.setBounds(110, 121, 30, 23);
+		pAddBike.add(cbFullPower);
+		
+		JLabel lblFullPowered = new JLabel("Full powered: ");
+		lblFullPowered.setBounds(12, 125, 110, 15);
+		pAddBike.add(lblFullPowered);
 		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);

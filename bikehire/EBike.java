@@ -8,8 +8,8 @@ public class EBike extends Bike{
 	
 
 
-	public EBike(boolean _isRented, String _name, String _motorStrength, int _maxDistance){
-		super(_isRented);
+	public EBike(boolean _isRented, String _name, String _make, String _motorStrength, int _maxDistance){
+		super(_name, _make, _isRented);
 		this._bikeName = _name;
 		this._motorStrength = _motorStrength;
 		this._maxDistance = _maxDistance;
@@ -36,6 +36,6 @@ public class EBike extends Bike{
 	}
 	
 	public String toString(){
-		return "Type: " + _make + "<br/>Price per day: "+ _pricePerDay;
+		return "Type: " + _make + "<br/>Price per day: "+ _pricePerDay + "<br/> Power mode: " + getMotor();
 	}
 }

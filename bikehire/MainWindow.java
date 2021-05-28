@@ -110,6 +110,7 @@ public class MainWindow {
 	private JTextField tfPhone;
 	private JTextField tfCustId;
 	private JTextField tfAddress;
+	private JTextField tfBikeID;
 	/**
 	 * Launch the application.
 	 */
@@ -265,20 +266,19 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				int _id = Integer.parseInt(tfCustId.getText());
 	
-				
 				//String custFirstName = _shop.searchForCustomer(_id);
-				Vector _v = _shop.searchForCustomer(_id);
-				lblCustNameOutPut.setText(_v.get(0) + " " + _v.get(1));
-				lblCustPhoneOutPut.setText((String) _v.get(2));
-				lblCustEmailOutput.setText((String) _v.get(3));
-				lblCustAddressOutput.setText((String) _v.get(4));
+				String[] _array = _shop.searchRecords(1, _id);
+				lblCustNameOutPut.setText(_array[0] + " " + _array[1]);
+				lblCustPhoneOutPut.setText(_array[2]);
+				lblCustEmailOutput.setText(_array[3]);
+				lblCustAddressOutput.setText(_array[4]);
 				
 				
 				
 			}
 		});
 		btnCustomerSearch.setBackground(Color.ORANGE);
-		btnCustomerSearch.setBounds(157, 38, 91, 25);
+		btnCustomerSearch.setBounds(157, 38, 90, 25);
 		pCustomerSearch.add(btnCustomerSearch);
 		
 		JLabel lblCustomers = new JLabel("<html><h1>Customers</html>");
@@ -518,6 +518,70 @@ public class MainWindow {
 		btnClearBikeFile.setBackground(new Color(250, 128, 114));
 		btnClearBikeFile.setBounds(450, 250, 100, 47);
 		pBikes.add(btnClearBikeFile);
+		
+		JPanel pSearchRents = new JPanel();
+		pSearchRents.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pSearchRents.setBounds(40, 404, 300, 223);
+		pBikes.add(pSearchRents);
+		pSearchRents.setLayout(null);
+		
+		JPanel pBikeSearchResult = new JPanel();
+		pBikeSearchResult.setBorder(new LineBorder(Color.BLACK));
+		pBikeSearchResult.setBounds(0, 73, 300, 150);
+		pSearchRents.add(pBikeSearchResult);
+		pBikeSearchResult.setLayout(null);
+		
+		JLabel lblBikeID = new JLabel("Bike ID: ");
+		lblBikeID.setBounds(12, 12, 80, 20);
+		pBikeSearchResult.add(lblBikeID);
+		
+		JLabel lblBikeName = new JLabel("Bike Name: ");
+		lblBikeName.setBounds(12, 39, 100, 15);
+		pBikeSearchResult.add(lblBikeName);
+		
+		JLabel lblRentStatus = new JLabel("Rent Status: ");
+		lblRentStatus.setBounds(12, 60, 130, 20);
+		pBikeSearchResult.add(lblRentStatus);
+		
+		JLabel lblBikeIDOutput = new JLabel("New label");
+		lblBikeIDOutput.setBounds(104, 15, 70, 15);
+		pBikeSearchResult.add(lblBikeIDOutput);
+		
+		JLabel lblBikeNameOutput = new JLabel("New label");
+		lblBikeNameOutput.setBounds(104, 39, 70, 15);
+		pBikeSearchResult.add(lblBikeNameOutput);
+		
+		JLabel lblBikeRentStatusOutput = new JLabel("New label");
+		lblBikeRentStatusOutput.setBounds(104, 63, 70, 15);
+		pBikeSearchResult.add(lblBikeRentStatusOutput);
+		
+		JLabel lblSearchForBike = new JLabel("Search for bike");
+		lblSearchForBike.setBounds(70, 10, 160, 15);
+		pSearchRents.add(lblSearchForBike);
+		
+		JLabel lblBikeId = new JLabel("Bike ID: ");
+		lblBikeId.setBounds(40, 38, 70, 20);
+		pSearchRents.add(lblBikeId);
+		
+		tfBikeID = new JTextField();
+		tfBikeID.setBounds(105, 40, 40, 19);
+		pSearchRents.add(tfBikeID);
+		tfBikeID.setColumns(10);
+		
+		JButton btnSearchBike = new JButton("Search");
+		btnSearchBike.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int _id = Integer.parseInt(tfBikeID.getText());
+				String[] _array = _shop.searchRecords(2, _id);
+				lblBikeIDOutput.setText(_array[0]);
+				lblBikeNameOutput.setText(_array[1]);
+				lblBikeRentStatusOutput.setText(_array[2]);
+			}
+		});
+		btnSearchBike.setBackground(Color.ORANGE);
+		btnSearchBike.setBounds(157, 36, 90, 25);
+		pSearchRents.add(btnSearchBike);
 		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);

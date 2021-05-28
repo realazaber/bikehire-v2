@@ -170,79 +170,45 @@ public class BikeHire {
 	
 
 	
-	public Vector searchForCustomer(int _id) {
-		Vector _v = new Vector();
-		for (Customer _customer: _customers) {
-			if (_id == _customer._custID) {
+	public String[] searchRecords(int _record, int _id) {
+		String[] _array = new String[5];
+		
+		if (_record == 1) {
+			for (Customer _customer: _customers) {
+				if (_id == _customer._custID) {
+					_array[0] = _customer.getFirstName();
+					_array[1] = _customer.getLastName();
+					_array[2] = _customer.getPhone();
+					_array[3] = _customer.getEmail();
+					_array[4] = _customer.getAddress();			
+					
+				}
+			}
+		}
+		
+		for (Bike _bike: _bikes) {
+			if (_id == _bike._bikeID) {
 				
-				_v.add(_customer.getFirstName());
-				_v.add(_customer.getLastName());
-				_v.add(_customer.getPhone());
-				_v.add(_customer.getEmail());
-				_v.add(_customer.getAddress());
+				String _bikeId = Integer.toString(_bike.getBikeID());
 				
+				_array[0] = _bikeId;
+				_array[1] = _bike.getName();
+				
+				if (_bike.getIsRented() == true) {
+					_array[2] = "true";
+				}
+				else {
+					_array[2] = "false";
+				}
+						
 				
 			}
 		}
-		return _v;
 		
-		
-	}
-	 
-	public int searchForBikeByType(int _type){
-		int _id = 0;
-		try{
-			switch(_type){
-			case 1:
-				for(Bike _bike: _bikes){
-					if(_bike instanceof City_Bike && _bike.getIsRented() == false){
-						_id = _bike.getBikeID();
-						break;
-					}
-				}
-				break;
-			case 2:
-				for(Bike _bike: _bikes){
-					if(_bike instanceof Road_Bike && _bike.getIsRented() == false){
-						_id = _bike.getBikeID();
-						break;
-					}
-				}
-				break;
-			case 3:
-				for(Bike _bike: _bikes){
-					if(_bike instanceof Mountain_Bike && _bike.getIsRented() == false){
-						_id = _bike.getBikeID();
-						break;
-					}
-				}
-				break;
-			case 4:
-				for(Bike _bike: _bikes){
-					if(_bike instanceof EBike && _bike.getIsRented() == false){
-						_id = _bike.getBikeID();
-						break;
-					}
-				}
-				break;
-			case 5:
-				for(Bike _bike: _bikes){
-					if(_bike instanceof BMX && _bike.getIsRented() == false){
-						_id = _bike.getBikeID();
-						break;
-					}
-				}
-				break;
-			default:
-				System.out.println("Invalid selection. Select a number between 1 and 5.");
-			}
-		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
-		}
-		return _id;
-	}
 
+		
+		return _array;
+	}
 
 	public String displayRecords(int _category){
 
@@ -318,7 +284,6 @@ public class BikeHire {
 				}
 			}
 
-			//_output += "</html>";
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
@@ -475,7 +440,7 @@ public class BikeHire {
 					_text += "Bike Name: ";
 					_text += _bike.getName();
 					_text += "<br />";
-					_text += "Bike rent status: ";
+					_text += "Bike Rent Status: ";
 					_text += _bike.getIsRented();
 					_text += "<br />";
 				}

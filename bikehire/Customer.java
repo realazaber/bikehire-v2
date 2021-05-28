@@ -50,7 +50,7 @@ public class Customer {
 				"<br />Customer First name: " + _fname + 
 				"<br />Customer Last name: " + _lname + 
 				"<br />Customer Phone: " + _phone +
-				"<br />Customer email: " + _email +
+				"<br />Customer Email: " + _email +
 				"<br />Customer Address: " + _address; 
 				
 	}

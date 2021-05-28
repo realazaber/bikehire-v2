@@ -34,9 +34,9 @@ public class Bike {
 	
 	public String GUItoString(){
 		return "<br />" +
-			   "<br />ID: " + _bikeID + 
-			   "<br />Rent status: " + _isRented + 
-			   "<br />Bike name: " + _name +
+			   "<br />Bike ID: " + _bikeID + 
+			   "<br />Bike Name: " + _name +
+			   "<br />Bike Rent Status: " + _isRented + 
 			   "<br />";
 	}
 }

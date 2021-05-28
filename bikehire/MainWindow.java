@@ -111,6 +111,9 @@ public class MainWindow {
 	private JTextField tfCustId;
 	private JTextField tfAddress;
 	private JTextField tfBikeID;
+	private JTextField tfBikeName;
+	private JTextField tfRentStatus;
+	private JTextField tfBikeType;
 	/**
 	 * Launch the application.
 	 */
@@ -397,8 +400,7 @@ public class MainWindow {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (tfFirstName.getText() != null && tfLastName.getText() != null && tfEmail.getText() != null && tfPhone.getText() != null && tfAddress.getText() != null) {
-					
-				
+						
 				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
 				lblCustomerRecords.setText(_shop.displayRecords(1));
 				}
@@ -519,16 +521,16 @@ public class MainWindow {
 		btnClearBikeFile.setBounds(450, 250, 100, 47);
 		pBikes.add(btnClearBikeFile);
 		
-		JPanel pSearchRents = new JPanel();
-		pSearchRents.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pSearchRents.setBounds(40, 404, 300, 223);
-		pBikes.add(pSearchRents);
-		pSearchRents.setLayout(null);
+		JPanel pSearchBikes = new JPanel();
+		pSearchBikes.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pSearchBikes.setBounds(40, 404, 240, 223);
+		pBikes.add(pSearchBikes);
+		pSearchBikes.setLayout(null);
 		
 		JPanel pBikeSearchResult = new JPanel();
 		pBikeSearchResult.setBorder(new LineBorder(Color.BLACK));
-		pBikeSearchResult.setBounds(0, 73, 300, 150);
-		pSearchRents.add(pBikeSearchResult);
+		pBikeSearchResult.setBounds(0, 73, 240, 150);
+		pSearchBikes.add(pBikeSearchResult);
 		pBikeSearchResult.setLayout(null);
 		
 		JLabel lblBikeID = new JLabel("Bike ID: ");
@@ -557,15 +559,15 @@ public class MainWindow {
 		
 		JLabel lblSearchForBike = new JLabel("Search for bike");
 		lblSearchForBike.setBounds(70, 10, 160, 15);
-		pSearchRents.add(lblSearchForBike);
+		pSearchBikes.add(lblSearchForBike);
 		
 		JLabel lblBikeId = new JLabel("Bike ID: ");
-		lblBikeId.setBounds(40, 38, 70, 20);
-		pSearchRents.add(lblBikeId);
+		lblBikeId.setBounds(10, 38, 70, 20);
+		pSearchBikes.add(lblBikeId);
 		
 		tfBikeID = new JTextField();
-		tfBikeID.setBounds(105, 40, 40, 19);
-		pSearchRents.add(tfBikeID);
+		tfBikeID.setBounds(70, 40, 40, 19);
+		pSearchBikes.add(tfBikeID);
 		tfBikeID.setColumns(10);
 		
 		JButton btnSearchBike = new JButton("Search");
@@ -580,8 +582,62 @@ public class MainWindow {
 			}
 		});
 		btnSearchBike.setBackground(Color.ORANGE);
-		btnSearchBike.setBounds(157, 36, 90, 25);
-		pSearchRents.add(btnSearchBike);
+		btnSearchBike.setBounds(120, 36, 90, 25);
+		pSearchBikes.add(btnSearchBike);
+		
+		JPanel pAddBike = new JPanel();
+		pAddBike.setBorder(new LineBorder(Color.BLACK));
+		pAddBike.setBounds(335, 404, 240, 220);
+		pBikes.add(pAddBike);
+		pAddBike.setLayout(null);
+		
+		JLabel lblAddBike = new JLabel("Add Bike");
+		lblAddBike.setBounds(80, 10, 115, 15);
+		pAddBike.add(lblAddBike);
+		
+		JLabel lblBikeName_1 = new JLabel("Bike Name: ");
+		lblBikeName_1.setBounds(10, 39, 90, 15);
+		pAddBike.add(lblBikeName_1);
+		
+		JLabel lblRentStatus_1 = new JLabel("Rent Status: ");
+		lblRentStatus_1.setBounds(10, 87, 100, 20);
+		pAddBike.add(lblRentStatus_1);
+		
+		JButton btnAddBike = new JButton("Add");
+		btnAddBike.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (tfFirstName.getText() != null && tfLastName.getText() != null && tfEmail.getText() != null) {
+					
+				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
+				lblCustomerRecords.setText(_shop.displayRecords(1));
+				}
+				else {
+					System.out.println("fill in all info");
+				}
+			}
+		});
+		btnAddBike.setBackground(new Color(0, 255, 127));
+		btnAddBike.setBounds(60, 175, 117, 25);
+		pAddBike.add(btnAddBike);
+		
+		tfBikeName = new JTextField();
+		tfBikeName.setBounds(110, 37, 114, 19);
+		pAddBike.add(tfBikeName);
+		tfBikeName.setColumns(10);
+		
+		tfRentStatus = new JTextField();
+		tfRentStatus.setBounds(110, 90, 114, 19);
+		pAddBike.add(tfRentStatus);
+		tfRentStatus.setColumns(10);
+		
+		JLabel lblBikeType = new JLabel("Bike Type: ");
+		lblBikeType.setBounds(10, 60, 100, 15);
+		pAddBike.add(lblBikeType);
+		
+		tfBikeType = new JTextField();
+		tfBikeType.setBounds(110, 58, 114, 19);
+		pAddBike.add(tfBikeType);
+		tfBikeType.setColumns(10);
 		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);
@@ -641,6 +697,7 @@ public class MainWindow {
 		});
 		rentsQuit.setBounds(300, 650, 230, 35);
 		pRentals.add(rentsQuit);
+		
 	}
 	
 

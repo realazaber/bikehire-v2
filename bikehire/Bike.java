@@ -2,10 +2,11 @@
 
 public class Bike {
 	protected int _bikeID;
+	protected String _bikeName;
+	protected String _bikeType;
 	protected boolean _isRented;
 	protected static int _newID = 1;
 	protected boolean _isAvailable = true;
-	protected String _name = "";
 	
 	public Bike(){
 
@@ -17,7 +18,7 @@ public class Bike {
 	}
 
 	public String getName(){
-		return _name;
+		return _bikeName;
 	}
 	
 	public int getBikeID(){
@@ -35,7 +36,7 @@ public class Bike {
 	public String GUItoString(){
 		return "<br />" +
 			   "<br />Bike ID: " + _bikeID + 
-			   "<br />Bike Name: " + _name +
+			   "<br />Bike Name: " + _bikeName +
 			   "<br />Bike Rent Status: " + _isRented + 
 			   "<br />";
 	}

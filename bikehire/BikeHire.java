@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
-/************************************************/
+/**********************************/
 
 public class BikeHire {
 
@@ -103,6 +103,10 @@ public class BikeHire {
 		_rents.add(_rentRecord_2);
 	}
 	
+	public void addBike(int _type, String _name, boolean _rented) {
+		
+	}
+	
 	public String displayAvailableBikes(){ //Shows all AVAILABLE BIKES
 		int _bikeNum = 0; //Starts the counter of bikes
 		String _output = "<html>";
@@ -139,6 +143,8 @@ public class BikeHire {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
+	
+
 	 
 	public int searchForCustomerTerminal(String _fname, String _lname){
 		int _id = 0;
@@ -245,7 +251,7 @@ public class BikeHire {
 				try{
 					for(Bike _bike: _bikes){
 						if(_bike.getIsRented() == false){
-							
+							_output += _bike.toString();
 							_output += _bike.GUItoString();
 							_bikeNum++;
 		
@@ -442,6 +448,8 @@ public class BikeHire {
 					_text += "<br />";
 					_text += "Bike Rent Status: ";
 					_text += _bike.getIsRented();
+					_text += "<br />";
+					_text += _bike.toString();
 					_text += "<br />";
 				}
 			}

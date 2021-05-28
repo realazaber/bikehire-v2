@@ -9,7 +9,7 @@ public class Mountain_Bike extends Bike{
 	
 	public Mountain_Bike(boolean _isRented, String _name){
 		super(_isRented);
-		this._name = _name;
+		this._bikeName = _name;
 	}
 	
 	public String getType(){
@@ -21,6 +21,6 @@ public class Mountain_Bike extends Bike{
 	}
 	
 	public String toString(){
-		return super.toString() + "\nType: " + _make + "\nPrice per day: "+ _pricePerDay;
+		return "Type: " + _make + "<br/>Price per day: "+ _pricePerDay;
 	}
 }

@@ -150,6 +150,24 @@ public class BikeHire {
 		return _id;
 	}
 	
+	public void clearRecords(int _chosenArray) {
+		switch(_chosenArray) {
+		case 1:
+			_customers.clear();
+			break;
+		
+		case 2:
+			_bikes.clear();
+			break;
+		case 3:
+			_rents.clear();
+			break;
+		default:
+			System.out.println("Invalid records");
+		}
+			
+	}
+	
 
 	
 	public Vector searchForCustomer(int _id) {

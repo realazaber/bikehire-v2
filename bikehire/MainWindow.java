@@ -334,7 +334,7 @@ public class MainWindow {
 				System.exit(1);
 			}
 		});
-		custQuit.setBounds(300, 650, 230, 35);
+		custQuit.setBounds(320, 650, 230, 35);
 		pCustomer.add(custQuit);
 		
 		JPanel pAddCust = new JPanel();
@@ -419,8 +419,19 @@ public class MainWindow {
 			}
 		});
 		btnClearCustomerFIle.setBackground(new Color(250, 128, 114));
-		btnClearCustomerFIle.setBounds(370, 250, 150, 47);
+		btnClearCustomerFIle.setBounds(450, 250, 100, 47);
 		pCustomer.add(btnClearCustomerFIle);
+		
+		JButton btnClearRecords = new JButton("<html>Clear<br/> Records</html>");
+		btnClearRecords.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearRecords(1);
+				lblCustomerRecords.setText(_shop.displayRecords(1));
+			}
+		});
+		btnClearRecords.setBackground(new Color(250, 128, 114));
+		btnClearRecords.setBounds(345, 250, 100, 47);
+		pCustomer.add(btnClearRecords);
 		
 		
 

@@ -163,7 +163,7 @@ public class BikeHire {
 			_rents.clear();
 			break;
 		default:
-			System.out.println("Invalid records");
+			System.out.println("");
 		}
 			
 	}
@@ -242,80 +242,7 @@ public class BikeHire {
 		}
 		return _id;
 	}
-	 
-	public void addRentForm(){
-		try{
-			int _custID = 0;
-			System.out.println("Customer details");
-			System.out.println("Enter first name: ");
-			String _fname = _input.next();
-			System.out.println("Enter last name: ");
-			String _lname = _input.next();
-			
-			_custID = searchForCustomer(_fname, _lname);
-			if(_custID != 0){
-				System.out.println("Enter day in number form: ");
-				int _day = _input.nextInt();
-				System.out.println("Enter month in number form: ");
-				int _month = _input.nextInt();
-				System.out.println("Enter year in number form: ");
-				int _year = _input.nextInt();
-				System.out.println("Enter duration: ");
-				double _duration = _input.nextDouble();
-				if(_duration > 30){
-					throw new Exception("Duration cannot exceed 30 days.");
-				}
-				else if(_duration < 1){
-					throw new Exception("Duration must be at least 1 day.");
-				}
-				else{
-					System.out.println("CustID selected: " + _custID);
-					
-					boolean _flag = true;
-					
-					while(_flag){
-						System.out.println("Enter ID of bike: ");
 
-						int _type = _input.nextInt();
-
-						boolean _foundBike = false;
-
-						for (var _bike : _bikes) {
-							if (_bike.getBikeID() == _type) {
-															//set bike to isRented
-								_bike.setIsRented(true);
-								_foundBike = true;
-
-								//create rent
-								RentRecord _r = new RentRecord(_custID, _bike.getBikeID(), _day, _month, _year, _duration);
-						
-								_rents.add(_r);
-				
-								_input.nextLine();
-								System.out.println("Press 'C' to complete order or 'Enter' to add another bike to order.");
-								String loopAgain = _input.nextLine();
-								
-								if(loopAgain.equals("C") || loopAgain.equals("c")){
-									_flag = false;
-									break;
-								}
-							}
-						}
-
-						if (_foundBike == false) {
-							System.out.println("Bike ID invalid");
-						}
-					}
-				}
-			}
-			else{
-				throw new Exception("Customer not found.");
-			}
-		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
-		}
-	}
 
 	public String displayRecords(int _category){
 
@@ -423,7 +350,7 @@ public class BikeHire {
 				String _lname = _input.nextLine();
 	    
 				//call searchForCustomer
-				_custID = searchForCustomer(_fname, _lname);
+				_custID = searchForCustomerTerminal(_fname, _lname);
 	    
 				if(_custID == 0){
 					throw new Exception("Customer not found.");
@@ -518,7 +445,7 @@ public class BikeHire {
 
 			if (_fileChosen == 1) {
 				for (var _customer : _customers) {
-					_text += "Customer ID: ";
+					_text += "<br />Customer ID: ";
 					_text += _customer.getCustID();
 					_text += "<br />";
 					_text += "Customer First Name: ";

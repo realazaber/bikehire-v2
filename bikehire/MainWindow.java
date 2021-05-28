@@ -315,17 +315,17 @@ public class MainWindow {
 		spCustomerFile.setViewportView(lblCustomerFile);
 		lblCustomerFile.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JButton btnSaveToFile = new JButton("Save to file");
-		btnSaveToFile.setBackground(new Color(0, 206, 209));
-		btnSaveToFile.addActionListener(new ActionListener() {
+		JButton btnSaveToCustomers = new JButton("Save to file");
+		btnSaveToCustomers.setBackground(new Color(0, 206, 209));
+		btnSaveToCustomers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.saveFile(1);
 				lblCustomerFile.setText(_shop.readFile(1));
 				
 			}
 		});
-		btnSaveToFile.setBounds(370, 130, 150, 47);
-		pCustomer.add(btnSaveToFile);
+		btnSaveToCustomers.setBounds(370, 130, 150, 47);
+		pCustomer.add(btnSaveToCustomers);
 		
 		JButton custQuit = new JButton("Quit");
 		custQuit.setBackground(new Color(255, 99, 71));
@@ -422,16 +422,16 @@ public class MainWindow {
 		btnClearCustomerFIle.setBounds(450, 250, 100, 47);
 		pCustomer.add(btnClearCustomerFIle);
 		
-		JButton btnClearRecords = new JButton("<html>Clear<br/> Records</html>");
-		btnClearRecords.addActionListener(new ActionListener() {
+		JButton btnClearCustomerRecords = new JButton("<html>Clear<br/> Records</html>");
+		btnClearCustomerRecords.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.clearRecords(1);
 				lblCustomerRecords.setText(_shop.displayRecords(1));
 			}
 		});
-		btnClearRecords.setBackground(new Color(250, 128, 114));
-		btnClearRecords.setBounds(345, 250, 100, 47);
-		pCustomer.add(btnClearRecords);
+		btnClearCustomerRecords.setBackground(new Color(250, 128, 114));
+		btnClearCustomerRecords.setBounds(345, 250, 100, 47);
+		pCustomer.add(btnClearCustomerRecords);
 		
 		
 
@@ -458,31 +458,32 @@ public class MainWindow {
 		JScrollPane spBikeRecords = new JScrollPane();
 		spBikeRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spBikeRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		spBikeRecords.setBounds(39, 112, 260, 280);
+		spBikeRecords.setBounds(39, 112, 300, 280);
 		pBikes.add(spBikeRecords);
 		
-		JLabel lblBikeRecords = new JLabel(_shop.displayAvailableBikes());
+		JLabel lblBikeRecords = new JLabel(_shop.displayRecords(2));
 		spBikeRecords.setViewportView(lblBikeRecords);
 		
 		JScrollPane spBikeFile = new JScrollPane();
 		spBikeFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spBikeFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		spBikeFile.setBounds(567, 112, 260, 280);
+		spBikeFile.setBounds(567, 112, 300, 280);
 		pBikes.add(spBikeFile);
 		
 		JLabel lblBikeFile = new JLabel(_shop.readFile(2));
 		spBikeFile.setViewportView(lblBikeFile);
 		
-		JButton button = new JButton("Save to file");
-		button.setBackground(new Color(0, 206, 209));
-		button.addActionListener(new ActionListener() {
+		JButton btnSaveToBikes = new JButton("Save to file");
+		btnSaveToBikes.setBackground(new Color(0, 206, 209));
+		btnSaveToBikes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.saveFile(2);
+				lblBikeFile.setText(_shop.readFile(2));
 			}
 			
 		});
-		button.setBounds(350, 220, 150, 47);
-		pBikes.add(button);
+		btnSaveToBikes.setBounds(370, 130, 150, 47);
+		pBikes.add(btnSaveToBikes);
 		
 		JButton bikesQuit = new JButton("Quit");
 		bikesQuit.setBackground(new Color(255, 99, 71));
@@ -493,6 +494,18 @@ public class MainWindow {
 		});
 		bikesQuit.setBounds(300, 650, 230, 35);
 		pBikes.add(bikesQuit);
+		
+		JButton btnClearBikeRecords = new JButton("<html>Clear<br/>Records</html>");
+		btnClearBikeRecords.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearRecords(2);
+				lblBikeRecords.setText(_shop.displayRecords(2));
+				
+			}
+		});
+		btnClearBikeRecords.setBackground(new Color(250, 128, 114));
+		btnClearBikeRecords.setBounds(345, 250, 100, 47);
+		pBikes.add(btnClearBikeRecords);
 		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);

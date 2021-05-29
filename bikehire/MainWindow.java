@@ -113,6 +113,8 @@ public class MainWindow {
 	private JTextField tfBikeName;
 	private JTextField tfRentStatus;
 	private JTextField tfBikeType;
+	private JTextField tfPricePerDay;
+	private JTextField tfMaxDistance;
 	/**
 	 * Launch the application.
 	 */
@@ -573,8 +575,8 @@ public class MainWindow {
 		lblBikeTypeOutput.setBounds(104, 88, 70, 15);
 		pBikeSearchResult.add(lblBikeTypeOutput);
 		
-		JLabel lblSearchBikePrice = new JLabel("Price per day");
-		lblSearchBikePrice.setBounds(12, 117, 100, 20);
+		JLabel lblSearchBikePrice = new JLabel("Price per day: ");
+		lblSearchBikePrice.setBounds(12, 117, 110, 20);
 		pBikeSearchResult.add(lblSearchBikePrice);
 		
 		JLabel lblBikePriceOutput = new JLabel("");
@@ -613,7 +615,7 @@ public class MainWindow {
 		
 		JPanel pAddBike = new JPanel();
 		pAddBike.setBorder(new LineBorder(Color.BLACK));
-		pAddBike.setBounds(570, 404, 300, 220);
+		pAddBike.setBounds(570, 404, 300, 280);
 		pBikes.add(pAddBike);
 		pAddBike.setLayout(null);
 		
@@ -629,6 +631,10 @@ public class MainWindow {
 		lblRentStatus_1.setBounds(40, 87, 100, 20);
 		pAddBike.add(lblRentStatus_1);
 		
+		JCheckBox cbFullPower = new JCheckBox("");
+		cbFullPower.setBounds(140, 185, 30, 23);
+		pAddBike.add(cbFullPower);
+		
 		JButton btnAddBike = new JButton("Add");
 		btnAddBike.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -640,7 +646,16 @@ public class MainWindow {
 					else {
 						_rentStatus = false;
 					}
-				_shop.addBike(tfBikeType.getText(), tfBikeName.getText(), _rentStatus, "Full Power", 10);
+					double _price = Double.parseDouble(tfPricePerDay.getText());
+					int _maxDistance = Integer.parseInt(tfMaxDistance.getText());
+					String _powerMode = "";
+					if (cbFullPower.isSelected()) {
+						_powerMode = "Full Power";
+					}
+					else {
+						_powerMode = "Power assist";
+					}
+				_shop.addBike(tfBikeType.getText(), tfBikeName.getText(), _price, _rentStatus, _powerMode, _maxDistance);
 				lblBikeRecords.setText(_shop.displayRecords(2));
 				}
 				else {
@@ -649,7 +664,7 @@ public class MainWindow {
 			}
 		});
 		btnAddBike.setBackground(new Color(0, 255, 127));
-		btnAddBike.setBounds(60, 175, 117, 25);
+		btnAddBike.setBounds(100, 230, 117, 25);
 		pAddBike.add(btnAddBike);
 		
 		tfBikeName = new JTextField();
@@ -671,13 +686,27 @@ public class MainWindow {
 		pAddBike.add(tfBikeType);
 		tfBikeType.setColumns(10);
 		
-		JCheckBox cbFullPower = new JCheckBox("");
-		cbFullPower.setBounds(140, 121, 30, 23);
-		pAddBike.add(cbFullPower);
-		
 		JLabel lblFullPowered = new JLabel("Full powered: ");
-		lblFullPowered.setBounds(40, 125, 110, 15);
+		lblFullPowered.setBounds(40, 190, 110, 15);
 		pAddBike.add(lblFullPowered);
+		
+		JLabel lblPricePerDay = new JLabel("Price Per Day: ");
+		lblPricePerDay.setBounds(40, 119, 110, 15);
+		pAddBike.add(lblPricePerDay);
+		
+		tfPricePerDay = new JTextField();
+		tfPricePerDay.setBounds(140, 120, 114, 19);
+		pAddBike.add(tfPricePerDay);
+		tfPricePerDay.setColumns(10);
+		
+		JLabel lblMaxDistance = new JLabel("Max Distance: ");
+		lblMaxDistance.setBounds(40, 157, 110, 15);
+		pAddBike.add(lblMaxDistance);
+		
+		tfMaxDistance = new JTextField();
+		tfMaxDistance.setBounds(140, 158, 50, 19);
+		pAddBike.add(tfMaxDistance);
+		tfMaxDistance.setColumns(10);
 		
 		JPanel pRentals = new JPanel();
 		pRentals.setBackground(Color.LIGHT_GRAY);

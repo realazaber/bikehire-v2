@@ -80,7 +80,8 @@ public class BikeHire {
 		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
 
-		//add bikes to bikes ArrayList
+		//add bikes to bikes ArrayList		
+		_bikes.add(_testBike);
 		_bikes.add(_trickMaster);
 		_bikes.add(_offRoad);
 		_bikes.add(_mountainMaster);
@@ -103,33 +104,34 @@ public class BikeHire {
 		_rents.add(_rentRecord_2);
 	}
 	
-	public void addBike(String _type, String _name, boolean _rented, String _fullPower, int _maxDistance) {
-		
+	public void addBike(String _type, String _name, double _pricePerDay, boolean _rented, String _fullPower, int _maxDistance) {
+				
 		switch (_type) {
 		case "BMX":
-			BMX _bmx = new BMX(_rented, _name, _type);
+			BMX _bmx = new BMX(_rented, _name, _type, 40.00);
 			_bikes.add(_bmx);
 			break;
 		case "Road":
 		case "Road Bike:":
-			Road_Bike _road_bike = new Road_Bike(_rented, _name, _type);
+			Road_Bike _road_bike = new Road_Bike(_rented, _name, _type, 30.00);
 			_bikes.add(_road_bike);
 			break;
 		case "Mountain":
 		case "Mountain Bike":
-			Mountain_Bike _mtn_bike = new Mountain_Bike(_rented, _name, _type);
+			Mountain_Bike _mtn_bike = new Mountain_Bike(_rented, _name, _type, 25.00);
 			_bikes.add(_mtn_bike);
 			break;
 		case "City":
 		case "City Bike":
-			City_Bike _city_bike = new City_Bike(_rented, _name, _type);
+			City_Bike _city_bike = new City_Bike(_rented, _name, _type, 30.00);
 			_bikes.add(_city_bike);
 			break;
 		case "Ebike":
-			EBike _ebike = new EBike(_rented, _name, _type, _fullPower, _maxDistance);
+			EBike _ebike = new EBike(_rented, _name, _type, 25.00, _fullPower, _maxDistance);
 			_bikes.add(_ebike);
+			break;
 		default:
-			Bike _bike = new Bike(_name, _type, _rented);
+			Bike _bike = new Bike(_name, _type, _rented, _pricePerDay);
 			_bikes.add(_bike);
 			break;
 		}
@@ -285,8 +287,9 @@ public class BikeHire {
 				int _bikeNum = 0; //Starts the counter of bikes
 				try{
 					for(Bike _bike: _bikes){
+
 						if(_bike.getIsRented() == false){
-		
+							
 							_output += _bike.GUItoString();
 							_output += _bike.toString();
 							_bikeNum++;

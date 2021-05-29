@@ -36,6 +36,6 @@ public class EBike extends Bike{
 	}
 	
 	public String toString(){
-		return "Type: " + _make + "<br/>Price per day: "+ _pricePerDay + "<br/> Power mode: " + getMotor();
+		return "Power mode: " + getMotor() + "<br/> Max distance: " + getMaxDistance();
 	}
 }

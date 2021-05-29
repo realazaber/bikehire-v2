@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 //Bike class
 
 public class Bike {
@@ -24,6 +26,7 @@ public class Bike {
 	public String getName(){
 		return _bikeName;
 	}
+
 	
 	public int getBikeID(){
 		return _bikeID;
@@ -40,8 +43,9 @@ public class Bike {
 	public String GUItoString(){
 		return 
 			   "<br /><br />Bike ID: " + _bikeID + 
-			   "<br />Bike Name: " + _bikeName +
+			   "<br />Bike Name: " + _bikeName + 
+			   "<br />Bike Type: " + _bikeType +
 			   "<br />Bike Rent Status: " + _isRented + 
-			   "<br />";
+			   "<br />Price per day: " + _pricePerDay + "<br />";
 	}
 }

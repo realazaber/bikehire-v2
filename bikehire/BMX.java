@@ -19,6 +19,6 @@ public class BMX extends Bike{
 	}
 	
 	public String toString(){
-		return  "Type: " + _make + "<br/>Price per day: "+ _pricePerDay;
+		return  "Category: " + _make;
 	}
 }

@@ -4,6 +4,7 @@ public class Bike {
 	protected int _bikeID;
 	protected String _bikeName;
 	protected String _bikeType;
+	protected double _pricePerDay;
 	protected boolean _isRented;
 	protected static int _newID = 1;
 	protected boolean _isAvailable = true;
@@ -12,11 +13,12 @@ public class Bike {
 
 	}
 	
-	public Bike(String _bikeName, String _bikeType, boolean isRented){
+	public Bike(String _bikeName, String _bikeType, boolean isRented, double _pricePerDay){
 		this._bikeID = _newID++;
 		this._bikeName = _bikeName;
 		this._bikeType = _bikeType;
 		this._isRented = isRented;
+		this._pricePerDay = _pricePerDay;
 	}
 
 	public String getName(){

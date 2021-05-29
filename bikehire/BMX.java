@@ -5,8 +5,8 @@ public class BMX extends Bike{
 	private double _pricePerDay = 40.00;
 
 	
-	public BMX(boolean _isRented, String _name, String _make){
-		super(_name, _make, _isRented);
+	public BMX(boolean _isRented, String _name, String _make, double _pricePerDay){
+		super(_name, _make, _isRented, _pricePerDay);
 		this._bikeName = _name;
 	}
 	

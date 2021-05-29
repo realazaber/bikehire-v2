@@ -1,7 +1,5 @@
 import java.awt.EventQueue;
 import java.io.IOException;
-import java.util.Vector;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
@@ -189,7 +187,7 @@ public class MainWindow {
 		
 		JPanel pCustomerSearchResult = new JPanel();
 		pCustomerSearchResult.setBorder(new LineBorder(Color.BLACK));
-		pCustomerSearchResult.setBounds(40, 489, 300, 139);
+		pCustomerSearchResult.setBounds(40, 500, 300, 139);
 		pCustomer.add(pCustomerSearchResult);
 
 		pCustomerSearchResult.setLayout(null);
@@ -215,36 +213,44 @@ public class MainWindow {
 		pCustomerSearchResult.add(lblAddress);
 		
 		JLabel lblCustomerName = new JLabel("Customer Name:");
-		lblCustomerName.setBounds(12, 12, 130, 15);
+		lblCustomerName.setBounds(12, 25, 130, 15);
 		pCustomerSearchResult.add(lblCustomerName);
 		
 		JLabel lblCustomerPhone = new JLabel("Customer Phone: ");
-		lblCustomerPhone.setBounds(12, 39, 130, 15);
+		lblCustomerPhone.setBounds(12, 50, 130, 15);
 		pCustomerSearchResult.add(lblCustomerPhone);
 		
 		JLabel lblCustomerEmail = new JLabel("Customer Email: ");
-		lblCustomerEmail.setBounds(12, 65, 130, 15);
+		lblCustomerEmail.setBounds(12, 80, 130, 15);
 		pCustomerSearchResult.add(lblCustomerEmail);
 		
 		JLabel lblCustomerAddress = new JLabel("Customer Address: ");
-		lblCustomerAddress.setBounds(12, 95, 150, 15);
+		lblCustomerAddress.setBounds(12, 110, 150, 15);
 		pCustomerSearchResult.add(lblCustomerAddress);
 		
-		JLabel lblCustNameOutPut = new JLabel("New label");
-		lblCustNameOutPut.setBounds(149, 12, 130, 15);
+		JLabel lblCustNameOutPut = new JLabel("");
+		lblCustNameOutPut.setBounds(149, 25, 130, 15);
 		pCustomerSearchResult.add(lblCustNameOutPut);
 		
-		JLabel lblCustPhoneOutPut = new JLabel("New label");
-		lblCustPhoneOutPut.setBounds(150, 39, 130, 15);
+		JLabel lblCustPhoneOutPut = new JLabel("");
+		lblCustPhoneOutPut.setBounds(150, 50, 130, 15);
 		pCustomerSearchResult.add(lblCustPhoneOutPut);
 		
-		JLabel lblCustEmailOutput = new JLabel("New label");
-		lblCustEmailOutput.setBounds(149, 65, 130, 15);
+		JLabel lblCustEmailOutput = new JLabel("");
+		lblCustEmailOutput.setBounds(149, 80, 130, 15);
 		pCustomerSearchResult.add(lblCustEmailOutput);
 		
-		JLabel lblCustAddressOutput = new JLabel("New label");
-		lblCustAddressOutput.setBounds(149, 95, 130, 15);
+		JLabel lblCustAddressOutput = new JLabel("");
+		lblCustAddressOutput.setBounds(149, 110, 130, 15);
 		pCustomerSearchResult.add(lblCustAddressOutput);
+		
+		JLabel lblSearchCustomerId = new JLabel("Customer ID: ");
+		lblSearchCustomerId.setBounds(12, 0, 100, 15);
+		pCustomerSearchResult.add(lblSearchCustomerId);
+		
+		JLabel lblCustomerIDOutput = new JLabel("");
+		lblCustomerIDOutput.setBounds(124, 0, 70, 15);
+		pCustomerSearchResult.add(lblCustomerIDOutput);
 		
 		JPanel pCustomerSearch = new JPanel();
 		pCustomerSearch.setBorder(new LineBorder(Color.BLACK));
@@ -272,10 +278,11 @@ public class MainWindow {
 	
 				//String custFirstName = _shop.searchForCustomer(_id);
 				String[] _array = _shop.searchRecords(1, _id);
-				lblCustNameOutPut.setText(_array[0] + " " + _array[1]);
-				lblCustPhoneOutPut.setText(_array[2]);
-				lblCustEmailOutput.setText(_array[3]);
-				lblCustAddressOutput.setText(_array[4]);
+				lblCustomerIDOutput.setText(_array[0]);
+				lblCustNameOutPut.setText(_array[1] + " " + _array[2]);
+				lblCustPhoneOutPut.setText(_array[3]);
+				lblCustEmailOutput.setText(_array[4]);
+				lblCustAddressOutput.setText(_array[5]);
 				
 				
 				
@@ -461,7 +468,7 @@ public class MainWindow {
 		JScrollPane spBikeRecords = new JScrollPane();
 		spBikeRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		spBikeRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		spBikeRecords.setBounds(20, 112, 282, 280);
+		spBikeRecords.setBounds(39, 112, 282, 280);
 		pBikes.add(spBikeRecords);
 		
 		JLabel lblBikeRecords = new JLabel(_shop.displayRecords(2));
@@ -524,13 +531,13 @@ public class MainWindow {
 		
 		JPanel pSearchBikes = new JPanel();
 		pSearchBikes.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pSearchBikes.setBounds(40, 404, 240, 223);
+		pSearchBikes.setBounds(39, 404, 280, 223);
 		pBikes.add(pSearchBikes);
 		pSearchBikes.setLayout(null);
 		
 		JPanel pBikeSearchResult = new JPanel();
 		pBikeSearchResult.setBorder(new LineBorder(Color.BLACK));
-		pBikeSearchResult.setBounds(0, 73, 240, 150);
+		pBikeSearchResult.setBounds(0, 73, 280, 150);
 		pSearchBikes.add(pBikeSearchResult);
 		pBikeSearchResult.setLayout(null);
 		
@@ -546,17 +553,33 @@ public class MainWindow {
 		lblRentStatus.setBounds(12, 60, 130, 20);
 		pBikeSearchResult.add(lblRentStatus);
 		
-		JLabel lblBikeIDOutput = new JLabel("New label");
+		JLabel lblBikeIDOutput = new JLabel("");
 		lblBikeIDOutput.setBounds(104, 15, 70, 15);
 		pBikeSearchResult.add(lblBikeIDOutput);
 		
-		JLabel lblBikeNameOutput = new JLabel("New label");
-		lblBikeNameOutput.setBounds(104, 39, 70, 15);
+		JLabel lblBikeNameOutput = new JLabel("");
+		lblBikeNameOutput.setBounds(104, 39, 120, 15);
 		pBikeSearchResult.add(lblBikeNameOutput);
 		
-		JLabel lblBikeRentStatusOutput = new JLabel("New label");
+		JLabel lblBikeRentStatusOutput = new JLabel("");
 		lblBikeRentStatusOutput.setBounds(104, 63, 70, 15);
 		pBikeSearchResult.add(lblBikeRentStatusOutput);
+		
+		JLabel lblTypeBike = new JLabel("Bike Type: ");
+		lblTypeBike.setBounds(12, 85, 100, 20);
+		pBikeSearchResult.add(lblTypeBike);
+		
+		JLabel lblBikeTypeOutput = new JLabel("");
+		lblBikeTypeOutput.setBounds(104, 88, 70, 15);
+		pBikeSearchResult.add(lblBikeTypeOutput);
+		
+		JLabel lblSearchBikePrice = new JLabel("Price per day");
+		lblSearchBikePrice.setBounds(12, 117, 100, 20);
+		pBikeSearchResult.add(lblSearchBikePrice);
+		
+		JLabel lblBikePriceOutput = new JLabel("");
+		lblBikePriceOutput.setBounds(114, 122, 70, 15);
+		pBikeSearchResult.add(lblBikePriceOutput);
 		
 		JLabel lblSearchForBike = new JLabel("Search for bike");
 		lblSearchForBike.setBounds(70, 10, 160, 15);
@@ -580,6 +603,8 @@ public class MainWindow {
 				lblBikeIDOutput.setText(_array[0]);
 				lblBikeNameOutput.setText(_array[1]);
 				lblBikeRentStatusOutput.setText(_array[2]);
+				lblBikeTypeOutput.setText(_array[3]);
+				lblBikePriceOutput.setText(_array[4]);
 			}
 		});
 		btnSearchBike.setBackground(Color.ORANGE);
@@ -588,20 +613,20 @@ public class MainWindow {
 		
 		JPanel pAddBike = new JPanel();
 		pAddBike.setBorder(new LineBorder(Color.BLACK));
-		pAddBike.setBounds(335, 404, 240, 220);
+		pAddBike.setBounds(570, 404, 300, 220);
 		pBikes.add(pAddBike);
 		pAddBike.setLayout(null);
 		
 		JLabel lblAddBike = new JLabel("Add Bike");
-		lblAddBike.setBounds(80, 10, 115, 15);
+		lblAddBike.setBounds(100, 10, 115, 15);
 		pAddBike.add(lblAddBike);
 		
 		JLabel lblBikeName_1 = new JLabel("Bike Name: ");
-		lblBikeName_1.setBounds(10, 39, 90, 15);
+		lblBikeName_1.setBounds(40, 39, 90, 15);
 		pAddBike.add(lblBikeName_1);
 		
 		JLabel lblRentStatus_1 = new JLabel("Rent Status: ");
-		lblRentStatus_1.setBounds(10, 87, 100, 20);
+		lblRentStatus_1.setBounds(40, 87, 100, 20);
 		pAddBike.add(lblRentStatus_1);
 		
 		JButton btnAddBike = new JButton("Add");
@@ -628,30 +653,30 @@ public class MainWindow {
 		pAddBike.add(btnAddBike);
 		
 		tfBikeName = new JTextField();
-		tfBikeName.setBounds(110, 37, 114, 19);
+		tfBikeName.setBounds(140, 37, 114, 19);
 		pAddBike.add(tfBikeName);
 		tfBikeName.setColumns(10);
 		
 		tfRentStatus = new JTextField();
-		tfRentStatus.setBounds(110, 90, 114, 19);
+		tfRentStatus.setBounds(140, 90, 114, 19);
 		pAddBike.add(tfRentStatus);
 		tfRentStatus.setColumns(10);
 		
 		JLabel lblBikeType = new JLabel("Bike Type: ");
-		lblBikeType.setBounds(10, 60, 100, 15);
+		lblBikeType.setBounds(40, 60, 100, 15);
 		pAddBike.add(lblBikeType);
 		
 		tfBikeType = new JTextField();
-		tfBikeType.setBounds(110, 58, 114, 19);
+		tfBikeType.setBounds(140, 58, 114, 19);
 		pAddBike.add(tfBikeType);
 		tfBikeType.setColumns(10);
 		
 		JCheckBox cbFullPower = new JCheckBox("");
-		cbFullPower.setBounds(110, 121, 30, 23);
+		cbFullPower.setBounds(140, 121, 30, 23);
 		pAddBike.add(cbFullPower);
 		
 		JLabel lblFullPowered = new JLabel("Full powered: ");
-		lblFullPowered.setBounds(12, 125, 110, 15);
+		lblFullPowered.setBounds(40, 125, 110, 15);
 		pAddBike.add(lblFullPowered);
 		
 		JPanel pRentals = new JPanel();

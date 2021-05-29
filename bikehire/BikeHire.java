@@ -59,18 +59,18 @@ public class BikeHire {
 		_rents = new ArrayList<RentRecord>();
 		
 		//create twelve bikes
-		BMX _trickMaster = new BMX(false, "Trick Master", "BMX");
-		Road_Bike _offRoad = new Road_Bike(false, "Off Road", "Road");
-		Mountain_Bike _mountainMaster = new Mountain_Bike(false, "Mountain Master" , "Mountain");
-		City_Bike _citySlicker = new City_Bike(false, "City Slicker", "City");
-		BMX _coolKid = new BMX(false, "Cool Kid", "BMX");
-		Road_Bike _epicKid = new Road_Bike(false, "Epic Kid", "Road");
-		Mountain_Bike _dirtyKid = new Mountain_Bike(false, "Dirty Kid", "Mountain");
-		City_Bike _theSoy = new City_Bike(false, "The Soy", "City");
-		EBike _ecoFriend = new EBike(false, "Eco Friend", "Full power", "Ebike", 100);
-		EBike _electricPowa = new EBike(false, "Electric Powa", "Power assist", "Ebike", 150);
-		EBike _Tesla = new EBike(false, "Tesla", "Full power", "Ebike", 200);
-		EBike _ScootScoot = new EBike(false, "Scooter", "Power assist", "Ebike", 400);
+		BMX _trickMaster = new BMX(false, "Trick Master", "BMX", 40.00);
+		Road_Bike _offRoad = new Road_Bike(false, "Off Road", "Road", 25.00);
+		Mountain_Bike _mountainMaster = new Mountain_Bike(false, "Mountain Master" , "Mountain", 25.00);
+		City_Bike _citySlicker = new City_Bike(false, "City Slicker", "City", 30.00);
+		BMX _coolKid = new BMX(false, "Cool Kid", "BMX", 40.00);
+		Road_Bike _epicKid = new Road_Bike(false, "Epic Kid", "Road", 25.00);
+		Mountain_Bike _dirtyKid = new Mountain_Bike(false, "Dirty Kid", "Mountain", 25.00);
+		City_Bike _theSoy = new City_Bike(false, "The Soy", "City", 30.00);
+		EBike _ecoFriend = new EBike(false, "Eco Friend", "Ebike", 25.00, "Full power", 100);
+		EBike _electricPowa = new EBike(false, "Electric Powa", "Ebike", 25.00,  "Power assist", 150);
+		EBike _Tesla = new EBike(false, "Tesla", "Ebike", 25.00, "Full power",  200);
+		EBike _ScootScoot = new EBike(false, "Scooter", "Ebike", 25.00, "Power assist", 400);
 		
 		Customer _Customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
 		Customer _Customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
@@ -205,16 +205,18 @@ public class BikeHire {
 
 	
 	public String[] searchRecords(int _record, int _id) {
-		String[] _array = new String[5];
+		String[] _array = new String[6];
 		
 		if (_record == 1) {
 			for (Customer _customer: _customers) {
 				if (_id == _customer._custID) {
-					_array[0] = _customer.getFirstName();
-					_array[1] = _customer.getLastName();
-					_array[2] = _customer.getPhone();
-					_array[3] = _customer.getEmail();
-					_array[4] = _customer.getAddress();			
+					String _strID = String.valueOf(_id);
+					_array[0] = _strID;
+					_array[1] = _customer.getFirstName();
+					_array[2] = _customer.getLastName();
+					_array[3] = _customer.getPhone();
+					_array[4] = _customer.getEmail();
+					_array[5] = _customer.getAddress();			
 					
 				}
 			}
@@ -234,6 +236,11 @@ public class BikeHire {
 				else {
 					_array[2] = "false";
 				}
+				_array[3] = _bike._bikeType;
+				String _price = Double.toString(_bike._pricePerDay);
+				_array[4] = _price;
+				
+				
 						
 				
 			}

@@ -115,6 +115,7 @@ public class MainWindow {
 	private JTextField tfBikeType;
 	private JTextField tfPricePerDay;
 	private JTextField tfMaxDistance;
+	private JTextField tfRentID;
 	/**
 	 * Launch the application.
 	 */
@@ -714,7 +715,7 @@ public class MainWindow {
 		pRentals.setLayout(null);
 		
 		JLabel lblRentals = new JLabel("<html><h1>Rentals</html>");
-		lblRentals.setBounds(350, 0, 110, 40);
+		lblRentals.setBounds(350, 10, 110, 40);
 		pRentals.add(lblRentals);
 		
 		JLabel lblRentRecordsTitle = new JLabel("<html><h2>Rent Records</html>");
@@ -730,7 +731,7 @@ public class MainWindow {
 		JScrollPane spRentRecords = new JScrollPane();
 		spRentRecords.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spRentRecords.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		spRentRecords.setBounds(39, 112, 260, 280);
+		spRentRecords.setBounds(39, 112, 280, 280);
 		pRentals.add(spRentRecords);
 		
 		JLabel RentRecords = new JLabel(_shop.displayRecords(3));
@@ -739,7 +740,7 @@ public class MainWindow {
 		JScrollPane spRentFile = new JScrollPane();
 		spRentFile.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		spRentFile.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		spRentFile.setBounds(567, 110, 260, 280);
+		spRentFile.setBounds(567, 110, 300, 280);
 		pRentals.add(spRentFile);
 		
 		JLabel RentFile = new JLabel(_shop.readFile(3));
@@ -751,9 +752,11 @@ public class MainWindow {
 		btnRentsSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				_shop.saveFile(3);
+				RentFile.setText(_shop.readFile(3));
+			
 			}
 		});
-		btnRentsSave.setBounds(350, 220, 150, 47);
+		btnRentsSave.setBounds(370, 130, 150, 47);
 		pRentals.add(btnRentsSave);
 		
 		JButton rentsQuit = new JButton("Quit");
@@ -766,6 +769,90 @@ public class MainWindow {
 		});
 		rentsQuit.setBounds(300, 650, 230, 35);
 		pRentals.add(rentsQuit);
+		
+		JButton btnClearRentRecords = new JButton("<html>Clear<br/>Records</html>");
+		btnClearRentRecords.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearRecords(3);
+				RentRecords.setText(_shop.displayRecords(3));
+			}
+			
+		});
+		btnClearRentRecords.setBackground(new Color(250, 128, 114));
+		btnClearRentRecords.setBounds(345, 250, 100, 47);
+		pRentals.add(btnClearRentRecords);
+		
+		JButton btnClearFile = new JButton("Clear file");
+		btnClearFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				_shop.clearFile(3);
+				RentFile.setText(_shop.readFile(3));
+				
+			}
+		});
+		btnClearFile.setBackground(new Color(250, 128, 114));
+		btnClearFile.setBounds(450, 250, 100, 47);
+		pRentals.add(btnClearFile);
+		
+		JPanel pRentalsSearch = new JPanel();
+		pRentalsSearch.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pRentalsSearch.setBounds(39, 404, 280, 233);
+		pRentals.add(pRentalsSearch);
+		pRentalsSearch.setLayout(null);
+		
+		JLabel lblSearchForRental = new JLabel("Search for Rental");
+		lblSearchForRental.setBounds(70, 10, 160, 15);
+		pRentalsSearch.add(lblSearchForRental);
+		
+		JLabel lblRentId = new JLabel("Rent ID: ");
+		lblRentId.setBounds(30, 38, 70, 20);
+		pRentalsSearch.add(lblRentId);
+		
+		tfRentID = new JTextField();
+		tfRentID.setBounds(90, 40, 40, 19);
+		pRentalsSearch.add(tfRentID);
+		tfRentID.setColumns(10);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setBackground(Color.ORANGE);
+		btnSearch.setBounds(160, 36, 90, 25);
+		pRentalsSearch.add(btnSearch);
+		
+		JPanel pRentalSearchResult = new JPanel();
+		pRentalSearchResult.setBorder(new LineBorder(Color.BLACK));
+		pRentalSearchResult.setBounds(0, 69, 280, 164);
+		pRentalsSearch.add(pRentalSearchResult);
+		pRentalSearchResult.setLayout(null);
+		
+		JLabel lblOverdue = new JLabel("New label");
+		lblOverdue.setBounds(94, 12, 70, 15);
+		pRentalSearchResult.add(lblOverdue);
+		
+		JLabel lblRentId_1 = new JLabel("Rent ID: ");
+		lblRentId_1.setBounds(45, 28, 70, 15);
+		pRentalSearchResult.add(lblRentId_1);
+		
+		JLabel lblCustomerId_1 = new JLabel("Customer ID: ");
+		lblCustomerId_1.setBounds(12, 50, 100, 15);
+		pRentalSearchResult.add(lblCustomerId_1);
+		
+		JLabel lblBikeId_1 = new JLabel("Bike ID:");
+		lblBikeId_1.setBounds(50, 70, 70, 15);
+		pRentalSearchResult.add(lblBikeId_1);
+		
+		JLabel lblDate = new JLabel("Date: ");
+		lblDate.setBounds(65, 90, 50, 15);
+		pRentalSearchResult.add(lblDate);
+		
+		JLabel lblDurationinDays = new JLabel("Duration: ");
+		lblDurationinDays.setBounds(39, 110, 85, 15);
+		pRentalSearchResult.add(lblDurationinDays);
+		
+		JPanel pAddRent = new JPanel();
+		pAddRent.setBorder(new LineBorder(Color.BLACK));
+		pAddRent.setBounds(567, 402, 306, 233);
+		pRentals.add(pAddRent);
+		pAddRent.setLayout(null);
 		
 	}
 	

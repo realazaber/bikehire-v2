@@ -77,8 +77,8 @@ public class RentRecord implements Serializable{
 		return "<br />Rent ID: " + _rentID + 
 			"<br />Customer ID: " + _custID +
 			"<br />Bike ID: " + _bikeID + 
-			"<br />Date: " + _rentDay + _rentMonth + _rentYear +
-			"<br />Duration (in days): " + _duration +
+			"<br />Date: " + _rentDay + "/" +  _rentMonth + "/"  + _rentYear +
+			"<br />Duration: " + _duration + " in days" +
 			"<br />";
 	}
 }

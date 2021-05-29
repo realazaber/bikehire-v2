@@ -81,7 +81,6 @@ public class BikeHire {
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
 
 		//add bikes to bikes ArrayList		
-		_bikes.add(_testBike);
 		_bikes.add(_trickMaster);
 		_bikes.add(_offRoad);
 		_bikes.add(_mountainMaster);

@@ -64,6 +64,10 @@ public class RentRecord implements Serializable{
 	public int getDate(){
 		return _rentDay;
 	}
+	
+	public String getDateString() {
+		return _rentDay + "/" + _rentMonth + "/" + _rentYear;
+	}
 
 	public int getRentID(){
 		return _rentID;
@@ -74,7 +78,7 @@ public class RentRecord implements Serializable{
 	}
 
 	public String GUItoString() {
-		return "<br />Rent ID: " + _rentID + 
+		return "<br /><br/>Rent ID: " + _rentID + 
 			"<br />Customer ID: " + _custID +
 			"<br />Bike ID: " + _bikeID + 
 			"<br />Date: " + _rentDay + "/" +  _rentMonth + "/"  + _rentYear +

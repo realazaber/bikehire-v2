@@ -116,6 +116,12 @@ public class MainWindow {
 	private JTextField tfPricePerDay;
 	private JTextField tfMaxDistance;
 	private JTextField tfRentID;
+	private JTextField tfRentsCustID;
+	private JTextField tfRentalsBikeID;
+	private JTextField tfRentalsDay;
+	private JTextField tfRentalsDuration;
+	private JTextField tfRentalsMonth;
+	private JTextField tfRentYear;
 	/**
 	 * Launch the application.
 	 */
@@ -715,7 +721,7 @@ public class MainWindow {
 		pRentals.setLayout(null);
 		
 		JLabel lblRentals = new JLabel("<html><h1>Rentals</html>");
-		lblRentals.setBounds(350, 10, 110, 40);
+		lblRentals.setBounds(350, 5, 110, 40);
 		pRentals.add(lblRentals);
 		
 		JLabel lblRentRecordsTitle = new JLabel("<html><h2>Rent Records</html>");
@@ -813,20 +819,49 @@ public class MainWindow {
 		pRentalsSearch.add(tfRentID);
 		tfRentID.setColumns(10);
 		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setBackground(Color.ORANGE);
-		btnSearch.setBounds(160, 36, 90, 25);
-		pRentalsSearch.add(btnSearch);
-		
 		JPanel pRentalSearchResult = new JPanel();
 		pRentalSearchResult.setBorder(new LineBorder(Color.BLACK));
 		pRentalSearchResult.setBounds(0, 69, 280, 164);
 		pRentalsSearch.add(pRentalSearchResult);
 		pRentalSearchResult.setLayout(null);
 		
-		JLabel lblOverdue = new JLabel("New label");
-		lblOverdue.setBounds(94, 12, 70, 15);
-		pRentalSearchResult.add(lblOverdue);
+		JLabel lblRentIDOutput = new JLabel("");
+		lblRentIDOutput.setBounds(110, 28, 70, 15);
+		pRentalSearchResult.add(lblRentIDOutput);
+		
+		JLabel lblRentCustomerIdOutput = new JLabel("");
+		lblRentCustomerIdOutput.setBounds(110, 50, 70, 15);
+		pRentalSearchResult.add(lblRentCustomerIdOutput);
+		
+		JLabel lblRentBikeIDOutput = new JLabel("");
+		lblRentBikeIDOutput.setBounds(110, 70, 70, 15);
+		pRentalSearchResult.add(lblRentBikeIDOutput);
+		
+		JLabel lblDateOutput = new JLabel("");
+		lblDateOutput.setBounds(110, 90, 70, 15);
+		pRentalSearchResult.add(lblDateOutput);
+		
+		JLabel lblDurationOutput = new JLabel("");
+		lblDurationOutput.setBounds(110, 110, 70, 15);
+		pRentalSearchResult.add(lblDurationOutput);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int _id = Integer.parseInt(tfRentID.getText());
+				String[] _array = _shop.searchRecords(3, _id);
+				lblRentIDOutput.setText(_array[0]);
+				lblRentCustomerIdOutput.setText(_array[1]);
+				lblRentBikeIDOutput.setText(_array[2]);
+				lblDateOutput.setText(_array[3]);
+				lblDurationOutput.setText(_array[4]);
+				
+			}
+		});
+		btnSearch.setBackground(Color.ORANGE);
+		btnSearch.setBounds(160, 36, 90, 25);
+		pRentalsSearch.add(btnSearch);
 		
 		JLabel lblRentId_1 = new JLabel("Rent ID: ");
 		lblRentId_1.setBounds(45, 28, 70, 15);
@@ -848,11 +883,91 @@ public class MainWindow {
 		lblDurationinDays.setBounds(39, 110, 85, 15);
 		pRentalSearchResult.add(lblDurationinDays);
 		
+		
 		JPanel pAddRent = new JPanel();
 		pAddRent.setBorder(new LineBorder(Color.BLACK));
-		pAddRent.setBounds(567, 402, 306, 233);
+		pAddRent.setBounds(567, 402, 306, 265);
 		pRentals.add(pAddRent);
 		pAddRent.setLayout(null);
+		
+		tfRentsCustID = new JTextField();
+		tfRentsCustID.setBounds(131, 63, 114, 19);
+		pAddRent.add(tfRentsCustID);
+		tfRentsCustID.setColumns(10);
+		
+		tfRentalsBikeID = new JTextField();
+		tfRentalsBikeID.setBounds(131, 94, 114, 19);
+		pAddRent.add(tfRentalsBikeID);
+		tfRentalsBikeID.setColumns(10);
+		
+		tfRentalsDay = new JTextField();
+		tfRentalsDay.setBounds(131, 121, 114, 19);
+		pAddRent.add(tfRentalsDay);
+		tfRentalsDay.setColumns(10);
+		
+		tfRentalsDuration = new JTextField();
+		tfRentalsDuration.setBounds(131, 200, 114, 19);
+		pAddRent.add(tfRentalsDuration);
+		tfRentalsDuration.setColumns(10);
+		
+		JButton btnAddRent = new JButton("Add");
+		btnAddRent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int _customerId = Integer.parseInt(tfRentsCustID.getText());
+				int _bikeId = Integer.parseInt(tfRentalsBikeID.getText());
+				int _day = Integer.parseInt(tfRentalsDay.getText());
+				int _month = Integer.parseInt(tfRentalsMonth.getText());
+				int _year = Integer.parseInt(tfRentYear.getText());
+				double _duration = Double.parseDouble(tfRentalsDuration.getText());
+				
+				_shop.addRent(_customerId, _bikeId, _day, _month, _year, _duration);
+				RentRecords.setText(_shop.displayRecords(3));
+					
+				
+			}
+		});
+		btnAddRent.setBackground(new Color(0, 255, 127));
+		btnAddRent.setBounds(100, 230, 117, 25);
+		pAddRent.add(btnAddRent);
+		
+		JLabel lblAddRent = new JLabel("Add Rent");
+		lblAddRent.setBounds(100, 10, 115, 15);
+		pAddRent.add(lblAddRent);
+		
+		JLabel lblCustomerId_2 = new JLabel("Customer ID: ");
+		lblCustomerId_2.setBounds(27, 65, 100, 15);
+		pAddRent.add(lblCustomerId_2);
+		
+		JLabel lblBikeId_2 = new JLabel("Bike ID: ");
+		lblBikeId_2.setBounds(27, 96, 70, 15);
+		pAddRent.add(lblBikeId_2);
+		
+		JLabel lblDay = new JLabel("Day: ");
+		lblDay.setBounds(27, 123, 70, 15);
+		pAddRent.add(lblDay);
+		
+		JLabel lblDuration = new JLabel("Duration: ");
+		lblDuration.setBounds(27, 200, 80, 15);
+		pAddRent.add(lblDuration);
+		
+		tfRentalsMonth = new JTextField();
+		tfRentalsMonth.setBounds(131, 148, 114, 19);
+		pAddRent.add(tfRentalsMonth);
+		tfRentalsMonth.setColumns(10);
+		
+		JLabel lblMonth = new JLabel("Month:");
+		lblMonth.setBounds(27, 150, 70, 15);
+		pAddRent.add(lblMonth);
+		
+		JLabel lblYear = new JLabel("Year: ");
+		lblYear.setBounds(27, 173, 70, 15);
+		pAddRent.add(lblYear);
+		
+		tfRentYear = new JTextField();
+		tfRentYear.setBounds(131, 169, 114, 19);
+		pAddRent.add(tfRentYear);
+		tfRentYear.setColumns(10);
 		
 	}
 	

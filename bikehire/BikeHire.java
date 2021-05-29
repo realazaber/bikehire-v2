@@ -163,12 +163,22 @@ public class BikeHire {
 	public void addCustomer(String _firstName, String _lastName, String _email, String _phone, String _address){
 		try{
 			//create customer
-			Customer c = new Customer(_firstName, _lastName, _email, _phone, _address);
+			Customer _c = new Customer(_firstName, _lastName, _email, _phone, _address);
 			//add to ArrayList
-			_customers.add(c);
+			_customers.add(_c);
 			System.out.println("Customer added");
 		}
 		catch(Exception e){
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+	
+	public void addRent(int _customerID, int _bikeID, int _rentDay, int _rentMonth, int _rentYear, double _duration) {
+		try {
+			RentRecord _r = new RentRecord(_customerID, _bikeID, _rentDay, _rentMonth, _rentYear, _duration);
+			_rents.add(_r);
+			System.out.println("Rent added");
+		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
@@ -221,34 +231,45 @@ public class BikeHire {
 					
 				}
 			}
-		}
-		
-		for (Bike _bike: _bikes) {
-			if (_id == _bike._bikeID) {
-				
-				String _bikeId = Integer.toString(_bike.getBikeID());
-				
-				_array[0] = _bikeId;
-				_array[1] = _bike.getName();
-				
-				if (_bike.getIsRented() == true) {
-					_array[2] = "true";
+			
+			for (Bike _bike: _bikes) {
+				if (_id == _bike._bikeID) {
+					
+					String _bikeId = Integer.toString(_bike.getBikeID());
+					
+					_array[0] = _bikeId;
+					_array[1] = _bike.getName();
+					
+					if (_bike.getIsRented() == true) {
+						_array[2] = "true";
+					}
+					else {
+						_array[2] = "false";
+					}
+					_array[3] = _bike._bikeType;
+					String _price = Double.toString(_bike._pricePerDay);
+					_array[4] = _price;	
+					
 				}
-				else {
-					_array[2] = "false";
-				}
-				_array[3] = _bike._bikeType;
-				String _price = Double.toString(_bike._pricePerDay);
-				_array[4] = _price;
-				
-				
-						
-				
 			}
 		}
 		
-
-		
+		else if (_record == 3) {
+			for (var _rent : _rents) {
+				
+				String _rentId = String.valueOf(_rent.getRentID());
+				String _custId = String.valueOf(_rent.getCustID());
+				String _bikeId = String.valueOf(_rent.getBikeID());
+				String _duration = String.valueOf(_rent.getDuration());
+				
+				_array[0] = _rentId;
+				_array[1] = _custId;
+				_array[2] = _bikeId;
+				_array[3] = _rent.getDateString();
+				_array[4] = _duration;
+			}
+		}
+				
 		return _array;
 	}
 
@@ -315,8 +336,9 @@ public class BikeHire {
 						_output += _lineBreaker;
 					}
 					else {
+						_output += "<br/>";
 						_output += _lineBreaker;
-						_output += _rent;
+						_output += _rent.GUItoString();
 						_output += "==========";
 						_output += _lineBreaker;
 	
@@ -336,66 +358,6 @@ public class BikeHire {
 		return _output;
 	}
 	 
-	public void SearchRentalsByCustID(){
-		Scanner _input = null;
-		try{
-			System.out.println("<br />Search options: " + 
-								"<br />1. I want to find a customer ID." +
-								"<br />2. I already have a customer ID.");
-			int _choice = _input.nextInt();
-			
-			if(_choice < 1 || _choice > 2){
-				throw new Exception("Invalid selection.");
-			}
-			
-			int _custID = 0;
-	   
-			switch(_choice){
-			case 1:
-				_input.nextLine();
-				System.out.println("Enter first name: ");
-				String _fname = _input.nextLine();
-				System.out.println("Enter last name: ");
-				String _lname = _input.nextLine();
-	    
-				//call searchForCustomer
-				_custID = searchForCustomerTerminal(_fname, _lname);
-	    
-				if(_custID == 0){
-					throw new Exception("Customer not found.");
-				}
-				break;
-			case 2:
-				System.out.println("Enter customer ID: ");
-				_custID = _input.nextInt();
-				if(_custID < 1){
-					throw new Exception("Customer ID cannot be below one.");
-				}
-				break;
-			default:
-				System.out.println("Incorrect input. Please enter either 1 or 2."); 
-			}
-	   
-			if(_custID != 0){
-				int _numRentals = 0;
-	    
-				for(RentRecord _rent: _rents){
-					if(_custID == _rent.getCustID()){
-						System.out.println(_rent);
-						_numRentals++;
-					}
-				}
-	    
-				if(_numRentals < 1){
-					throw new Exception("No rentals found for that customer.");
-				}
-			}
-		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
-		}
-	}
-	
 	public void clearFile(int _fileChosen) {
 		//1 Customer
 		//2 Bike
@@ -518,7 +480,6 @@ public class BikeHire {
 			}
 
 			_printWriter.print(_text); //appends to file
-			//_printWriter.print("</html>");
 			_printWriter.close();	
 		} 
 		

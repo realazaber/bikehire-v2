@@ -1,49 +1,49 @@
 //Bike class
 
 public class Bike {
-	protected int _bikeID;
-	protected String _bikeName;
-	protected String _bikeType;
-	protected double _pricePerDay;
-	protected boolean _isRented;
-	protected static int _newID = 1;
-	protected boolean _isAvailable = true;
+	protected int bikeID;
+	protected String bikeName;
+	protected String bikeType;
+	protected double pricePerDay;
+	protected boolean isRented;
+	protected static int newID = 1;
+	protected boolean isAvailable = true;
 	
 	public Bike(){
 
 	}
 	
-	public Bike(String _bikeName, String _bikeType, boolean isRented, double _pricePerDay){
-		this._bikeID = _newID++;
-		this._bikeName = _bikeName;
-		this._bikeType = _bikeType;
-		this._isRented = isRented;
-		this._pricePerDay = _pricePerDay;
+	public Bike(String bikeName, String bikeType, boolean isRented, double pricePerDay){
+		this.bikeID = newID++;
+		this.bikeName = bikeName;
+		this.bikeType = bikeType;
+		this.isRented = isRented;
+		this.pricePerDay = pricePerDay;
 	}
 
 	public String getName(){
-		return _bikeName;
+		return bikeName;
 	}
 
 	
 	public int getBikeID(){
-		return _bikeID;
+		return bikeID;
 	}
 	
 	public boolean getIsRented(){
-		return _isRented;
+		return isRented;
 	}
 	
-	public void setIsRented(boolean _isRented){
-		this._isRented = _isRented;
+	public void setIsRented(boolean isRented){
+		this.isRented = isRented;
 	}
 	
 	public String GUItoString(){
 		return 
-			   "<br /><br />Bike ID: " + _bikeID + 
-			   "<br />Bike Name: " + _bikeName + 
-			   "<br />Bike Type: " + _bikeType +
-			   "<br />Bike Rent Status: " + _isRented + 
-			   "<br />Price per day: " + _pricePerDay + "<br />";
+			   "<br /><br />Bike ID: " + bikeID + 
+			   "<br />Bike Name: " + bikeName + 
+			   "<br />Bike Type: " + bikeType +
+			   "<br />Bike Rent Status: " + isRented + 
+			   "<br />Price per day: " + pricePerDay + "<br />";
 	}
 }

@@ -1,57 +1,56 @@
 public class Customer {
-	int _custID;
-	private String _fname;
-	private String _lname;
-	private String _email;
-	private String _phone;
-	private String _address;
-	private static int _newID = 1;
+	int custID;
+	private String fname;
+	private String lname;
+	private String email;
+	private String phone;
+	private String address;
+	private static int newID = 1;
 	
 	public Customer(){
 	}
 	
-	public Customer(String _fname, String _lname, String _email, String _phone, String _address){
-		this._custID = _newID++;
-		this._fname = _fname;
-		this._lname = _lname;
-		this._email = _email;
-		this._phone = _phone;
-		this._address = _address;
-		
+	public Customer(String fname, String lname, String email, String phone, String address){
+		this.custID = newID++;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
 	}
 	
 	public int getCustID(){
-		return _custID;
+		return custID;
 	}
 	
 	public String getFirstName(){
-		return _fname;
+		return fname;
 	}
 	
 	public String getLastName(){
-		return _lname;
+		return lname;
 	}
 	
 	public String getEmail() {
-		return _email;
+		return email;
 	}
 	
 	public String getPhone(){
-		return _phone;
+		return phone;
 	}
 	
 	public String getAddress(){
-		return _address;
+		return address;
 	}
 	
 	
 	public String GUItoString(){
-		return  "Customer ID: " + _custID + 
-				"<br />Customer First name: " + _fname + 
-				"<br />Customer Last name: " + _lname + 
-				"<br />Customer Phone: " + _phone +
-				"<br />Customer Email: " + _email +
-				"<br />Customer Address: " + _address; 
+		return  "Customer ID: " + custID + 
+				"<br />Customer First name: " + fname + 
+				"<br />Customer Last name: " + lname + 
+				"<br />Customer Phone: " + phone +
+				"<br />Customer Email: " + email +
+				"<br />Customer Address: " + address; 
 				
 	}
 }

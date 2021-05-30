@@ -22,7 +22,7 @@ import javax.swing.JComboBox;
 
 public class MainWindow {
 	
-	public static BikeHire _shop = new BikeHire();
+	public static BikeHire bikeHireShop = new BikeHire();
 
 	private JFrame frame;
 	private JTextField tfFirstName;
@@ -54,8 +54,8 @@ public class MainWindow {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception error) {
+					error.printStackTrace();
 				}
 			}
 		});
@@ -83,11 +83,11 @@ public class MainWindow {
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
-		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
-		gbc_tabbedPane.gridx = 0;
-		gbc_tabbedPane.gridy = 0;
-		frame.getContentPane().add(tabbedPane, gbc_tabbedPane);
+		GridBagConstraints gbcTabbedPane = new GridBagConstraints();
+		gbcTabbedPane.fill = GridBagConstraints.BOTH;
+		gbcTabbedPane.gridx = 0;
+		gbcTabbedPane.gridy = 0;
+		frame.getContentPane().add(tabbedPane, gbcTabbedPane);
 		
 		JPanel pManual = new JPanel();
 		pManual.setBackground(Color.LIGHT_GRAY);
@@ -124,25 +124,25 @@ public class MainWindow {
 
 		pCustomerSearchResult.setLayout(null);
 		
-		JLabel lblFirstName_1 = new JLabel("First Name: ");
-		lblFirstName_1.setBounds(0, 0, 0, 0);
-		pCustomerSearchResult.add(lblFirstName_1);
+		JLabel lblCustFirstName = new JLabel("First Name: ");
+		lblCustFirstName.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblCustFirstName);
 		
-		JLabel lblLastName_1 = new JLabel("Last Name: ");
-		lblLastName_1.setBounds(0, 0, 0, 0);
-		pCustomerSearchResult.add(lblLastName_1);
+		JLabel lblCustLastName = new JLabel("Last Name: ");
+		lblCustLastName.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblCustLastName);
 		
-		JLabel lblPhoneNumber = new JLabel("Phone Number: ");
-		lblPhoneNumber.setBounds(0, 0, 0, 0);
-		pCustomerSearchResult.add(lblPhoneNumber);
+		JLabel lblCustPhoneNumber = new JLabel("Phone Number: ");
+		lblCustPhoneNumber.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblCustPhoneNumber);
 		
-		JLabel lblEmail_1 = new JLabel("Email: ");
-		lblEmail_1.setBounds(0, 0, 0, 0);
-		pCustomerSearchResult.add(lblEmail_1);
+		JLabel lblCustEmail = new JLabel("Email: ");
+		lblCustEmail.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblCustEmail);
 		
-		JLabel lblAddress = new JLabel("Address: ");
-		lblAddress.setBounds(0, 0, 0, 0);
-		pCustomerSearchResult.add(lblAddress);
+		JLabel lblCustAddress = new JLabel("Address: ");
+		lblCustAddress.setBounds(0, 0, 0, 0);
+		pCustomerSearchResult.add(lblCustAddress);
 		
 		JLabel lblCustomerName = new JLabel("Customer Name:");
 		lblCustomerName.setBounds(12, 25, 130, 15);
@@ -206,18 +206,13 @@ public class MainWindow {
 		JButton btnCustomerSearch = new JButton("Search");
 		btnCustomerSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int _id = Integer.parseInt(tfCustId.getText());
-	
-				//String custFirstName = _shop.searchForCustomer(_id);
-				String[] _array = _shop.searchRecords(1, _id);
-				lblCustomerIDOutput.setText(_array[0]);
-				lblCustNameOutPut.setText(_array[1] + " " + _array[2]);
-				lblCustPhoneOutPut.setText(_array[3]);
-				lblCustEmailOutput.setText(_array[4]);
-				lblCustAddressOutput.setText(_array[5]);
-				
-				
-				
+				int id = Integer.parseInt(tfCustId.getText());
+				String[] array = bikeHireShop.searchRecords(1, id);
+				lblCustomerIDOutput.setText(array[0]);
+				lblCustNameOutPut.setText(array[1] + " " + array[2]);
+				lblCustPhoneOutPut.setText(array[3]);
+				lblCustEmailOutput.setText(array[4]);
+				lblCustAddressOutput.setText(array[5]);				
 			}
 		});
 		btnCustomerSearch.setBackground(Color.ORANGE);
@@ -239,7 +234,7 @@ public class MainWindow {
 		spCustomerRecords.setBounds(39, 112, 300, 280);
 		pCustomer.add(spCustomerRecords);
 		
-		JLabel lblCustomerRecords = new JLabel(_shop.displayRecords(1));
+		JLabel lblCustomerRecords = new JLabel(bikeHireShop.displayRecords(1));
 		spCustomerRecords.setViewportView(lblCustomerRecords);
 		lblCustomerRecords.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -254,7 +249,7 @@ public class MainWindow {
 		spCustomerFile.setBounds(567, 112, 300, 280);
 		pCustomer.add(spCustomerFile);
 		
-		JLabel lblCustomerFile = new JLabel(_shop.readFile(1));
+		JLabel lblCustomerFile = new JLabel(bikeHireShop.readFile(1));
 		spCustomerFile.setViewportView(lblCustomerFile);
 		lblCustomerFile.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -262,8 +257,8 @@ public class MainWindow {
 		btnSaveToCustomers.setBackground(new Color(0, 206, 209));
 		btnSaveToCustomers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.saveFile(1);
-				lblCustomerFile.setText(_shop.readFile(1));
+				bikeHireShop.saveFile(1);
+				lblCustomerFile.setText(bikeHireShop.readFile(1));
 				
 			}
 		});
@@ -286,21 +281,21 @@ public class MainWindow {
 		pCustomer.add(pAddCust);
 		pAddCust.setLayout(null);
 		
-		JLabel lblFirstName = new JLabel("First name: ");
-		lblFirstName.setBounds(12, 39, 130, 15);
-		pAddCust.add(lblFirstName);
+		JLabel lblAddCustFirstName = new JLabel("First name: ");
+		lblAddCustFirstName.setBounds(12, 39, 130, 15);
+		pAddCust.add(lblAddCustFirstName);
 		
-		JLabel lblLastName = new JLabel("Last name: ");
-		lblLastName.setBounds(12, 61, 130, 15);
-		pAddCust.add(lblLastName);
+		JLabel lblAddCustLastName = new JLabel("Last name: ");
+		lblAddCustLastName.setBounds(12, 61, 130, 15);
+		pAddCust.add(lblAddCustLastName);
 		
-		JLabel lblEmail = new JLabel("Email: ");
-		lblEmail.setBounds(12, 83, 130, 15);
-		pAddCust.add(lblEmail);
+		JLabel lblAddCustEmail = new JLabel("Email: ");
+		lblAddCustEmail.setBounds(12, 83, 130, 15);
+		pAddCust.add(lblAddCustEmail);
 		
-		JLabel lblPhone = new JLabel("Phone: ");
-		lblPhone.setBounds(12, 105, 130, 15);
-		pAddCust.add(lblPhone);
+		JLabel lblAddCustPhone = new JLabel("Phone: ");
+		lblAddCustPhone.setBounds(12, 105, 130, 15);
+		pAddCust.add(lblAddCustPhone);
 		
 		JLabel lblAddCustomer = new JLabel("Add Customer");
 		lblAddCustomer.setBounds(90, 10, 115, 15);
@@ -326,37 +321,37 @@ public class MainWindow {
 		pAddCust.add(tfPhone);
 		tfPhone.setColumns(10);
 		
-		JLabel lblAddress_1 = new JLabel("Address: ");
-		lblAddress_1.setBounds(12, 132, 70, 15);
-		pAddCust.add(lblAddress_1);
+		JLabel lblAddCustAddress = new JLabel("Address: ");
+		lblAddCustAddress.setBounds(12, 132, 70, 15);
+		pAddCust.add(lblAddCustAddress);
 		
 		tfAddress = new JTextField();
 		tfAddress.setBounds(99, 132, 114, 19);
 		pAddCust.add(tfAddress);
 		tfAddress.setColumns(10);
 		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.setBackground(new Color(0, 255, 127));
-		btnAdd.addActionListener(new ActionListener() {
+		JButton btnCustAdd = new JButton("Add");
+		btnCustAdd.setBackground(new Color(0, 255, 127));
+		btnCustAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (tfFirstName.getText() != null && tfLastName.getText() != null && tfEmail.getText() != null && tfPhone.getText() != null && tfAddress.getText() != null) {
 						
-				_shop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
-				lblCustomerRecords.setText(_shop.displayRecords(1));
+				bikeHireShop.addCustomer(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText(), tfPhone.getText(), tfAddress.getText());
+				lblCustomerRecords.setText(bikeHireShop.displayRecords(1));
 				}
 				else {
 					System.out.println("fill in all info");
 				}
 			}
 		});
-		btnAdd.setBounds(69, 175, 117, 25);
-		pAddCust.add(btnAdd);
+		btnCustAdd.setBounds(69, 175, 117, 25);
+		pAddCust.add(btnCustAdd);
 		
 		JButton btnClearCustomerFIle = new JButton("Clear file");
 		btnClearCustomerFIle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearFile(1);
-				lblCustomerFile.setText(_shop.readFile(1));
+				bikeHireShop.clearFile(1);
+				lblCustomerFile.setText(bikeHireShop.readFile(1));
 				
 			}
 		});
@@ -367,8 +362,8 @@ public class MainWindow {
 		JButton btnClearCustomerRecords = new JButton("<html>Clear<br/> Records</html>");
 		btnClearCustomerRecords.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearRecords(1);
-				lblCustomerRecords.setText(_shop.displayRecords(1));
+				bikeHireShop.clearRecords(1);
+				lblCustomerRecords.setText(bikeHireShop.displayRecords(1));
 			}
 		});
 		btnClearCustomerRecords.setBackground(new Color(250, 128, 114));
@@ -403,7 +398,7 @@ public class MainWindow {
 		spBikeRecords.setBounds(39, 112, 282, 280);
 		pBikes.add(spBikeRecords);
 		
-		JLabel lblBikeRecords = new JLabel(_shop.displayRecords(2));
+		JLabel lblBikeRecords = new JLabel(bikeHireShop.displayRecords(2));
 		spBikeRecords.setViewportView(lblBikeRecords);
 		
 		JScrollPane spBikeFile = new JScrollPane();
@@ -412,15 +407,15 @@ public class MainWindow {
 		spBikeFile.setBounds(567, 112, 300, 280);
 		pBikes.add(spBikeFile);
 		
-		JLabel lblBikeFile = new JLabel(_shop.readFile(2));
+		JLabel lblBikeFile = new JLabel(bikeHireShop.readFile(2));
 		spBikeFile.setViewportView(lblBikeFile);
 		
 		JButton btnSaveToBikes = new JButton("Save to file");
 		btnSaveToBikes.setBackground(new Color(0, 206, 209));
 		btnSaveToBikes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.saveFile(2);
-				lblBikeFile.setText(_shop.readFile(2));
+				bikeHireShop.saveFile(2);
+				lblBikeFile.setText(bikeHireShop.readFile(2));
 			}
 			
 		});
@@ -440,8 +435,8 @@ public class MainWindow {
 		JButton btnClearBikeRecords = new JButton("<html>Clear<br/>Records</html>");
 		btnClearBikeRecords.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearRecords(2);
-				lblBikeRecords.setText(_shop.displayRecords(2));
+				bikeHireShop.clearRecords(2);
+				lblBikeRecords.setText(bikeHireShop.displayRecords(2));
 				
 			}
 		});
@@ -452,8 +447,8 @@ public class MainWindow {
 		JButton btnClearBikeFile = new JButton("Clear file");
 		btnClearBikeFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearFile(2);
-				lblBikeFile.setText(_shop.readFile(2));
+				bikeHireShop.clearFile(2);
+				lblBikeFile.setText(bikeHireShop.readFile(2));
 				
 			}
 		});
@@ -530,13 +525,13 @@ public class MainWindow {
 		btnSearchBike.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int _id = Integer.parseInt(tfBikeID.getText());
-				String[] _array = _shop.searchRecords(2, _id);
-				lblBikeIDOutput.setText(_array[0]);
-				lblBikeNameOutput.setText(_array[1]);
-				lblBikeRentStatusOutput.setText(_array[2]);
-				lblBikeTypeOutput.setText(_array[3]);
-				lblBikePriceOutput.setText(_array[4]);
+				int id = Integer.parseInt(tfBikeID.getText());
+				String[] array = bikeHireShop.searchRecords(2, id);
+				lblBikeIDOutput.setText(array[0]);
+				lblBikeNameOutput.setText(array[1]);
+				lblBikeRentStatusOutput.setText(array[2]);
+				lblBikeTypeOutput.setText(array[3]);
+				lblBikePriceOutput.setText(array[4]);
 			}
 		});
 		btnSearchBike.setBackground(Color.ORANGE);
@@ -553,13 +548,13 @@ public class MainWindow {
 		lblAddBike.setBounds(100, 10, 115, 15);
 		pAddBike.add(lblAddBike);
 		
-		JLabel lblBikeName_1 = new JLabel("Bike Name: ");
-		lblBikeName_1.setBounds(40, 39, 90, 15);
-		pAddBike.add(lblBikeName_1);
+		JLabel lblAddBikeBikeName = new JLabel("Bike Name: ");
+		lblAddBikeBikeName.setBounds(40, 39, 90, 15);
+		pAddBike.add(lblAddBikeBikeName);
 		
-		JLabel lblRentStatus_1 = new JLabel("Rent Status: ");
-		lblRentStatus_1.setBounds(40, 87, 100, 20);
-		pAddBike.add(lblRentStatus_1);
+		JLabel lblAddBikeRentStatus = new JLabel("Rent Status: ");
+		lblAddBikeRentStatus.setBounds(40, 87, 100, 20);
+		pAddBike.add(lblAddBikeRentStatus);
 		
 		JCheckBox cbFullPower = new JCheckBox("");
 		cbFullPower.setBounds(140, 185, 30, 23);
@@ -569,24 +564,24 @@ public class MainWindow {
 		btnAddBike.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (tfBikeName != null && tfBikeType != null && tfRentStatus != null) {
-					boolean _rentStatus;
+					boolean rentStatus;
 					if (tfRentStatus.getText() == "true") {
-						_rentStatus = true;
+						rentStatus = true;
 					}
 					else {
-						_rentStatus = false;
+						rentStatus = false;
 					}
-					double _price = Double.parseDouble(tfPricePerDay.getText());
-					int _maxDistance = Integer.parseInt(tfMaxDistance.getText());
-					String _powerMode = "";
+					double price = Double.parseDouble(tfPricePerDay.getText());
+					int maxDistance = Integer.parseInt(tfMaxDistance.getText());
+					String powerMode = "";
 					if (cbFullPower.isSelected()) {
-						_powerMode = "Full Power";
+						powerMode = "Full Power";
 					}
 					else {
-						_powerMode = "Power assist";
+						powerMode = "Power assist";
 					}
-				_shop.addBike(tfBikeType.getText(), tfBikeName.getText(), _price, _rentStatus, _powerMode, _maxDistance);
-				lblBikeRecords.setText(_shop.displayRecords(2));
+				bikeHireShop.addBike(tfBikeType.getText(), tfBikeName.getText(), price, rentStatus, powerMode, maxDistance);
+				lblBikeRecords.setText(bikeHireShop.displayRecords(2));
 				}
 				else {
 					System.out.println("fill in all info");
@@ -663,7 +658,7 @@ public class MainWindow {
 		spRentRecords.setBounds(39, 112, 280, 280);
 		pRentals.add(spRentRecords);
 		
-		JLabel RentRecords = new JLabel(_shop.displayRecords(3));
+		JLabel RentRecords = new JLabel(bikeHireShop.displayRecords(3));
 		spRentRecords.setViewportView(RentRecords);
 		
 		JScrollPane spRentFile = new JScrollPane();
@@ -672,7 +667,7 @@ public class MainWindow {
 		spRentFile.setBounds(567, 110, 300, 280);
 		pRentals.add(spRentFile);
 		
-		JLabel RentFile = new JLabel(_shop.readFile(3));
+		JLabel RentFile = new JLabel(bikeHireShop.readFile(3));
 		RentFile.setBackground(Color.WHITE);
 		spRentFile.setViewportView(RentFile);
 		
@@ -680,8 +675,8 @@ public class MainWindow {
 		btnRentsSave.setBackground(new Color(0, 206, 209));
 		btnRentsSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.saveFile(3);
-				RentFile.setText(_shop.readFile(3));
+				bikeHireShop.saveFile(3);
+				RentFile.setText(bikeHireShop.readFile(3));
 			
 			}
 		});
@@ -702,8 +697,8 @@ public class MainWindow {
 		JButton btnClearRentRecords = new JButton("<html>Clear<br/>Records</html>");
 		btnClearRentRecords.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearRecords(3);
-				RentRecords.setText(_shop.displayRecords(3));
+				bikeHireShop.clearRecords(3);
+				RentRecords.setText(bikeHireShop.displayRecords(3));
 			}
 			
 		});
@@ -714,8 +709,8 @@ public class MainWindow {
 		JButton btnClearFile = new JButton("Clear file");
 		btnClearFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				_shop.clearFile(3);
-				RentFile.setText(_shop.readFile(3));
+				bikeHireShop.clearFile(3);
+				RentFile.setText(bikeHireShop.readFile(3));
 				
 			}
 		});
@@ -772,13 +767,13 @@ public class MainWindow {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int _id = Integer.parseInt(tfRentID.getText());
-				String[] _array = _shop.searchRecords(3, _id);
-				lblRentIDOutput.setText(_array[0]);
-				lblRentCustomerIdOutput.setText(_array[1]);
-				lblRentBikeIDOutput.setText(_array[2]);
-				lblDateOutput.setText(_array[3]);
-				lblDurationOutput.setText(_array[4]);
+				int id = Integer.parseInt(tfRentID.getText());
+				String[] array = bikeHireShop.searchRecords(3, id);
+				lblRentIDOutput.setText(array[0]);
+				lblRentCustomerIdOutput.setText(array[1]);
+				lblRentBikeIDOutput.setText(array[2]);
+				lblDateOutput.setText(array[3]);
+				lblDurationOutput.setText(array[4]);
 				
 			}
 		});
@@ -786,17 +781,17 @@ public class MainWindow {
 		btnSearch.setBounds(160, 36, 90, 25);
 		pRentalsSearch.add(btnSearch);
 		
-		JLabel lblRentId_1 = new JLabel("Rent ID: ");
-		lblRentId_1.setBounds(45, 28, 70, 15);
-		pRentalSearchResult.add(lblRentId_1);
+		JLabel lblSearchRentId = new JLabel("Rent ID: ");
+		lblSearchRentId.setBounds(45, 28, 70, 15);
+		pRentalSearchResult.add(lblSearchRentId);
 		
-		JLabel lblCustomerId_1 = new JLabel("Customer ID: ");
-		lblCustomerId_1.setBounds(12, 50, 100, 15);
-		pRentalSearchResult.add(lblCustomerId_1);
+		JLabel lblRentSearchCustomerId = new JLabel("Customer ID: ");
+		lblRentSearchCustomerId.setBounds(12, 50, 100, 15);
+		pRentalSearchResult.add(lblRentSearchCustomerId);
 		
-		JLabel lblBikeId_1 = new JLabel("Bike ID:");
-		lblBikeId_1.setBounds(50, 70, 70, 15);
-		pRentalSearchResult.add(lblBikeId_1);
+		JLabel lblRentSearchBikeId = new JLabel("Bike ID:");
+		lblRentSearchBikeId.setBounds(50, 70, 70, 15);
+		pRentalSearchResult.add(lblRentSearchBikeId);
 		
 		JLabel lblDate = new JLabel("Date: ");
 		lblDate.setBounds(65, 90, 50, 15);
@@ -837,15 +832,15 @@ public class MainWindow {
 		btnAddRent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int _customerId = Integer.parseInt(tfRentsCustID.getText());
-				int _bikeId = Integer.parseInt(tfRentalsBikeID.getText());
-				int _day = Integer.parseInt(tfRentalsDay.getText());
-				int _month = Integer.parseInt(tfRentalsMonth.getText());
-				int _year = Integer.parseInt(tfRentYear.getText());
-				double _duration = Double.parseDouble(tfRentalsDuration.getText());
+				int customerId = Integer.parseInt(tfRentsCustID.getText());
+				int bikeId = Integer.parseInt(tfRentalsBikeID.getText());
+				int day = Integer.parseInt(tfRentalsDay.getText());
+				int month = Integer.parseInt(tfRentalsMonth.getText());
+				int year = Integer.parseInt(tfRentYear.getText());
+				double duration = Double.parseDouble(tfRentalsDuration.getText());
 				
-				_shop.addRent(_customerId, _bikeId, _day, _month, _year, _duration);
-				RentRecords.setText(_shop.displayRecords(3));
+				bikeHireShop.addRent(customerId, bikeId, day, month, year, duration);
+				RentRecords.setText(bikeHireShop.displayRecords(3));
 					
 				
 			}
@@ -858,21 +853,21 @@ public class MainWindow {
 		lblAddRent.setBounds(100, 10, 115, 15);
 		pAddRent.add(lblAddRent);
 		
-		JLabel lblCustomerId_2 = new JLabel("Customer ID: ");
-		lblCustomerId_2.setBounds(27, 65, 100, 15);
-		pAddRent.add(lblCustomerId_2);
+		JLabel lblRentAddCustomerId = new JLabel("Customer ID: ");
+		lblRentAddCustomerId.setBounds(27, 65, 100, 15);
+		pAddRent.add(lblRentAddCustomerId);
 		
-		JLabel lblBikeId_2 = new JLabel("Bike ID: ");
-		lblBikeId_2.setBounds(27, 96, 70, 15);
-		pAddRent.add(lblBikeId_2);
+		JLabel lblRentAddBikeId = new JLabel("Bike ID: ");
+		lblRentAddBikeId.setBounds(27, 96, 70, 15);
+		pAddRent.add(lblRentAddBikeId);
 		
-		JLabel lblDay = new JLabel("Day: ");
-		lblDay.setBounds(27, 123, 70, 15);
-		pAddRent.add(lblDay);
+		JLabel lblRentAddDay = new JLabel("Day: ");
+		lblRentAddDay.setBounds(27, 123, 70, 15);
+		pAddRent.add(lblRentAddDay);
 		
-		JLabel lblDuration = new JLabel("Duration: ");
-		lblDuration.setBounds(27, 200, 80, 15);
-		pAddRent.add(lblDuration);
+		JLabel lblRentAddDuration = new JLabel("Duration: ");
+		lblRentAddDuration.setBounds(27, 200, 80, 15);
+		pAddRent.add(lblRentAddDuration);
 		
 		tfRentalsMonth = new JTextField();
 		tfRentalsMonth.setBounds(131, 148, 114, 19);
@@ -902,9 +897,9 @@ public class MainWindow {
 		lblReturnRent.setBounds(59, 12, 90, 15);
 		pReturnRent.add(lblReturnRent);
 		
-		JLabel lblRentId_2 = new JLabel("Rent ID: ");
-		lblRentId_2.setBounds(12, 39, 70, 15);
-		pReturnRent.add(lblRentId_2);
+		JLabel lblReturnRentId = new JLabel("Rent ID: ");
+		lblReturnRentId.setBounds(12, 39, 70, 15);
+		pReturnRent.add(lblReturnRentId);
 		
 		tfReturnRentID = new JTextField();
 		tfReturnRentID.setBounds(69, 37, 40, 19);
@@ -920,14 +915,11 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (cbConfirm.isSelected() == true) {
-					int _id = Integer.parseInt(tfReturnRentID.getText());
-					_shop.returnRent(_id);
-					RentRecords.setText(_shop.displayRecords(3));
+					int id = Integer.parseInt(tfReturnRentID.getText());
+					bikeHireShop.returnRent(id);
+					RentRecords.setText(bikeHireShop.displayRecords(3));
 					
 				}
-				
-				
-				
 			}
 		});
 		btnReturn.setBackground(new Color(255, 165, 0));
@@ -936,74 +928,6 @@ public class MainWindow {
 		
 		JLabel lblConfirm = new JLabel("Confirm: ");
 		lblConfirm.setBounds(12, 79, 70, 15);
-		pReturnRent.add(lblConfirm);
-		
-
-		
-	}
-	
-
-
-	public void prepareButtonActions() {
-
-		_manual_quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("QUIT");
-				System.exit(1);
-			}
-		});
-
-
-
-		_customer_save.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				_shop.saveFile(1);
-			}
-		});
-
-		_customer_add.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("added");
-			}
-		});
-
-
-		
-
-		_customer_quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("QUIT");
-				System.exit(1);
-			}
-		});
-
-
-
-		_bikes_save.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				_shop.saveFile(2);
-			}
-		});
-
-		_bikes_quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("QUIT");
-				System.exit(1);
-			}
-		});
-		
-		
-		_rentals_save.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				_shop.saveFile(3);
-			}
-		});
-		
-		_rentals_quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("QUIT");
-				System.exit(1);
-			}
-		});
+		pReturnRent.add(lblConfirm);	
 	}
 }

@@ -1,24 +1,24 @@
 // Subclass of Bike 
 
 public class BMX extends Bike{
-	private String _make = "BMX";
-	private double _pricePerDay = 40.00;
+	private String make = "BMX";
+	private double pricePerDay = 40.00;
 
 	
-	public BMX(boolean _isRented, String _name, String _make, double _pricePerDay){
-		super(_name, _make, _isRented, _pricePerDay);
-		this._bikeName = _name;
+	public BMX(boolean isRented, String name, String make, double pricePerDay){
+		super(name, make, isRented, pricePerDay);
+		this.bikeName = name;
 	}
 	
 	public String getType(){
-		return _make;
+		return make;
 	}
 	
 	public double getPrice(){
-		return _pricePerDay;
+		return pricePerDay;
 	}
 	
 	public String toString(){
-		return  "Category: " + _make;
+		return  "Category: " + make;
 	}
 }

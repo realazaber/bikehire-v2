@@ -3,26 +3,26 @@
 // Subclass of Bike 
 
 public class City_Bike extends Bike{
-	private String _make = "City";
-	private double _pricePerDay = 30.00;
+	private String make = "City";
+	private double pricePerDay = 30.00;
 	
 	public City_Bike(){
 	}
 	
-	public City_Bike(boolean _isRented, String _name, String _make, double _pricePerDay){
-		super(_name, _make, _isRented, _pricePerDay);
-		this._bikeName = _name;
+	public City_Bike(boolean isRented, String name, String make, double pricePerDay){
+		super(name, make, isRented, pricePerDay);
+		this.bikeName = name;
 	}
 	
 	public String getType(){
-		return _make;
+		return make;
 	}
 	
 	public double getPrice(){
-		return _pricePerDay;
+		return pricePerDay;
 	}
 	
 	public String toString(){
-		return "Category: " + _make;
+		return "Category: " + make;
 	}
 }

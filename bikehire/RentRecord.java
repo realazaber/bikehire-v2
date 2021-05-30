@@ -3,86 +3,86 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 public class RentRecord implements Serializable{
-	private int _rentID;
-	private int _custID;
-	private int _bikeID;
-	private int _rentDay;
-	private int _rentMonth;
-	private int _rentYear; 
-	private double _duration;
-	private static int _newID = 1;
+	private int rentID;
+	private int custID;
+	private int bikeID;
+	private int rentDay;
+	private int rentMonth;
+	private int rentYear; 
+	private double duration;
+	private static int newID = 1;
 	/* Assignment specifications unclear on this ArrayList. */
-	private ArrayList<Integer> _bikesID;
+	private ArrayList<Integer> bikesID;
 	
 	public RentRecord(){
 		
 	}
 	
-	public RentRecord(int _custID, int _bikeID, int _rentDay, int _rentMonth, int _rentYear, double _duration){
-		this._rentID = _newID++;
-		this._custID = _custID;
-		this._bikeID = _bikeID;
-		this._rentDay = _rentDay;
-		this._rentMonth = _rentMonth;
-		this._rentYear = _rentYear;
-		this._duration = _duration;
+	public RentRecord(int custID, int bikeID, int rentDay, int rentMonth, int rentYear, double duration){
+		this.rentID = newID++;
+		this.custID = custID;
+		this.bikeID = bikeID;
+		this.rentDay = rentDay;
+		this.rentMonth = rentMonth;
+		this.rentYear = rentYear;
+		this.duration = duration;
 		/* Assignment specifications unclear on this ArrayList. */
-		_bikesID = new ArrayList<Integer>();
+		bikesID = new ArrayList<Integer>();
 	}
 
 	public int getDateValue(){
-		return _rentDay * 1 + _rentMonth * 30 + _rentYear * 365;
+		return rentDay * 1 + rentMonth * 30 + rentYear * 365;
 	}
 
 	public int getDay(){
-		return _rentDay;
+		return rentDay;
 	}
 
 	public int getMonth(){
-		return _rentMonth;
+		return rentMonth;
 	}
 
 	public int getYear(){
-		return _rentYear;
+		return rentYear;
 	}
 	
 	public int getRentRecordID(){
-		return _rentID;
+		return rentID;
 	}
 	
 	public int getCustID(){
-		return _custID;
+		return custID;
 	}
 	public int getBikeID(){
-		return _bikeID;
+		return bikeID;
 	}
 	
 	public void addBike(int _bikeID){
-		_bikesID.add(_bikeID);
+		bikesID.add(_bikeID);
 	}
 	
 	public int getDate(){
-		return _rentDay;
+		return rentDay;
 	}
 	
 	public String getDateString() {
-		return _rentDay + "/" + _rentMonth + "/" + _rentYear;
+		return rentDay + "/" + rentMonth + "/" + rentYear;
 	}
 
 	public int getRentID(){
-		return _rentID;
+		return rentID;
 	}
 	
 	public double getDuration(){
-		return _duration;
+		return duration;
 	}
 
 	public String GUItoString() {
-		return "<br /><br/>Rent ID: " + _rentID + 
-			"<br />Customer ID: " + _custID +
-			"<br />Bike ID: " + _bikeID + 
-			"<br />Date: " + _rentDay + "/" +  _rentMonth + "/"  + _rentYear +
-			"<br />Duration: " + _duration + " in days" +
+		return "<br /><br/>Rent ID: " + rentID + 
+			"<br />Customer ID: " + custID +
+			"<br />Bike ID: " + bikeID + 
+			"<br />Date: " + rentDay + "/" +  rentMonth + "/"  + rentYear +
+			"<br />Duration: " + duration + " in days" +
 			"<br />";
 	}
 }

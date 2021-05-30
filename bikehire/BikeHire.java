@@ -45,8 +45,6 @@ public class BikeHire {
 	int intMonth = Integer.parseInt(strMonth);
 	int intYear = Integer.parseInt(strYear);
 
-	
-	// System.out.println("Int " + _intDay + _intMonth + _intYear);
 	//Stores the total number of days of the current date
 	int currentDateValue = intDay + intMonth * 30 + intYear * 365;
 	/****************************************************************************************/
@@ -74,14 +72,14 @@ public class BikeHire {
 		EBike theTesla = new EBike(false, "Tesla", "Ebike", 25.00, "Full power",  200);
 		EBike scootScoot = new EBike(false, "Scooter", "Ebike", 25.00, "Power assist", 400);
 		
-		Customer _Customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
-		Customer _Customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
-		Customer _Customer_3 = new Customer("Fred", "Summerton", "smithjohn@yahoo.com", "2142069", "My house");
-		Customer _Customer_4 = new Customer("George", "Baba", "curiousgeorge@gmail.com", "24394", "My door");
+		Customer customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
+		Customer customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
+		Customer customer_3 = new Customer("Fred", "Summerton", "smithjohn@yahoo.com", "2142069", "My house");
+		Customer customer_4 = new Customer("George", "Baba", "curiousgeorge@gmail.com", "24394", "My door");
 		
-		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
-		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
-		RentRecord _rentRecord_3 = new RentRecord(3, 4, 5, 5, 2021, 12);
+		RentRecord rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
+		RentRecord rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
+		RentRecord rentRecord_3 = new RentRecord(3, 4, 5, 5, 2021, 12);
 
 		//add bikes to bikes ArrayList		
 		bikeRecords.add(trickMaster);
@@ -97,110 +95,97 @@ public class BikeHire {
 		bikeRecords.add(theTesla);
 		bikeRecords.add(scootScoot);
 	
-		customerRecords.add(_Customer_1);
-		customerRecords.add(_Customer_2);
-		customerRecords.add(_Customer_3);
-		customerRecords.add(_Customer_4);
+		customerRecords.add(customer_1);
+		customerRecords.add(customer_2);
+		customerRecords.add(customer_3);
+		customerRecords.add(customer_4);
 	
-		rentRecords.add(_rentRecord_1);
-		rentRecords.add(_rentRecord_2);
-		rentRecords.add(_rentRecord_3);
+		rentRecords.add(rentRecord_1);
+		rentRecords.add(rentRecord_2);
+		rentRecords.add(rentRecord_3);
 	}
 	
-	public void addBike(String _type, String _name, double _pricePerDay, boolean _rented, String _fullPower, int _maxDistance) {
+	public void addBike(String type, String name, double pricePerDay, boolean rented, String power, int maxDistance) {
 				
-		switch (_type) {
+		switch (type) {
 		case "BMX":
-			BMX _bmx = new BMX(_rented, _name, _type, 40.00);
-			bikeRecords.add(_bmx);
+			BMX bmx = new BMX(rented, name, type, 40.00);
+			bikeRecords.add(bmx);
 			break;
 		case "Road":
 		case "Road Bike:":
-			Road_Bike _road_bike = new Road_Bike(_rented, _name, _type, 30.00);
-			bikeRecords.add(_road_bike);
+			Road_Bike roadBike = new Road_Bike(rented, name, type, 30.00);
+			bikeRecords.add(roadBike);
 			break;
 		case "Mountain":
 		case "Mountain Bike":
-			Mountain_Bike _mtn_bike = new Mountain_Bike(_rented, _name, _type, 25.00);
-			bikeRecords.add(_mtn_bike);
+			Mountain_Bike mtnBike = new Mountain_Bike(rented, name, type, 25.00);
+			bikeRecords.add(mtnBike);
 			break;
 		case "City":
 		case "City Bike":
-			City_Bike _city_bike = new City_Bike(_rented, _name, _type, 30.00);
-			bikeRecords.add(_city_bike);
+			City_Bike cityBike = new City_Bike(rented, name, type, 30.00);
+			bikeRecords.add(cityBike);
 			break;
 		case "Ebike":
-			EBike _ebike = new EBike(_rented, _name, _type, 25.00, _fullPower, _maxDistance);
-			bikeRecords.add(_ebike);
+			EBike eBike = new EBike(rented, name, type, 25.00, power, maxDistance);
+			bikeRecords.add(eBike);
 			break;
 		default:
-			Bike _bike = new Bike(_name, _type, _rented, _pricePerDay);
-			bikeRecords.add(_bike);
+			Bike bike = new Bike(name, type, rented, pricePerDay);
+			bikeRecords.add(bike);
 			break;
 		}
 	}
 	
 	public String displayAvailableBikes(){ //Shows all AVAILABLE BIKES
-		int _bikeNum = 0; //Starts the counter of bikes
-		String _output = "<html>";
+		int bikeNum = 0; //Starts the counter of bikes
+		String output = "<html>";
 		try{
-			for(Bike _bike: bikeRecords){
-				if(_bike.getIsRented() == false){
+			for(Bike bike: bikeRecords){
+				if(bike.getIsRented() == false){
 					
-					_output += _bike.GUItoString();
-					_bikeNum++;
+					output += bike.GUItoString();
+					bikeNum++;
 
 				}
 			}
-			if(_bikeNum < 1){
+			if(bikeNum < 1){
 				throw new Exception("No bikes available.");
 			}
 		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
+		catch(Exception error){
+			System.err.println("Error: " + error.getMessage());
 		}
-		//_output += "</html>";
 
-		return _output;
+		return output;
 	}
 	 
-	public void addCustomer(String _firstName, String _lastName, String _email, String _phone, String _address){
+	public void addCustomer(String firstName, String lastName, String email, String phone, String address){
 		try{
 			//create customer
-			Customer _c = new Customer(_firstName, _lastName, _email, _phone, _address);
+			Customer newCustomer = new Customer(firstName, lastName, email, phone, address);
 			//add to ArrayList
-			customerRecords.add(_c);
+			customerRecords.add(newCustomer);
 			System.out.println("Customer added");
 		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
+		catch(Exception error){
+			System.err.println("Error: " + error.getMessage());
 		}
 	}
 	
-	public void addRent(int _customerID, int _bikeID, int _rentDay, int _rentMonth, int _rentYear, double _duration) {
+	public void addRent(int customerID, int bikeID, int rentDay, int rentMonth, int rentYear, double duration) {
 		try {
-			RentRecord _r = new RentRecord(_customerID, _bikeID, _rentDay, _rentMonth, _rentYear, _duration);
-			rentRecords.add(_r);
+			RentRecord newRent = new RentRecord(customerID, bikeID, rentDay, rentMonth, rentYear, duration);
+			rentRecords.add(newRent);
 			System.out.println("Rent added");
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
 	
-
-	 
-	public int searchForCustomerTerminal(String _fname, String _lname){
-		int _id = 0;
-		for(Customer _customer: customerRecords){
-			if(_fname.equalsIgnoreCase(_customer.getFirstName()) && _lname.equalsIgnoreCase(_customer.getLastName())){
-				_id = _customer.getCustID();
-			}
-		}
-		return _id;
-	}
-	
-	public void clearRecords(int _chosenArray) {
-		switch(_chosenArray) {
+	public void clearRecords(int chosenRecords) {
+		switch(chosenRecords) {
 		case 1:
 			customerRecords.clear();
 			break;
@@ -219,96 +204,92 @@ public class BikeHire {
 	
 
 	
-	public String[] searchRecords(int _record, int _id) {
-		String[] _array = new String[6];
+	public String[] searchRecords(int chosenRecords, int id) {
+		String[] array = new String[6];
 		
-		if (_record == 1) {
-			for (Customer _customer: customerRecords) {
-				if (_id == _customer._custID) {
-					String _strID = String.valueOf(_id);
-					_array[0] = _strID;
-					_array[1] = _customer.getFirstName();
-					_array[2] = _customer.getLastName();
-					_array[3] = _customer.getPhone();
-					_array[4] = _customer.getEmail();
-					_array[5] = _customer.getAddress();			
+		if (chosenRecords == 1) {
+			for (Customer customer: customerRecords) {
+				if (id == customer.custID) {
+					String strID = String.valueOf(id);
+					array[0] = strID;
+					array[1] = customer.getFirstName();
+					array[2] = customer.getLastName();
+					array[3] = customer.getPhone();
+					array[4] = customer.getEmail();
+					array[5] = customer.getAddress();			
 					
 				}
 			}
 		}
 		
-		if (_record == 2) {
-			
-		
-			
-			for (Bike _bike: bikeRecords) {
-				if (_id == _bike._bikeID) {
+		if (chosenRecords == 2) {
+			for (Bike bike: bikeRecords) {
+				if (id == bike.bikeID) {
 					
-					String _bikeId = Integer.toString(_bike.getBikeID());
+					String bikeId = Integer.toString(bike.getBikeID());
 					
-					_array[0] = _bikeId;
-					_array[1] = _bike.getName();
+					array[0] = bikeId;
+					array[1] = bike.getName();
 					
-					if (_bike.getIsRented() == true) {
-						_array[2] = "true";
+					if (bike.getIsRented() == true) {
+						array[2] = "true";
 					}
 					else {
-						_array[2] = "false";
+						array[2] = "false";
 					}
-					_array[3] = _bike._bikeType;
-					String _price = Double.toString(_bike._pricePerDay);
-					_array[4] = _price;	
+					array[3] = bike.bikeType;
+					String price = Double.toString(bike.pricePerDay);
+					array[4] = price;	
 					
 				}
 			}
 		}
 		
-		else if (_record == 3) {
-			for (var _rent : rentRecords) {
-				if (_id == _rent.getRentID()) {
+		else if (chosenRecords == 3) {
+			for (RentRecord rent : rentRecords) {
+				if (id == rent.getRentID()) {
 					
 				
 				
-				String _rentId = String.valueOf(_rent.getRentID());
-				String _custId = String.valueOf(_rent.getCustID());
-				String _bikeId = String.valueOf(_rent.getBikeID());
-				String _duration = String.valueOf(_rent.getDuration());
+				String rentId = String.valueOf(rent.getRentID());
+				String custId = String.valueOf(rent.getCustID());
+				String bikeId = String.valueOf(rent.getBikeID());
+				String duration = String.valueOf(rent.getDuration());
 				
-				_array[0] = _rentId;
-				_array[1] = _custId;
-				_array[2] = _bikeId;
-				_array[3] = _rent.getDateString();
-				_array[4] = _duration;
+				array[0] = rentId;
+				array[1] = custId;
+				array[2] = bikeId;
+				array[3] = rent.getDateString();
+				array[4] = duration;
 				}
 			}
-		}
-				
-		return _array;
+		}	
+		return array;
 	}
 
-	public String displayRecords(int _category){
+	public String displayRecords(int category){
 
-		//_category 1 = Customers
-		//_category 2 = Bikes
-		//_category 3 = rentals
-		String _output = "";
-		int _rentCount = 0;
-		String _lineBreaker = "";
+		//category 1 = Customers
+		//category 2 = Bikes
+		//category 3 = rentals
+		String output = "";
+		int rentCount = 0;
+		String lineBreaker = "";
 		try{
 			System.out.println("==========");
 
-			_output += "<html>";
+			output += "<html>";
 			
-			if (_category == 1) {
-				int _custCount = 0;
+			if (category == 1) {
+				int custCount = 0;
 				try{
-					for(Customer _customer: customerRecords){
-						_custCount++;
-						_output += "<br />";
-						_output += _customer.GUItoString();
-						_output += "<br />";
+					for(Customer customer: customerRecords){
+						custCount++;
+						output += "<br />";
+						output += customer.GUItoString();
+						output += "<br />";
 					}
-					if(_custCount < 1){
+					if(custCount < 1){
 						throw new Exception("No customers registered.");
 					}
 				}
@@ -316,20 +297,20 @@ public class BikeHire {
 					System.err.println("Error: " + e.getMessage());
 				}
 			}
-			else if (_category == 2) {
-				int _bikeNum = 0; //Starts the counter of bikes
+			else if (category == 2) {
+				int bikeNum = 0; //Starts the counter of bikes
 				try{
-					for(Bike _bike: bikeRecords){
+					for(Bike bike: bikeRecords){
 
-						if(_bike.getIsRented() == false){
+						if(bike.getIsRented() == false){
 							
-							_output += _bike.GUItoString();
-							_output += _bike.toString();
-							_bikeNum++;
+							output += bike.GUItoString();
+							output += bike.toString();
+							bikeNum++;
 		
 						}
 					}
-					if(_bikeNum < 1){
+					if(bikeNum < 1){
 						throw new Exception("No bikes available.");
 					}
 				}
@@ -337,229 +318,228 @@ public class BikeHire {
 					System.err.println("Error: " + e.getMessage());
 				}
 			}
-			else if (_category == 3) {
-				for(RentRecord _rent: rentRecords){
-					if (currentDateValue - _rent.getDateValue() >= 30) {
-						_output += _lineBreaker;
-						_output += "<br/>OVERDUE";
-						_output += _lineBreaker;
-						_output += _rent.GUItoString();
-						_output += _lineBreaker;
-						_output += "==========";
-						_output += _lineBreaker;
+			else if (category == 3) {
+				for(RentRecord rent: rentRecords){
+					if (currentDateValue - rent.getDateValue() >= 30) {
+						output += lineBreaker;
+						output += "<br/>OVERDUE";
+						output += lineBreaker;
+						output += rent.GUItoString();
+						output += lineBreaker;
+						output += "==========";
+						output += lineBreaker;
 					}
 					else {
-						_output += "<br/>";
-						_output += _lineBreaker;
-						_output += _rent.GUItoString();
-						_output += "==========";
-						_output += _lineBreaker;
-	
+						output += "<br/>";
+						output += lineBreaker;
+						output += rent.GUItoString();
+						output += "==========";
+						output += lineBreaker;
 					}
-					_rentCount++;
+					rentCount++;
 				}
-				if(_rentCount < 1){
+				if(rentCount < 1){
 					throw new Exception("No rentals found.");
 				}
 			}
 
 		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
+		catch(Exception error){
+			System.err.println("Error: " + error.getMessage());
 		}
 
-		return _output;
+		return output;
 	}
 	 
-	public void clearFile(int _fileChosen) {
+	public void clearFile(int fileChosen) {
 		//1 Customer
 		//2 Bike
 		//3 Rental
 
-		String _path = "";
+		String path = "";
 
-		if (_fileChosen == 1) {
-			_path = "customers.dat";
+		if (fileChosen == 1) {
+			path = "customers.dat";
 		}
-		else if (_fileChosen == 2) {
-			_path = "bikes.dat";
+		else if (fileChosen == 2) {
+			path = "bikes.dat";
 		}
-		else if (_fileChosen == 3) {
-			_path = "rentals.dat";
+		else if (fileChosen == 3) {
+			path = "rentals.dat";
 		}
 
 		try {
-			File _file = new File(_path); //Selects file and prepares it for writing
-			FileWriter _fileWriter = new FileWriter(_file, false);
+			File file = new File(path); //Selects file and prepares it for writing
+			FileWriter fileWriter = new FileWriter(file, false);
 
-			_fileWriter.write("<html>");
-			_fileWriter.close();
+			fileWriter.write("<html>");
+			fileWriter.close();
 		} 
 		
-		catch (Exception _error) {
-			System.err.println("Error: " + _error.getMessage());
+		catch (Exception error) {
+			System.err.println("Error: " + error.getMessage());
 		}
 	}
 
-	public void saveFile(int _fileChosen) {
+	public void saveFile(int fileChosen) {
 		//1 Customer
 		//2 Bike
 		//3 Rental
 
-		String _path = "";
+		String path = "";
 
-		if (_fileChosen == 1) {
-			_path = "customers.dat";
+		if (fileChosen == 1) {
+			path = "customers.dat";
 		}
-		else if (_fileChosen == 2) {
-			_path = "bikes.dat";
+		else if (fileChosen == 2) {
+			path = "bikes.dat";
 		}
-		else if (_fileChosen == 3) {
-			_path = "rentals.dat";
+		else if (fileChosen == 3) {
+			path = "rentals.dat";
 		}
 
 		try {
-			File _file = new File(_path); //Selects file and prepares it for writing
-			FileWriter _fileWriter = new FileWriter(_file, true);
-			BufferedWriter _buffWriter = new BufferedWriter(_fileWriter);
-			PrintWriter _printWriter = new PrintWriter(_buffWriter);
+			File file = new File(path); //Selects file and prepares it for writing
+			FileWriter fileWriter = new FileWriter(file, true);
+			BufferedWriter buffWriter = new BufferedWriter(fileWriter);
+			PrintWriter printWriter = new PrintWriter(buffWriter);
 	
-			String _text = ""; //All rentals are added to the string then added to the file
-			_text += "<html>";
+			String text = ""; //All rentals are added to the string then added to the file
+			text += "<html>";
 
-			if (_fileChosen == 1) {
-				for (var _customer : customerRecords) {
-					_text += "<br />Customer ID: ";
-					_text += _customer.getCustID();
-					_text += "<br />";
-					_text += "Customer First Name: ";
-					_text += _customer.getFirstName();
-					_text += "<br />";
-					_text += "Customer Last Name: ";
-					_text += _customer.getLastName();
-					_text += "<br />";
-					_text += "Customer Phone: ";
-					_text += _customer.getPhone();
-					_text += "<br />";
-					_text += "Customer Email: ";
-					_text += _customer.getEmail();
-					_text += "<br />";
-;					_text += "Customer Address: ";
-					_text += _customer.getAddress();
-					_text += "<br /><br />";
+			if (fileChosen == 1) {
+				for (Customer customer : customerRecords) {
+					text += "<br />Customer ID: ";
+					text += customer.getCustID();
+					text += "<br />";
+					text += "Customer First Name: ";
+					text += customer.getFirstName();
+					text += "<br />";
+					text += "Customer Last Name: ";
+					text += customer.getLastName();
+					text += "<br />";
+					text += "Customer Phone: ";
+					text += customer.getPhone();
+					text += "<br />";
+					text += "Customer Email: ";
+					text += customer.getEmail();
+					text += "<br />";
+;					text += "Customer Address: ";
+					text += customer.getAddress();
+					text += "<br /><br />";
 				}
 			}
 
-			else if (_fileChosen == 2) {
-				for (var _bike : bikeRecords) {
-					_text += "<br />";
-					_text += "Bike ID: ";
-					_text += _bike.getBikeID();
-					_text += "<br />";
-					_text += "Bike Name: ";
-					_text += _bike.getName();
-					_text += "<br />";
-					_text += "Bike Rent Status: ";
-					_text += _bike.getIsRented();
-					_text += "<br />";
-					_text += _bike.toString();
-					_text += "<br />";
+			else if (fileChosen == 2) {
+				for (Bike bike : bikeRecords) {
+					text += "<br />";
+					text += "Bike ID: ";
+					text += bike.getBikeID();
+					text += "<br />";
+					text += "Bike Name: ";
+					text += bike.getName();
+					text += "<br />";
+					text += "Bike Rent Status: ";
+					text += bike.getIsRented();
+					text += "<br />";
+					text += bike.toString();
+					text += "<br />";
 				}
 			}
 
-			else if (_fileChosen == 3) {
-				for (var _rent : rentRecords) {
-					_text += "<br />";
-					_text += "Rent ID: ";
-					_text += _rent.getRentID();
-					_text += "<br />";
-					_text += "Customer ID: ";
-					_text += _rent.getCustID();
-					_text += "<br />";
-					_text += "Bike ID: ";
-					_text += _rent.getBikeID();
-					_text += "<br />";
-					_text += "Date: ";
-					_text += _rent.getDay();
-					_text += "/";
-					_text += _rent.getMonth();
-					_text += "/";
-					_text += _rent.getYear();
-					_text += "<br />";
-					_text += "Duration (in days): ";
-					_text += _rent.getDuration();
-					_text += "<br />";
+			else if (fileChosen == 3) {
+				for (var rent : rentRecords) {
+					text += "<br />";
+					text += "Rent ID: ";
+					text += rent.getRentID();
+					text += "<br />";
+					text += "Customer ID: ";
+					text += rent.getCustID();
+					text += "<br />";
+					text += "Bike ID: ";
+					text += rent.getBikeID();
+					text += "<br />";
+					text += "Date: ";
+					text += rent.getDay();
+					text += "/";
+					text += rent.getMonth();
+					text += "/";
+					text += rent.getYear();
+					text += "<br />";
+					text += "Duration (in days): ";
+					text += rent.getDuration();
+					text += "<br />";
 				}
 			}
 
-			_printWriter.print(_text); //appends to file
-			_printWriter.close();	
+			printWriter.print(text); //appends to file
+			printWriter.close();	
 		} 
 		
-		catch (Exception _error) {
-			System.err.println("Error: " + _error.getMessage());
+		catch (Exception error) {
+			System.err.println("Error: " + error.getMessage());
 		}
 	}
 
-	public void returnRent(int _rentID){
+	public void returnRent(int rentId){
 		
 		try {
-			for (var _rent : rentRecords) {
-				if (_rentID == _rent.getRentID()) {
-					rentRecords.remove(_rent);
+			for (RentRecord rent : rentRecords) {
+				if (rentId == rent.getRentID()) {
+					rentRecords.remove(rent);
 					System.out.println("Bike returned.");
 				}
 				else {
 					System.out.println("Bike not currently rented.");
 				}
 			} 
-		} catch (Exception e) {
+		} catch (Exception error) {
 			System.err.println("Error returning bike");
 		}
 
 	}
 	
-	public String readFile(int _fileChosen){
+	public String readFile(int fileChosen){
 		//1 customers
 		//2 bikes
 		//3 rents
-		String _path = "";
-		if (_fileChosen == 1) {
-			_path = "customers.dat";
+		String path = "";
+		if (fileChosen == 1) {
+			path = "customers.dat";
 		}
-		else if(_fileChosen == 2) {
-			_path = "bikes.dat";
+		else if(fileChosen == 2) {
+			path = "bikes.dat";
 		}
-		else if (_fileChosen == 3) {
-			_path = "rentals.dat";
+		else if (fileChosen == 3) {
+			path = "rentals.dat";
 		}
 
-		FileInputStream _fileInput = null;
-		ObjectInputStream _objectInput = null;
+		FileInputStream fileInput = null;
+		ObjectInputStream objectInput = null;
 	  
-		String _output = "";
+		String output = "";
 		try{
-			File _file = new File(_path); //Gets the file
-			Scanner _scanner = new Scanner(_file);
+			File file = new File(path); //Gets the file
+			Scanner scanner = new Scanner(file);
 	
-			while (_scanner.hasNextLine()) { //Goes through each line and prints it out
-				_output += _scanner.nextLine();
+			while (scanner.hasNextLine()) { //Goes through each line and prints it out
+				output += scanner.nextLine();
 			}
-			_scanner.close();
+			scanner.close();
 		}
-		catch(Exception e){
-			System.err.println("Error: " + e.getMessage());
+		catch(Exception error){
+			System.err.println("Error: " + error.getMessage());
 		}
 		finally{
 			try{
-				_fileInput.close();
-				_objectInput.close();
+				fileInput.close();
+				objectInput.close();
 			}
 			catch(Exception fe){
-				
+			
 			}
 		}
 
-		return _output;
+		return output;
 	}	
 }

@@ -17,6 +17,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 
 public class MainWindow {
@@ -122,6 +123,7 @@ public class MainWindow {
 	private JTextField tfRentalsDuration;
 	private JTextField tfRentalsMonth;
 	private JTextField tfRentYear;
+	private JTextField tfReturnRentID;
 	/**
 	 * Launch the application.
 	 */
@@ -968,6 +970,54 @@ public class MainWindow {
 		tfRentYear.setBounds(131, 169, 114, 19);
 		pAddRent.add(tfRentYear);
 		tfRentYear.setColumns(10);
+		
+		JPanel pReturnRent = new JPanel();
+		pReturnRent.setBorder(new LineBorder(Color.BLACK));
+		pReturnRent.setBounds(340, 404, 205, 163);
+		pRentals.add(pReturnRent);
+		pReturnRent.setLayout(null);
+		
+		JLabel lblReturnRent = new JLabel("Return Rent");
+		lblReturnRent.setBounds(59, 12, 90, 15);
+		pReturnRent.add(lblReturnRent);
+		
+		JLabel lblRentId_2 = new JLabel("Rent ID: ");
+		lblRentId_2.setBounds(12, 39, 70, 15);
+		pReturnRent.add(lblRentId_2);
+		
+		tfReturnRentID = new JTextField();
+		tfReturnRentID.setBounds(69, 37, 40, 19);
+		pReturnRent.add(tfReturnRentID);
+		tfReturnRentID.setColumns(10);
+		
+		JCheckBox cbConfirm = new JCheckBox("");
+		cbConfirm.setBounds(75, 75, 20, 23);
+		pReturnRent.add(cbConfirm);
+		
+		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if (cbConfirm.isSelected() == true) {
+					int _id = Integer.parseInt(tfReturnRentID.getText());
+					_shop.returnRent(_id);
+					RentRecords.setText(_shop.displayRecords(3));
+					
+				}
+				
+				
+				
+			}
+		});
+		btnReturn.setBackground(new Color(255, 165, 0));
+		btnReturn.setBounds(40, 126, 117, 25);
+		pReturnRent.add(btnReturn);
+		
+		JLabel lblConfirm = new JLabel("Confirm: ");
+		lblConfirm.setBounds(12, 79, 70, 15);
+		pReturnRent.add(lblConfirm);
+		
+
 		
 	}
 	

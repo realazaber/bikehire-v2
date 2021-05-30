@@ -19,7 +19,7 @@ public class RentRecord implements Serializable{
 	}
 	
 	public RentRecord(int _custID, int _bikeID, int _rentDay, int _rentMonth, int _rentYear, double _duration){
-		_rentID = _newID++;
+		this._rentID = _newID++;
 		this._custID = _custID;
 		this._bikeID = _bikeID;
 		this._rentDay = _rentDay;

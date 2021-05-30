@@ -79,6 +79,7 @@ public class BikeHire {
 		
 		RentRecord _rentRecord_1 = new RentRecord(1, 1, 4, 4, 2021, 23);
 		RentRecord _rentRecord_2 = new RentRecord(2, 4, 3, 3, 2020, 21);
+		RentRecord _rentRecord_3 = new RentRecord(3, 4, 5, 5, 2021, 12);
 
 		//add bikes to bikes ArrayList		
 		_bikes.add(_trickMaster);
@@ -101,6 +102,7 @@ public class BikeHire {
 	
 		_rents.add(_rentRecord_1);
 		_rents.add(_rentRecord_2);
+		_rents.add(_rentRecord_3);
 	}
 	
 	public void addBike(String _type, String _name, double _pricePerDay, boolean _rented, String _fullPower, int _maxDistance) {
@@ -488,18 +490,22 @@ public class BikeHire {
 		}
 	}
 
-	public void returnBike(){
-		System.out.println("Input bike ID to return: ");
-		int _bikeID = _input.nextInt();
-		for (var _bike : _rents) {
-			if (_bike.getBikeID() == _bikeID) {
-				_rents.remove(_bike);
-				System.out.println("Bike returned.");
-			}
-			else {
-				System.out.println("Bike not currently rented.");
-			}
-		} 
+	public void returnRent(int _rentID){
+		
+		try {
+			for (var _rent : _rents) {
+				if (_rentID == _rent.getRentID()) {
+					_rents.remove(_rent);
+					System.out.println("Bike returned.");
+				}
+				else {
+					System.out.println("Bike not currently rented.");
+				}
+			} 
+		} catch (Exception e) {
+			System.err.println("Error returning bike");
+		}
+
 	}
 	
 	public String readFile(int _fileChosen){

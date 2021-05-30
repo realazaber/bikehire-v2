@@ -233,6 +233,11 @@ public class BikeHire {
 					
 				}
 			}
+		}
+		
+		if (_record == 2) {
+			
+		
 			
 			for (Bike _bike: _bikes) {
 				if (_id == _bike._bikeID) {
@@ -258,6 +263,9 @@ public class BikeHire {
 		
 		else if (_record == 3) {
 			for (var _rent : _rents) {
+				if (_id == _rent.getRentID()) {
+					
+				
 				
 				String _rentId = String.valueOf(_rent.getRentID());
 				String _custId = String.valueOf(_rent.getCustID());
@@ -269,6 +277,7 @@ public class BikeHire {
 				_array[2] = _bikeId;
 				_array[3] = _rent.getDateString();
 				_array[4] = _duration;
+				}
 			}
 		}
 				

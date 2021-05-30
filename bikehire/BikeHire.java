@@ -22,55 +22,57 @@ import java.io.BufferedWriter;
 
 public class BikeHire {
 
-	public ArrayList<Bike> _bikes;
-	public ArrayList<Customer> _customers;
-	public ArrayList<RentRecord> _rents;
+	public ArrayList<Bike> bikeRecords;
+	public ArrayList<Customer> customerRecords;
+	public ArrayList<RentRecord> rentRecords;
 
 	/****************************************************************************************/
 	//Gets the date and prints it to screen
-	Date _currentDate = new Date();
+	Date currentDate = new Date();
 
 	//Changes the format of the date, converts it to string and prints it to screen
-	SimpleDateFormat _year = new SimpleDateFormat("yyyy");
-	SimpleDateFormat _month = new SimpleDateFormat("MM");
-	SimpleDateFormat _day = new SimpleDateFormat("dd");
+	SimpleDateFormat year = new SimpleDateFormat("yyyy");
+	SimpleDateFormat month = new SimpleDateFormat("MM");
+	SimpleDateFormat day = new SimpleDateFormat("dd");
 	
-	String _strDay = _day.format(_currentDate);
-	String _strYear = _year.format(_currentDate);
-	String _strMonth = _month.format(_currentDate);
+	String strDay = day.format(currentDate);
+	String strMonth = month.format(currentDate);
+	String strYear = year.format(currentDate);
+	
 	
 	//Converts to int and prints to screen
-	int _intYear = Integer.parseInt(_strYear);
-	int _intMonth = Integer.parseInt(_strMonth);
-	int _intDay = Integer.parseInt(_strDay);
+	int intDay = Integer.parseInt(strDay);
+	int intMonth = Integer.parseInt(strMonth);
+	int intYear = Integer.parseInt(strYear);
+
 	
 	// System.out.println("Int " + _intDay + _intMonth + _intYear);
 	//Stores the total number of days of the current date
-	int _currentDateValue = _intDay + _intMonth * 30 + _intYear * 365;
+	int currentDateValue = intDay + intMonth * 30 + intYear * 365;
 	/****************************************************************************************/
 
-	Scanner _input = new Scanner(System.in);
+	Scanner input = new Scanner(System.in);
 
 	public BikeHire(){
 
 		//Makes lists of Bikes, Customers and Rentals.
-		_bikes = new ArrayList<Bike>();
-		_customers = new ArrayList<Customer>();
-		_rents = new ArrayList<RentRecord>();
+		bikeRecords = new ArrayList<Bike>();
+		customerRecords = new ArrayList<Customer>();
+		rentRecords = new ArrayList<RentRecord>();
 		
 		//create twelve bikes
-		BMX _trickMaster = new BMX(false, "Trick Master", "BMX", 40.00);
-		Road_Bike _offRoad = new Road_Bike(false, "Off Road", "Road", 25.00);
-		Mountain_Bike _mountainMaster = new Mountain_Bike(false, "Mountain Master" , "Mountain", 25.00);
-		City_Bike _citySlicker = new City_Bike(false, "City Slicker", "City", 30.00);
-		BMX _coolKid = new BMX(false, "Cool Kid", "BMX", 40.00);
-		Road_Bike _epicKid = new Road_Bike(false, "Epic Kid", "Road", 25.00);
-		Mountain_Bike _dirtyKid = new Mountain_Bike(false, "Dirty Kid", "Mountain", 25.00);
-		City_Bike _theSoy = new City_Bike(false, "The Soy", "City", 30.00);
-		EBike _ecoFriend = new EBike(false, "Eco Friend", "Ebike", 25.00, "Full power", 100);
-		EBike _electricPowa = new EBike(false, "Electric Powa", "Ebike", 25.00,  "Power assist", 150);
-		EBike _Tesla = new EBike(false, "Tesla", "Ebike", 25.00, "Full power",  200);
-		EBike _ScootScoot = new EBike(false, "Scooter", "Ebike", 25.00, "Power assist", 400);
+		BMX trickMaster = new BMX(false, "Trick Master", "BMX", 40.00);
+		Road_Bike offRoad_Bike = new Road_Bike(false, "Off Road", "Road", 25.00);
+		Mountain_Bike mountainMaster = new Mountain_Bike(false, "Mountain Master" , "Mountain", 25.00);
+		City_Bike citySlicker = new City_Bike(false, "City Slicker", "City", 30.00);
+		BMX coolKid = new BMX(false, "Cool Kid", "BMX", 40.00);
+		Road_Bike epicKid = new Road_Bike(false, "Epic Kid", "Road", 25.00);
+		Mountain_Bike dirtyKid = new Mountain_Bike(false, "Dirty Kid", "Mountain", 25.00);
+		City_Bike theSoy = new City_Bike(false, "The Soy", "City", 30.00);
+		EBike ecoFriend = new EBike(false, "Eco Friend", "Ebike", 25.00, "Full power", 100);
+		EBike electricPowa = new EBike(false, "Electric Powa", "Ebike", 25.00,  "Power assist", 150);
+		EBike theTesla = new EBike(false, "Tesla", "Ebike", 25.00, "Full power",  200);
+		EBike scootScoot = new EBike(false, "Scooter", "Ebike", 25.00, "Power assist", 400);
 		
 		Customer _Customer_1 = new Customer("Ben", "Ten", "bten@gmail.com", "69420", "My basement");
 		Customer _Customer_2 = new Customer("Norman", "Reedus", "reedus@norman.com", "42069", "My attic");
@@ -82,27 +84,27 @@ public class BikeHire {
 		RentRecord _rentRecord_3 = new RentRecord(3, 4, 5, 5, 2021, 12);
 
 		//add bikes to bikes ArrayList		
-		_bikes.add(_trickMaster);
-		_bikes.add(_offRoad);
-		_bikes.add(_mountainMaster);
-		_bikes.add(_citySlicker);
-		_bikes.add(_coolKid);
-		_bikes.add(_epicKid);
-		_bikes.add(_dirtyKid);
-		_bikes.add(_theSoy);
-		_bikes.add(_ecoFriend);
-		_bikes.add(_electricPowa);
-		_bikes.add(_Tesla);
-		_bikes.add(_ScootScoot);
+		bikeRecords.add(trickMaster);
+		bikeRecords.add(offRoad_Bike);
+		bikeRecords.add(mountainMaster);
+		bikeRecords.add(citySlicker);
+		bikeRecords.add(coolKid);
+		bikeRecords.add(epicKid);
+		bikeRecords.add(dirtyKid);
+		bikeRecords.add(theSoy);
+		bikeRecords.add(ecoFriend);
+		bikeRecords.add(electricPowa);
+		bikeRecords.add(theTesla);
+		bikeRecords.add(scootScoot);
 	
-		_customers.add(_Customer_1);
-		_customers.add(_Customer_2);
-		_customers.add(_Customer_3);
-		_customers.add(_Customer_4);
+		customerRecords.add(_Customer_1);
+		customerRecords.add(_Customer_2);
+		customerRecords.add(_Customer_3);
+		customerRecords.add(_Customer_4);
 	
-		_rents.add(_rentRecord_1);
-		_rents.add(_rentRecord_2);
-		_rents.add(_rentRecord_3);
+		rentRecords.add(_rentRecord_1);
+		rentRecords.add(_rentRecord_2);
+		rentRecords.add(_rentRecord_3);
 	}
 	
 	public void addBike(String _type, String _name, double _pricePerDay, boolean _rented, String _fullPower, int _maxDistance) {
@@ -110,30 +112,30 @@ public class BikeHire {
 		switch (_type) {
 		case "BMX":
 			BMX _bmx = new BMX(_rented, _name, _type, 40.00);
-			_bikes.add(_bmx);
+			bikeRecords.add(_bmx);
 			break;
 		case "Road":
 		case "Road Bike:":
 			Road_Bike _road_bike = new Road_Bike(_rented, _name, _type, 30.00);
-			_bikes.add(_road_bike);
+			bikeRecords.add(_road_bike);
 			break;
 		case "Mountain":
 		case "Mountain Bike":
 			Mountain_Bike _mtn_bike = new Mountain_Bike(_rented, _name, _type, 25.00);
-			_bikes.add(_mtn_bike);
+			bikeRecords.add(_mtn_bike);
 			break;
 		case "City":
 		case "City Bike":
 			City_Bike _city_bike = new City_Bike(_rented, _name, _type, 30.00);
-			_bikes.add(_city_bike);
+			bikeRecords.add(_city_bike);
 			break;
 		case "Ebike":
 			EBike _ebike = new EBike(_rented, _name, _type, 25.00, _fullPower, _maxDistance);
-			_bikes.add(_ebike);
+			bikeRecords.add(_ebike);
 			break;
 		default:
 			Bike _bike = new Bike(_name, _type, _rented, _pricePerDay);
-			_bikes.add(_bike);
+			bikeRecords.add(_bike);
 			break;
 		}
 	}
@@ -142,7 +144,7 @@ public class BikeHire {
 		int _bikeNum = 0; //Starts the counter of bikes
 		String _output = "<html>";
 		try{
-			for(Bike _bike: _bikes){
+			for(Bike _bike: bikeRecords){
 				if(_bike.getIsRented() == false){
 					
 					_output += _bike.GUItoString();
@@ -167,7 +169,7 @@ public class BikeHire {
 			//create customer
 			Customer _c = new Customer(_firstName, _lastName, _email, _phone, _address);
 			//add to ArrayList
-			_customers.add(_c);
+			customerRecords.add(_c);
 			System.out.println("Customer added");
 		}
 		catch(Exception e){
@@ -178,7 +180,7 @@ public class BikeHire {
 	public void addRent(int _customerID, int _bikeID, int _rentDay, int _rentMonth, int _rentYear, double _duration) {
 		try {
 			RentRecord _r = new RentRecord(_customerID, _bikeID, _rentDay, _rentMonth, _rentYear, _duration);
-			_rents.add(_r);
+			rentRecords.add(_r);
 			System.out.println("Rent added");
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
@@ -189,7 +191,7 @@ public class BikeHire {
 	 
 	public int searchForCustomerTerminal(String _fname, String _lname){
 		int _id = 0;
-		for(Customer _customer: _customers){
+		for(Customer _customer: customerRecords){
 			if(_fname.equalsIgnoreCase(_customer.getFirstName()) && _lname.equalsIgnoreCase(_customer.getLastName())){
 				_id = _customer.getCustID();
 			}
@@ -200,14 +202,14 @@ public class BikeHire {
 	public void clearRecords(int _chosenArray) {
 		switch(_chosenArray) {
 		case 1:
-			_customers.clear();
+			customerRecords.clear();
 			break;
 		
 		case 2:
-			_bikes.clear();
+			bikeRecords.clear();
 			break;
 		case 3:
-			_rents.clear();
+			rentRecords.clear();
 			break;
 		default:
 			System.out.println("");
@@ -221,7 +223,7 @@ public class BikeHire {
 		String[] _array = new String[6];
 		
 		if (_record == 1) {
-			for (Customer _customer: _customers) {
+			for (Customer _customer: customerRecords) {
 				if (_id == _customer._custID) {
 					String _strID = String.valueOf(_id);
 					_array[0] = _strID;
@@ -239,7 +241,7 @@ public class BikeHire {
 			
 		
 			
-			for (Bike _bike: _bikes) {
+			for (Bike _bike: bikeRecords) {
 				if (_id == _bike._bikeID) {
 					
 					String _bikeId = Integer.toString(_bike.getBikeID());
@@ -262,7 +264,7 @@ public class BikeHire {
 		}
 		
 		else if (_record == 3) {
-			for (var _rent : _rents) {
+			for (var _rent : rentRecords) {
 				if (_id == _rent.getRentID()) {
 					
 				
@@ -300,7 +302,7 @@ public class BikeHire {
 			if (_category == 1) {
 				int _custCount = 0;
 				try{
-					for(Customer _customer: _customers){
+					for(Customer _customer: customerRecords){
 						_custCount++;
 						_output += "<br />";
 						_output += _customer.GUItoString();
@@ -317,7 +319,7 @@ public class BikeHire {
 			else if (_category == 2) {
 				int _bikeNum = 0; //Starts the counter of bikes
 				try{
-					for(Bike _bike: _bikes){
+					for(Bike _bike: bikeRecords){
 
 						if(_bike.getIsRented() == false){
 							
@@ -336,8 +338,8 @@ public class BikeHire {
 				}
 			}
 			else if (_category == 3) {
-				for(RentRecord _rent: _rents){
-					if (_currentDateValue - _rent.getDateValue() >= 30) {
+				for(RentRecord _rent: rentRecords){
+					if (currentDateValue - _rent.getDateValue() >= 30) {
 						_output += _lineBreaker;
 						_output += "<br/>OVERDUE";
 						_output += _lineBreaker;
@@ -426,7 +428,7 @@ public class BikeHire {
 			_text += "<html>";
 
 			if (_fileChosen == 1) {
-				for (var _customer : _customers) {
+				for (var _customer : customerRecords) {
 					_text += "<br />Customer ID: ";
 					_text += _customer.getCustID();
 					_text += "<br />";
@@ -449,7 +451,7 @@ public class BikeHire {
 			}
 
 			else if (_fileChosen == 2) {
-				for (var _bike : _bikes) {
+				for (var _bike : bikeRecords) {
 					_text += "<br />";
 					_text += "Bike ID: ";
 					_text += _bike.getBikeID();
@@ -466,7 +468,7 @@ public class BikeHire {
 			}
 
 			else if (_fileChosen == 3) {
-				for (var _rent : _rents) {
+				for (var _rent : rentRecords) {
 					_text += "<br />";
 					_text += "Rent ID: ";
 					_text += _rent.getRentID();
@@ -502,9 +504,9 @@ public class BikeHire {
 	public void returnRent(int _rentID){
 		
 		try {
-			for (var _rent : _rents) {
+			for (var _rent : rentRecords) {
 				if (_rentID == _rent.getRentID()) {
-					_rents.remove(_rent);
+					rentRecords.remove(_rent);
 					System.out.println("Bike returned.");
 				}
 				else {

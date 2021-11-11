@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Gallery() {
+function Download() {
     return(null);
 }
 
-export default Gallery;
+export default Download;

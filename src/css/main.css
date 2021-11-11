@@ -1,5 +1,5 @@
 :root {
-    --background: whitesmoke;
+    --background: rgba(245, 245, 245, 0.685);
     --mainText: white;
     --primary: #E56F02;
     --secondary:#1888BF;
@@ -12,8 +12,6 @@ body {
     margin: 0;
     font-family: sans-serif;
 }
-
-
 
 #home {
     background-image: url("../images/siteImages/home.jpg");
@@ -29,7 +27,6 @@ body {
 
 #home h1 {
 
-    
     font-size: 60px;
     color: var(--mainText);
 
@@ -47,6 +44,8 @@ body {
     background-color: var(--lastColor);
     opacity: 0.6;
 }
+
+
 
 
 /* Desktop */

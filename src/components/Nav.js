@@ -1,8 +1,14 @@
 import React from "react";
+import Logo from "../images/siteImages/logo.png";
 
 function Nav() {
     return (
         <nav>
+
+            
+            <a href="#home">
+                <img src={Logo} />
+            </a>
             <a href="#home">
                 Home
             </a>

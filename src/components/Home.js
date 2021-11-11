@@ -7,7 +7,7 @@ function Home() {
   
             </div>
             <h1>
-                Bikehire
+                Liable bicycle Bikehire
 
             </h1>
             

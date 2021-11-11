@@ -1,23 +1,21 @@
 import React from 'react';
+import FeaturesData from './features.json';
 
 function Features() {
     return(
         <div id="features">
-            <div className="feature">
-                View records
-            </div>
-
-            <div className="feature">
-                Add to records
-            </div>
-            
-            <div className="feature">
-                Save record
-            </div>
-
-            <div className="feature">
-                Delete records
-            </div>
+            {FeaturesData.map((FeatureDetail, index)=>{
+                return  (
+                    <div className="feature">
+                        <h1>
+                            {FeatureDetail.title}
+                        </h1>
+                        <p>
+                            {FeatureDetail.description}
+                        </p>
+                    </div>
+                )
+            })}
         </div>
     );
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import FeaturesData from './features.json';
 
-
-
 function Features() {
     return(
+        <>
         <div id="features">
+            
+
+
             {FeaturesData.map((FeatureDetail, index)=>{
 
                 if (index % 2 == 0) {
@@ -47,13 +49,9 @@ function Features() {
                         </div>
                     )
                 }
-                
-
-
-                
-                
             })}
         </div>
+        </>
     );
 }
 

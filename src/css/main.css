@@ -40,6 +40,11 @@ body {
     
 }
 
+#home h1 p {
+    text-align: center;
+    font-size: 30px;
+}
+
 .overlay {
     position: absolute;
     height: 100%;
@@ -101,9 +106,10 @@ body {
     }
 
     #features {
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -111,23 +117,27 @@ body {
         display: flex;
         
         align-items: center;
-        width: 100%;
+        width: 90%;
         
         background-color: var(--background);
     }
 
     .feature img {
         height: 500px;
-        width: 50%;
-        margin: 0;
-        padding: 0;
-        
-        
+        width: 35%;
+        padding: 0 100px;      
+
     }
 
     .featureText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
         text-align: center;
         font-size: larger;
+        color: var(--primary)
         
     }
 
@@ -137,16 +147,15 @@ body {
     }
 
     .featureText p {
-        
+        font-size: 25px;
     }
 
     .featureTextLeft {
-        padding-right: 5vw;
-        padding-left: 15vw;
+        padding-left: 10vw;
     }
 
     .featureTextRight {
-        padding-left: 11.5vw;
+        padding-left: 4.5vw;
         padding-right: 15vw;
     }
 

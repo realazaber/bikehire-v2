@@ -8,7 +8,9 @@ function Home() {
             </div>
             <h1>
                 Liable bicycle Bikehire
-
+                <p>
+                    An app for bike rentals
+                </p>
             </h1>
             
         </div>

@@ -13,6 +13,7 @@ function Features() {
                         <div className="feature">
                             <img src={FeatureDetail.img} />
                             
+                            
                             <div className="featureText featureTextLeft">
                                 <h1>
                                     {FeatureDetail.title}

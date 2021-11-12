@@ -1,10 +1,14 @@
 :root {
-    --background: rgba(245, 245, 245, 0.685);
+    --background: #dededf;
     --mainText: white;
     --primary: #E56F02;
     --secondary:#1888BF;
 
     --lastColor: grey;
+}
+
+* {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -105,40 +109,48 @@ body {
 
     .feature {
         display: flex;
-        justify-content: center;
+        
         align-items: center;
-        width: 60%;
-
-        border: 2px solid red
+        width: 100%;
+        
+        background-color: var(--background);
     }
 
     .feature img {
-        height: 100%;
-        width: 250px;
+        height: 500px;
+        width: 50%;
+        margin: 0;
+        padding: 0;
+        
         
     }
 
     .featureText {
         text-align: center;
+        font-size: larger;
+        
+    }
+
+    .featureText h1 {
+        
+        
+    }
+
+    .featureText p {
+        
     }
 
     .featureTextLeft {
-        
-        padding-left: 20px;
+        padding-right: 5vw;
+        padding-left: 15vw;
     }
 
     .featureTextRight {
-        padding-right: 20px;
+        padding-left: 11.5vw;
+        padding-right: 15vw;
     }
 
-    .feature h1 {
-        
-        
-    }
 
-    .feature p {
-        
-    }
 }
 
 

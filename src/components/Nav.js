@@ -7,7 +7,7 @@ function Nav() {
 
             
             <a href="#home">
-                <img src={Logo} />
+                <img src={Logo} alt="Bike logo" />
             </a>
             <a href="#home">
                 Home

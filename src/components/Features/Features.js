@@ -10,10 +10,10 @@ function Features() {
 
             {FeaturesData.map((FeatureDetail, index)=>{
 
-                if (index % 2 == 0) {
+                if (index % 2 === 0) {
                         return  (                    
                         <div className="feature">
-                            <img src={FeatureDetail.img} />
+                            <img src={FeatureDetail.img} alt={FeatureDetail.title} />
                             
                             
                             <div className="featureText featureTextLeft">
@@ -43,7 +43,7 @@ function Features() {
                                 </p>
                             </div>
 
-                            <img src={FeatureDetail.img} />
+                            <img src={FeatureDetail.img} alt={FeatureDetail.title}/>
 
                             
                         </div>

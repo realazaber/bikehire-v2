@@ -1,16 +1,16 @@
 [
     {
-        "img": "",
+        "img": "features/download.jpeg",
         "title": "View records",
         "description": "You can easily view all customer, bike and rent data."
     },
     {
-        "img": "",
+        "img": "features/download.jpeg",
         "title": "Save data",
         "description": "You can save all data in temporary memory or to file."
     },
     {
-        "img": "",
+        "img": "features/download.jpeg",
         "title": "Clear file",
         "description": "All contents from file can be deleted."
     }

@@ -3,7 +3,7 @@ import React from "react";
 function Home() {
     return (
         <div id="home">
-            <div class="overlay">
+            <div className="overlay">
   
             </div>
             <h1>

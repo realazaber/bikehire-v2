@@ -164,6 +164,36 @@ body {
         padding-right: 15vw;
     }
 
+    #galleryImages {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #gallery {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: var(--secondary);
+    }
+
+    .galleryImage, .galleryImage a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .galleryImage img {
+        width: 80%;
+        height: 50%;
+    }
+
+    .galleryImage p {
+        margin-top: 5px;
+        font-size: 30px;
+    }
+
 }
 
 

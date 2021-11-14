@@ -12,11 +12,11 @@ function Nav() {
             <a href="#home">
                 Home
             </a>
-            <a href="#features">
-                Features
-            </a>
             <a href="#gallery">
                 Gallery
+            </a>
+            <a href="#features">
+                Features
             </a>
             <a href="#download">
                 Download

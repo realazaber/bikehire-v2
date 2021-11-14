@@ -127,14 +127,7 @@ body {
     font-size: 25px;
 }
 
-.featureTextLeft {
-    padding-left: 10vw;
-}
 
-.featureTextRight {
-    padding-left: 4.5vw;
-    padding-right: 15vw;
-}
 
 
 #download {
@@ -320,6 +313,15 @@ body {
         font-size: 30px;
     }
 
+    .featureTextLeft {
+        padding-left: 10vw;
+    }
+    
+    .featureTextRight {
+        padding-left: 4.5vw;
+        padding-right: 15vw;
+    }
+
    
 
 }
@@ -327,6 +329,11 @@ body {
 
 /* Mobile */
 @media only screen and (max-width: 1000px) {
+
+    * {
+        /* overflow-x: hidden; */
+    }
+
     nav {
         visibility: hidden;
         display: none;

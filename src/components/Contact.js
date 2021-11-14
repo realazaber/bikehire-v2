@@ -22,20 +22,20 @@ function Contact() {
 
                         <div id="contactStart">
                             <div>
-                                <label for="name">Name: <b>*</b></label>
+                                <label htmlFor="name">Name: <b>*</b></label>
                                 <br />
                                 <input id="name" name="Name:" type="text" required></input>    
                             </div>
                             
                             <div>                                                    
-                                <label for="email">Email: <b>*</b></label>
+                                <label htmlFor="email">Email: <b>*</b></label>
                                 <br />
                                 <input id="email" name="Email:" type="email" required></input>
                             </div>
                         </div>
 
                         <br />
-                        <label for="message">Message: <b>*</b></label>
+                        <label htmlFor="message">Message: <b>*</b></label>
                         <textarea id="message" name="Message:" cols="43" rows="10"></textarea>
 
                         <br />

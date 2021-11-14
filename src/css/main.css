@@ -401,6 +401,10 @@ body {
         width: 100%;
     }
 
+    .feature img {
+        height: 300px;
+    }
+
     .galleryImage p, .featureText {
         font-size: 20px;
         text-align: center;

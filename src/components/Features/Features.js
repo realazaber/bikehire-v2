@@ -43,7 +43,7 @@ function Features() {
                         return  (                    
                             <div className="feature">
                                 
-                                <Slide right>
+                                <Slide left>
                                     <div className="featureText featureTextRight">
                                         <h1>
                                             {FeatureDetail.title}

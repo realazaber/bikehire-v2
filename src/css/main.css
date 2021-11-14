@@ -198,6 +198,7 @@ body {
     justify-content: center;
     flex-direction: column;
     padding: 15px;
+    overflow-y: hidden;
 }
 
 
@@ -236,6 +237,10 @@ body {
     height: 25px;
 }
 
+#programDetails, #contact, #contact form {
+    overflow-y: hidden;
+}
+
 #contact #programDetails {
     text-align: center;
 
@@ -247,6 +252,7 @@ body {
 
 #contact form, #programDetails {
     height: 450px;
+     
 }
 
 
@@ -341,6 +347,7 @@ body {
 
     * {
         overflow-x: hidden;
+        
     }
 
     nav {
@@ -374,6 +381,7 @@ body {
     }
 
     .galleryImage, .feature {
+        overflow-y: hidden;
         width: 100%;
     }
 
@@ -406,16 +414,22 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        
     }
     
     #contact form {
         margin-top: -100px;
         width: 100%;
+        overflow-y: hidden;
+    }
+
+    #programDetails {
+        overflow-y: hidden;
     }
 
 
     #contact #programDetails {
-    
+        
         width: 100%;
     }
 

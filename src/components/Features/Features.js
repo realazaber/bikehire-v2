@@ -1,6 +1,8 @@
 import React from 'react';
 import FeaturesData from './features.json';
 
+import Slide from 'react-reveal/Slide';
+
 function Features() {
     return(
         <div>
@@ -18,17 +20,20 @@ function Features() {
                     if (index % 2 === 0) {
                         return  (                    
                         <div className="feature">
-                            <img src={FeatureDetail.img} alt={FeatureDetail.title} />
+                            <Slide left>
+                                <img src={FeatureDetail.img} alt={FeatureDetail.title} />
+                            </Slide>
                             
-                            
-                            <div className="featureText featureTextLeft">
-                                <h1>
-                                    {FeatureDetail.title}
-                                </h1>
-                                <p>
-                                    {FeatureDetail.description}
-                                </p>
-                            </div>
+                            <Slide right>
+                                <div className="featureText featureTextLeft">
+                                    <h1>
+                                        {FeatureDetail.title}
+                                    </h1>
+                                    <p>
+                                        {FeatureDetail.description}
+                                    </p>
+                                </div>
+                            </Slide>
 
                             
                         </div>
@@ -38,18 +43,20 @@ function Features() {
                         return  (                    
                             <div className="feature">
                                 
-                                
-                                <div className="featureText featureTextRight">
-                                    <h1>
-                                        {FeatureDetail.title}
-                                    </h1>
-                                    <p>
-                                        {FeatureDetail.description}
-                                    </p>
-                                </div>
+                                <Slide right>
+                                    <div className="featureText featureTextRight">
+                                        <h1>
+                                            {FeatureDetail.title}
+                                        </h1>
+                                        <p>
+                                            {FeatureDetail.description}
+                                        </p>
+                                    </div>
+                                </Slide>
 
-                                <img src={FeatureDetail.img} alt={FeatureDetail.title}/>
-
+                                <Slide right>
+                                    <img src={FeatureDetail.img} alt={FeatureDetail.title}/>
+                                </Slide>
                                 
                             </div>
                         )
@@ -59,17 +66,19 @@ function Features() {
                 else {
                     return  (                    
                         <div className="feature">
-                    
-                            <div className="featureText">
-                                <h1>
-                                    {FeatureDetail.title}
-                                </h1>
-                                <p>
-                                    {FeatureDetail.description}
-                                </p>
-                            </div>
-                            <img src={FeatureDetail.img} alt={FeatureDetail.title} />
-
+                            <Slide bottom>
+                                <div className="featureText">
+                                    <h1>
+                                        {FeatureDetail.title}
+                                    </h1>
+                                    <p>
+                                        {FeatureDetail.description}
+                                    </p>
+                                </div>
+                            </Slide>
+                            <Slide bottom>
+                                <img src={FeatureDetail.img} alt={FeatureDetail.title} />
+                            </Slide>
                             
                         </div>
                         )

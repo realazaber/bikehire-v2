@@ -4,7 +4,7 @@ function Download() {
     return(
         
         <div>
-            <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1888BF" fill-opacity="1" d="M0,192L1440,320L1440,320L0,320Z"></path></svg>
+            <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1888BF" fillOpacity="1" d="M0,192L1440,320L1440,320L0,320Z"></path></svg>
 
             <div id="download">
                 <h1>
@@ -25,7 +25,7 @@ function Download() {
 
             </div>
 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1888BF" fill-opacity="1" d="M0,192L1440,32L1440,0L0,0Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1888BF" fillOpacity="1" d="M0,192L1440,32L1440,0L0,0Z"></path></svg>
         </div>
     );
 }

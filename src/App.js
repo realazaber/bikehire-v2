@@ -19,6 +19,7 @@ function App() {
       <Features />
       <Download />
       <Contact />
+      
     </div>
   );
 }

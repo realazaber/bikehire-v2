@@ -113,6 +113,12 @@ body {
         align-items: center;
     }
 
+    #features #featuresTitle {
+        font-size: 50px;
+        color: var(--secondary);
+        
+    }
+
     .feature {
         display: flex;
         
@@ -142,8 +148,7 @@ body {
     }
 
     .featureText h1 {
-        
-        
+        color: var(--secondary);
     }
 
     .featureText p {

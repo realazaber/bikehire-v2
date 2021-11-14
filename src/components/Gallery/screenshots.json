@@ -1,0 +1,14 @@
+[
+    {
+        "img": "screenshots/Customers.png",
+        "title": "Customers tab"
+    },
+    {
+        "img": "screenshots/Bikes.png",
+        "title": "Bikes tab"
+    },
+    {
+        "img": "screenshots/Rentals.png",
+        "title": "Rentals tab"
+    }
+]

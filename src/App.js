@@ -1,5 +1,7 @@
 import "./css/main.css";
 
+import React from "react";
+
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Features from "./components/Features/Features";
@@ -10,15 +12,14 @@ import Contact from "./components/Contact";
 
 function App() {
   return (
-    <>
+    <div>
       <Nav />
       <Home />
       <Features />
       <Gallery />
       <Download />
       <Contact />
-
-    </>
+    </div>
   );
 }
 

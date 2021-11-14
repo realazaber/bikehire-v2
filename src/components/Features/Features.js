@@ -3,10 +3,12 @@ import FeaturesData from './features.json';
 
 function Features() {
     return(
-        <>
+        <div>
         <div id="features">
             
-
+            <h1 id="featuresTitle">
+                Features
+            </h1>
 
             {FeaturesData.map((FeatureDetail, index)=>{
 
@@ -51,7 +53,7 @@ function Features() {
                 }
             })}
         </div>
-        </>
+        </div>
     );
 }
 

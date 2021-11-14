@@ -14,7 +14,7 @@ function Features() {
 
 
                 //Desktop
-                if (screen.width >= 1000) {
+                if (screen.width >= 1024) {
                     if (index % 2 === 0) {
                         return  (                    
                         <div className="feature">
@@ -59,9 +59,7 @@ function Features() {
                 else {
                     return  (                    
                         <div className="feature">
-                            <img src={FeatureDetail.img} alt={FeatureDetail.title} />
-                            
-                            
+                    
                             <div className="featureText">
                                 <h1>
                                     {FeatureDetail.title}
@@ -70,6 +68,7 @@ function Features() {
                                     {FeatureDetail.description}
                                 </p>
                             </div>
+                            <img src={FeatureDetail.img} alt={FeatureDetail.title} />
 
                             
                         </div>

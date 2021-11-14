@@ -9,6 +9,7 @@
 
 * {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -133,18 +134,21 @@ body {
 #download {
     background-color: var(--secondary);
     margin-top: -5px;
+    margin-bottom: -5px;
     color: var(--mainText);
     padding: 20px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 #downloadLinks a {
-    padding: 10px;
+    padding: 0px 10px;
     color: var(--mainText);
     font-size: 25px;
+    
 }
 
 #contactHeading {
@@ -249,7 +253,7 @@ body {
 
 
 /* Desktop */
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1024px) {
     nav {
         visibility: visible;
         position: fixed;
@@ -333,7 +337,7 @@ body {
 
 
 /* Mobile */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1024px) {
 
     * {
         overflow-x: hidden;
@@ -380,6 +384,10 @@ body {
         align-items: center;
     }
 
+    #featuresTitle {
+        margin-top: -20px;
+    }
+
     .galleryImage img, .feature img {
         width: 100%;
     }
@@ -390,7 +398,7 @@ body {
     }
 
     #download {
-        margin-top: -5.8px;
+        margin-top: -6px;
     }
 
     #contact {

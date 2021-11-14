@@ -194,6 +194,23 @@ body {
         font-size: 30px;
     }
 
+    #download {
+        background-color: var(--secondary);
+        margin-top: -4px;
+        color: var(--mainText);
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #downloadLinks a {
+        padding: 5px;
+        color: var(--mainText);
+        font-size: larger;
+    }
+
 }
 
 

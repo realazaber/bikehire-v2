@@ -17,7 +17,6 @@ function App() {
       <Home />
       <Gallery />
       <Features />
-      
       <Download />
       <Contact />
     </div>

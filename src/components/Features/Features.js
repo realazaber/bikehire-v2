@@ -66,7 +66,7 @@ function Features() {
                 else {
                     return  (                    
                         <div className="feature">
-                            <Slide bottom>
+                            
                                 <div className="featureText">
                                     <h1>
                                         {FeatureDetail.title}
@@ -75,10 +75,9 @@ function Features() {
                                         {FeatureDetail.description}
                                     </p>
                                 </div>
-                            </Slide>
-                            <Slide bottom>
+
                                 <img src={FeatureDetail.img} alt={FeatureDetail.title} />
-                            </Slide>
+                            
                             
                         </div>
                         )

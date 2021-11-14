@@ -15,25 +15,25 @@ function Contact() {
                 </h2>
             </div>
             <div id="contact">
-                <form>
+                <form action="https://formspree.io/f/mpzkvdkp" method="post">
 
                     <div id="contactStart">
                         <div>
-                            <label>Name: <b>*</b></label>
+                            <label for="name">Name: <b>*</b></label>
                             <br />
-                            <input type="text" required></input>    
+                            <input id="name" name="Name:" type="text" required></input>    
                         </div>
                         
                         <div>                                                    
-                            <label>Email: <b>*</b></label>
+                            <label for="email">Email: <b>*</b></label>
                             <br />
-                            <input type="email" required></input>
+                            <input id="email" name="Email:" type="email" required></input>
                         </div>
                     </div>
 
                     <br />
-                    <label>Message: <b>*</b></label>
-                    <textarea cols="43" rows="10"></textarea>
+                    <label for="message">Message: <b>*</b></label>
+                    <textarea id="message" name="Message:" cols="43" rows="10"></textarea>
 
                     <br />
                     <button type="submit">Submit</button>

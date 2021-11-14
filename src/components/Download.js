@@ -15,10 +15,10 @@ function Download() {
                     the source code.
                 </h3>
                 <div id="downloadLinks">
-                    <a href="https://github.com/therealcoolpup/bikehire-v2/releases/tag/major-release" target="_blank">
+                    <a rel="noopener" href="https://github.com/therealcoolpup/bikehire-v2/releases/tag/major-release" target="_blank">
                         Jar file
                     </a>
-                    <a href="https://github.com/therealcoolpup/bikehire-v2" target="_blank">
+                    <a rel="noopener" href="https://github.com/therealcoolpup/bikehire-v2" target="_blank">
                         Source code
                     </a>
                 </div>

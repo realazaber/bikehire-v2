@@ -6,22 +6,22 @@ function Nav() {
         <nav>
 
             
-            <a href="#home">
+            <a rel="noopener" href="#home">
                 <img src={Logo} alt="Bike logo" />
             </a>
-            <a href="#home">
+            <a rel="noopener" href="#home">
                 Home
             </a>
-            <a href="#gallery">
+            <a rel="noopener" href="#gallery">
                 Gallery
             </a>
-            <a href="#features">
+            <a rel="noopener" href="#features">
                 Features
             </a>
-            <a href="#download">
+            <a rel="noopener" href="#download">
                 Download
             </a>
-            <a href="#contact">
+            <a rel="noopener" href="#contact">
                 Contact
             </a>
         </nav>

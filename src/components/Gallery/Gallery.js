@@ -11,7 +11,7 @@ function Gallery() {
                 {GalleryData.map((GalleryDetail, index)=>{
                     return (
                         <div className="galleryImage">
-                            <a href={GalleryDetail.img} target="_blank">
+                            <a rel="noopener" href={GalleryDetail.img} target="_blank">
                                 <img src={GalleryDetail.img} alt={GalleryDetail.title} />   
                             </a>
                             <p>
